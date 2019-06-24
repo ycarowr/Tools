@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76b3f709044c1284885b60181c7ecc9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 49936e700b247a94e977703cf48e3114, type: 3}
   m_Name: TextSequence
   m_EditorClassIdentifier: 
   Sequence:
-  - {fileID: 11400000, guid: 66e3f4b053525c04fa63cfb89062343f, type: 2}
-  - {fileID: 11400000, guid: 05b5f0c09f37e7c4a81c881c008bf073, type: 2}
-  - {fileID: 11400000, guid: bc7ba9be7ed1eca4daa970cba67a99d1, type: 2}
-  - {fileID: 11400000, guid: b6562f4bdfa589848802a96b4be12200, type: 2}
-  - {fileID: 11400000, guid: 2ce91e14dfbe8f745b46a027bf5c795c, type: 2}
-  - {fileID: 11400000, guid: 1f7acc92c51cc204681a6f99c9599bdc, type: 2}
+  - {fileID: 11400000, guid: c109a69a336c1274c859810b44fbc176, type: 2}
+  - {fileID: 11400000, guid: 42d08ffedfc0f084d821a21eeeea76d9, type: 2}
+  - {fileID: 11400000, guid: 4b85e0e67d7a0bf4ebc06d7221fa7f50, type: 2}
+  - {fileID: 11400000, guid: 8fa4a8fbf6fe1a447aaed340fee1477d, type: 2}
+  - {fileID: 11400000, guid: 9a6af7713d046d94d9610f9cd8087b97, type: 2}
+  - {fileID: 11400000, guid: 52c050eabd0003046b57539217a44c2d, type: 2}
