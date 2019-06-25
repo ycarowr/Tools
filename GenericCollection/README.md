@@ -7,5 +7,5 @@ Basically, you have Add and Remove operations already checking and raising excep
   
 Inside the Editor folder you will find a test class used in my Unit Tests as well as some practice of Test Driven Development using the Collection<T> class:
   
-![alt text](https://github.com/ycarowr/Tools/blob/master/Assets/Scripts/Tools/GenericCollection/Images/tdd%20collection.GIF)
+![alt text](https://github.com/ycarowr/Tools/blob/master/GenericCollection/Images/tdd%20collection.GIF)
 
