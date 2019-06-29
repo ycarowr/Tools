@@ -9,8 +9,6 @@ namespace Tools
     {
         private class DialogWriting : DialogSubComponent
         {
-            private const char space = ' ';
-
             public DialogWriting(IDialogSystem system,
                 TextMeshProUGUI sentence,
                 TextMeshProUGUI author) : base(system)
@@ -33,7 +31,6 @@ namespace Tools
                 Builder.Length = 0;
                 Builder.Append(text);
                 AuthorText.text = author;
-
                 if (!DialogSystem.IsOpened)
                     DialogSystem.Show();
                 else
@@ -66,17 +63,17 @@ namespace Tools
             private IEnumerator KeepWriting(float delay)
             {
                 yield return new WaitForSeconds(delay);
-
-                var aSetence = Builder.ToString();
-                var subSentence = CharLength <= aSetence.Length
-                    ? aSetence.Substring(0, CharLength)
+                
+                var aSentence = Builder.ToString();
+                var subSentence = CharLength <= aSentence.Length
+                    ? aSentence.Substring(0, CharLength)
                     : string.Empty;
                 SentenceText.text = subSentence;
 
                 ++CharLength;
 
-                var hasRechedEnd = CharLength > Builder.Length;
-                if (!hasRechedEnd)
+                var hasEnded = CharLength > Builder.Length;
+                if (!hasEnded)
                     StartCoroutine();
             }
 

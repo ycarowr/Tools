@@ -34,11 +34,11 @@ namespace Tools
             Animation = new DialogAnimation(this);
             Writing = new DialogWriting(this, sentenceText, authorText);
             Sequence = new DialogSequence(this);
-            Clear();
             Hide();
             Keyboard = GetComponent<IKeyboardInput>();
             Keyboard.OnKeyDown += PressNext;
             NextButton.onClick.AddListener(PressNext);
+            Clear();
         }
 
 
@@ -82,22 +82,13 @@ namespace Tools
 
         #region Write and Clear
 
-        [Header("Test")] [SerializeField] private TextSequence testSequence;
-
-        [Button]
-        public void Write()
-        {
-            Write(testSequence);
-        }
-
-
         public void Write(TextSequence textSequence)
         {
             Sequence.SetSequence(textSequence);
             var current = Sequence.GetCurrent();
             if (current == null)
                 return;
-
+        
             var author = current.Author;
             var text = current.Text;
             Write(text, author);
