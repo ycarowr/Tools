@@ -13,8 +13,6 @@ namespace Tools.UI
         /// </summary>
         private bool WithZ { get; set; }
 
-        public bool IsConstant { get; set; }
-
         public override void Execute(Vector3 position, float speed, float delay)
         {
             base.Execute(position, speed, delay);

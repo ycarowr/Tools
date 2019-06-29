@@ -42,6 +42,11 @@ namespace Tools.UI
         ///     Speed which the it moves towards the Target.
         /// </summary>
         protected float Speed { get; set; }
+        
+        /// <summary>
+        ///     Is the movement constant.
+        /// </summary>
+        public bool IsConstant { get; set; }
 
         //--------------------------------------------------------------------------------------------------------------
 
