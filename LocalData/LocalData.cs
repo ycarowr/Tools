@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using FullSerializer;
 using UnityEngine;
@@ -7,19 +6,18 @@ using UnityEngine;
 /// <summary>
 ///     Wraps up serialization functionalities and local data storage.
 /// </summary>
-public class LocalData
+public static partial class LocalData
 {
     /// <summary>
     ///     ID of the local serialized data.
     /// </summary>
-    private const string localDataId = "LocalData";
+    const string localDataId = "LocalData";
 
     /// <summary>
     ///     Register for all the local data.
     /// </summary>
-    [fsProperty]
-    private static Dictionary<string, string> Register { get; } = LoadAllData();
-
+    private static Data localFiles = LoadAllData();
+    
     // -----------------------------------------------------------------------------------------------------------------
 
     /// <summary>
@@ -31,9 +29,8 @@ public class LocalData
     public static void StoreData<T>(T data, string id) where T : class
     {
         var sData = Serialize(data);
-        Register[id] = sData;
+        localFiles.Add(id, sData);
         StoreAllData();
-        PrintLocalData();
     }
 
     /// <summary>
@@ -44,9 +41,8 @@ public class LocalData
     /// <returns></returns>
     public static T LoadData<T>(string id) where T : class
     {
-        var data = string.Empty;
-        Register?.TryGetValue(id, out data);
-        return Deserialize<T>(data);
+        var data = localFiles.TryGet(id);
+        return data == null ? null : Deserialize<T>(data);
     }
 
     /// <summary>
@@ -55,7 +51,7 @@ public class LocalData
     /// <param name="id"></param>
     public static void DeleteData(string id)
     {
-        Register.Remove(id);
+        localFiles.Remove(id);
         StoreAllData();
     }
 
@@ -65,7 +61,7 @@ public class LocalData
     /// <param name="id"></param>
     public static bool HasData(string id)
     {
-        return Register.ContainsKey(id);
+        return localFiles.Has(id);
     }
 
     /// <summary>
@@ -73,7 +69,7 @@ public class LocalData
     /// </summary>
     public static void DeleteAll()
     {
-        Register.Clear();
+        localFiles = new Data();
         PlayerPrefs.DeleteAll();
     }
 
@@ -88,13 +84,13 @@ public class LocalData
     public static T Deserialize<T>(string json) where T : class
     {
         //using Unity built in solution
-        //return JsonUtility.FromJson<T>(json);
+//        return JsonUtility.FromJson<T>(json);
         
         //-------------------------------------------------------
         
         //using Fullserializer solution
         var type = typeof(T);
-        return FullSerializerWrapper.Deserialize(type, json) as T;
+        return FullSerializer.Deserialize(type, json) as T;
     }
 
     /// <summary>
@@ -105,29 +101,29 @@ public class LocalData
     /// <returns></returns>
     public static string Serialize(object data, bool isPretty = false)
     {
-        //using Unity built in solution
-        //return JsonUtility.ToJson(data, isPretty);
+        // using Unity built in solution
+        // return JsonUtility.ToJson(data, isPretty);
         
         //-------------------------------------------------------
         
         //using Fullserializer solution
         var type = data.GetType();
-        return FullSerializerWrapper.Serialize(type, data);
+        return FullSerializer.Serialize(type, data, isPretty);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    private static Dictionary<string, string> LoadAllData()
+    private static Data LoadAllData()
     {
         var localData = PlayerPrefs.GetString(localDataId);
         return string.IsNullOrEmpty(localData)
-            ? new Dictionary<string, string>()
-            : JsonUtility.FromJson<Dictionary<string, string>>(localData);
+            ? new Data()
+            : Deserialize<Data>(localData);
     }
 
     private static void StoreAllData()
     {
-        var allData = Serialize(Register);
+        var allData = Serialize(localFiles);
         PlayerPrefs.SetString(localDataId, allData);
     }
 
@@ -138,43 +134,12 @@ public class LocalData
     /// </summary>
     public static void PrintLocalData()
     {
-        SaveCopyAtAssets();
-        Debug.Log(Serialize(Register, true));
+        Debug.Log(Serialize(localFiles, true));
     }
 
     public static void SaveCopyAtAssets()
     {
-        var text = Serialize(Register, true);
-        File.WriteAllText("Assets/Snapshot.json", text);
-    }
-
-    /// <summary>
-    ///     Wrapper for FullSerializer. Ref: https://github.com/jacobdufault/fullserializer.
-    /// </summary>
-    private static class FullSerializerWrapper
-    {
-        private static readonly fsSerializer _serializer = new fsSerializer();
-
-        public static string Serialize(Type type, object value)
-        {
-            // serialize the data
-            fsData data;
-            _serializer.TrySerialize(type, value, out data).AssertSuccessWithoutWarnings();
-
-            // emit the data via JSON
-            return fsJsonPrinter.CompressedJson(data);
-        }
-
-        public static object Deserialize(Type type, string serializedState)
-        {
-            // step 1: parse the JSON data
-            var data = fsJsonParser.Parse(serializedState);
-
-            // step 2: deserialize the data
-            object deserialized = null;
-            _serializer.TryDeserialize(data, type, ref deserialized).AssertSuccessWithoutWarnings();
-
-            return deserialized;
-        }
+        var text = Serialize(localFiles, true);
+        File.WriteAllText("Assets/localFiles.json", text);
     }
 }

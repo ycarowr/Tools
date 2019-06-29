@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using Object = System.Object;
 
 public class LocalDataTest : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class LocalDataTest : MonoBehaviour
     public void StoreDataTest()
     {
         const string id = "StoreDataTest";
+        const string id1 = "StoreDataTest1";
+        const string id2 = "StoreDataTest2";
         //clean data
         var testData = new TestLocalData();
 
@@ -36,15 +39,19 @@ public class LocalDataTest : MonoBehaviour
             TestString = newString
         };
         
-        
         //store the data locally
         LocalData.StoreData(testData, id);
+        //store the data locally
+        LocalData.StoreData(testData, id1);
+        //store the data locally
+        LocalData.StoreData(testData, id2);
             
         //get the stored data
         var retrievedData = LocalData.LoadData<TestLocalData>(id);
         
         //compare data
         Assert.True(testData.IsEqual(retrievedData));
+        LocalData.SaveCopyAtAssets();
     }
 
     [Test]
@@ -89,7 +96,15 @@ public class LocalDataTest : MonoBehaviour
 
             public bool IsEqual(NestedLocalData other)
             {
-                return TestFloat == other.TestFloat && TestString == other.TestString;
+                return Math.Abs(TestFloat - other.TestFloat) < 0.01f && TestString == other.TestString;
+            }
+
+            public override string ToString()
+            {
+                var log = string.Empty;
+                log += TestFloat;
+                log += TestString;
+                return log;
             }
         }
 
@@ -98,6 +113,15 @@ public class LocalDataTest : MonoBehaviour
             return TestBool == other.TestBool
                    && TestInt == other.TestInt
                    && TestNestedData.IsEqual(other.TestNestedData);
+        }
+
+        public override string ToString()
+        {
+            var log = string.Empty;
+            log += TestInt;
+            log += TestBool;
+            log += TestNestedData;
+            return log;
         }
     }
 }
