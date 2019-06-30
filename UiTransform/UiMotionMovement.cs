@@ -4,23 +4,33 @@ namespace Tools.UI
 {
     public class UiMotionMovement : UiMotionBase
     {
+        private float Z { get; set; }
+        
         public UiMotionMovement(IUiMotionHandler handler) : base(handler)
         {
         }
 
-        /// <summary>
-        ///     TODO: Implement 2d and 3d in the same class (?).
-        /// </summary>
-        private bool WithZ { get; set; }
-
-        public override void Execute(Vector3 position, float speed, float delay)
+        public void Execute(Vector2 position, float speed, float delay, float z)
         {
+            TeleportZ(z);
             base.Execute(position, speed, delay);
+        }
+
+        public void Teleport(Vector3 position)
+        {
+            Handler.transform.position = position;
+        }
+
+        private void TeleportZ(float z)
+        {
+            Z = z;
+            var pos = Handler.transform.position;
+            pos.z = z;
+            Handler.transform.position = pos;
         }
 
         protected override void OnMotionEnds()
         {
-            WithZ = false;
             IsOperating = false;
             var target = Target;
             target.z = Handler.transform.position.z;
@@ -35,8 +45,9 @@ namespace Tools.UI
             var delta = !IsConstant
                 ? Vector2.Lerp(current, Target, amount)
                 : Vector2.MoveTowards(current, Target, amount);
-
+                        
             Handler.transform.position = delta;
+            TeleportZ(Z);
         }
 
         protected override bool CheckFinalState()
