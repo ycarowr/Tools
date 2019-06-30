@@ -12,9 +12,13 @@ namespace Tools
         public Action OnKey { get; set; } = () => { };
         public Action OnKeyDown { get; set; } = () => { };
         public Action OnKeyUp { get; set; } = () => { };
+        public bool IsTracking { get; set; } = true;
 
         private void Update()
         {
+            if (!IsTracking)
+                return;
+            
             var isKey = Input.GetKey(key);
             var isKeyDown = Input.GetKeyDown(key);
             var isKeyUp = Input.GetKeyUp(key);
