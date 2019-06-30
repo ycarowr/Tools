@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Patterns
@@ -143,6 +144,13 @@ namespace Patterns
             return obj.GetComponent<T1>();
         }
 
+        public virtual T1 GetFirst<T1>() where T1 : class
+        {
+            var prefabModel = models[0];
+            var obj = Get(prefabModel);
+            return obj.GetComponent<T1>();
+        }
+        
         /// <summary>
         ///     Here you pool back objects that you no longer use. They are deactivated and
         ///     stored back for future usage using the prefab model as key to get it back later on.
