@@ -12,7 +12,7 @@ namespace Tools
         public Action OnKey { get; set; } = () => { };
         public Action OnKeyDown { get; set; } = () => { };
         public Action OnKeyUp { get; set; } = () => { };
-        public bool IsTracking { get; set; } = true;
+        public bool IsTracking { get; private set; }
 
         private void Update()
         {
@@ -29,6 +29,16 @@ namespace Tools
                 OnKeyDown?.Invoke();
             if (isKeyUp)
                 OnKeyUp?.Invoke();
+        }
+
+        public void StartTracking()
+        {
+            IsTracking = true;
+        }
+
+        public void StopTracking()
+        {
+            IsTracking = false;
         }
     }
 }
