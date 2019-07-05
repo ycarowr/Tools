@@ -15,4 +15,4 @@ A text piece sample:
 ![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/quesion3.JPG)
 
 Questions sample:
-![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/folder organization.JPG)
+![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/folder \organization.JPG)
