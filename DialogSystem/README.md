@@ -2,7 +2,7 @@
 
 This is a small and straight forward dialog system.
 
-![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/dialogwrite.gif)
+![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/dialogpokemon.gif)
 
 It works reading data stored in scriptable objects:
 1. Text Sequence: its basically an array of texts; 
@@ -12,6 +12,6 @@ Text Piece sample:
 ![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/dialogtext.JPG)
 
 Todo: 
-1. Add event when the a text piece finishes to write.
+1. events are atta.
 2. Make a localization system to load the texts from jsons instead reading the raw string.
 3. ...
