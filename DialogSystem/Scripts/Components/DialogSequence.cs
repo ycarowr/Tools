@@ -1,20 +1,26 @@
-﻿namespace Tools
+﻿using UnityEngine;
+
+namespace Tools.Dialog
 {
     public partial class DialogSystem
     {
         private class DialogSequence : DialogSubComponent
-        {
+        {            
             public DialogSequence(IDialogSystem system) : base(system)
             {
             }
-
+            
             public TextSequence Sequence { get; private set; }
             public int IndexPieces { get; private set; }
             public bool IsLast => Sequence.Sequence.Length - 1 == IndexPieces;
 
             public void SetSequence(TextSequence sequence)
             {
+                IndexPieces = 0;
                 Sequence = sequence;
+                foreach (var piece in sequence.Sequence)
+                    foreach (var btn in piece.Buttons)
+                        btn.Dialog = DialogSystem;
             }
 
             public void Hide()

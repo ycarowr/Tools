@@ -1,44 +1,46 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Tools
+namespace Tools.Dialog
 {
     public partial class DialogSystem : MonoBehaviour, IDialogSystem
     {
-        [SerializeField] private TextMeshProUGUI authorText;
-
-        [Header("Set by Editor")] [SerializeField]
-        private GameObject content;
-
-        [SerializeField] private Button NextButton;
+        [Header("Set by Editor")] 
+        [SerializeField] private TextButton buttonNext;
+        [SerializeField] private GameObject content;
         [SerializeField] private Parameters parameters;
+        [SerializeField] private TextMeshProUGUI authorText;
         [SerializeField] private TextMeshProUGUI sentenceText;
-        private IKeyboardInput Keyboard { get; set; }
+        [SerializeField] private Transform buttonsAnchor;
 
+        private List<GameObject> CurrentButtons = new List<GameObject>();
+        private IKeyboardInput Keyboard { get; set; }
         private DialogAnimation Animation { get; set; }
         private DialogWriting Writing { get; set; }
         private DialogSequence Sequence { get; set; }
-
-
         public int Speed => parameters.Speed;
         public bool IsOpened { get; private set; }
         public Action OnShow { get; set; } = () => { };
         public Action OnHide { get; set; } = () => { };
         public Action OnFinishSequence { get; set; } = () => { };
         public MonoBehaviour Monobehavior => this;
+        
 
         protected void Awake()
         {
+            buttonNext.OnPress.AddListener(PressNext);
             Animation = new DialogAnimation(this);
             Writing = new DialogWriting(this, sentenceText, authorText);
             Sequence = new DialogSequence(this);
-            Hide();
             Keyboard = GetComponent<IKeyboardInput>();
             Keyboard.OnKeyDown += PressNext;
-            NextButton.onClick.AddListener(PressNext);
-            Clear();
+            OnShow += Writing.StartWriting;
+            OnShow += () => CreateButtons(Sequence.GetCurrent());
+            Hide();
         }
 
 
@@ -53,32 +55,19 @@ namespace Tools
                 return;
 
             if (Sequence.IsLast)
+            {
                 OnFinishSequence?.Invoke();
+                Hide();
+                return;
+            }
 
             var current = Sequence.GetCurrent();
             if (current == null)
                 return;
 
-            current.OnNext?.Invoke();
-            var action = current.OnPressNext;
-            switch (action)
-            {
-                case DialogAutoAction.Hide:
-                    Hide();
-                    break;
-                case DialogAutoAction.Show:
-                    Show();
-                    break;
-                case DialogAutoAction.Clear:
-                    Clear();
-                    break;
-                case DialogAutoAction.Next:
-                    WriteNext();
-                    break;
-            }
+            Clear();
+            WriteNext();
         }
-
-        //-----------------------------------------------------------------------------------------
 
         #region Write and Clear
 
@@ -93,12 +82,7 @@ namespace Tools
             var text = current.Text;
             Write(text, author);
         }
-
-        public void Write(string text, string author)
-        {
-            Writing.Write(text, author);
-        }
-
+        
         [Button]
         public void WriteNext()
         {
@@ -108,19 +92,40 @@ namespace Tools
 
             var author = next.Author;
             var text = next.Text;
+            CreateButtons(next);
             Write(text, author);
+        }
+
+        private void Write(string text, string author)
+        {
+            Writing.Write(text, author);
+        }
+        
+        private void CreateButtons(TextPiece next)
+        {
+            foreach (var piece in next.Buttons)
+            {
+                var btn = piece.CreateButton(buttonsAnchor);
+                CurrentButtons.Add(btn);
+            }
         }
 
         [Button]
         public void Clear()
         {
-            OnHide += Clear;
-            OnShow += Writing.StartWriting;
+            ClearButtons();
             Writing.Clear();
         }
-
+        
+        private void ClearButtons()
+        {
+            for (var i = 0; i < CurrentButtons.Count; i++)
+                Destroy(CurrentButtons[i]);
+            CurrentButtons.Clear();
+        }
+        
         #endregion
-
+        
         //-----------------------------------------------------------------------------------------
 
         #region Show and Hide
@@ -137,8 +142,8 @@ namespace Tools
         {
             Animation.Hide();
             Sequence.Hide();
-
             IsOpened = false;
+            Clear();
         }
 
         #endregion

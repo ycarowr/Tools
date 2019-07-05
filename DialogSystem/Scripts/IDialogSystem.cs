@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Tools
-{
+namespace Tools.Dialog
+ {
     /// <summary>
     ///     A dialog system interface.
     /// </summary>
@@ -57,12 +57,6 @@ namespace Tools
         ///     Deactivate the gameObject.
         /// </summary>
         void Deactivate();
-
-        /// <summary>
-        ///     If active, write a text to the user.
-        /// </summary>
-        /// <param name="text"></param>
-        void Write(string text, string author);
 
         /// <summary>
         ///     Clear the text.

@@ -3,7 +3,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 
-namespace Tools
+namespace Tools.Dialog
 {
     public partial class DialogSystem
     {

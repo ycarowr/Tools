@@ -1,14 +1,24 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Tools
+namespace Tools.Dialog
 {
     [CreateAssetMenu(menuName = "DialogSystem/TextPiece")]
     public class TextPiece : ScriptableObject
     {
+        /// <summary>
+        ///     Author of the text. Appears at the top.
+        /// </summary>
         public string Author;
-        public UnityEvent OnNext = new UnityEvent();
-        public DialogSystem.DialogAutoAction OnPressNext = DialogSystem.DialogAutoAction.Next;
+        
+        /// <summary>
+        ///     The text inside the box.
+        /// </summary>
         [Multiline] public string Text;
+        
+        /// <summary>
+        ///     The buttons that interact with the text.
+        /// </summary>
+        public TextButton[] Buttons;
     }
 }
