@@ -39,16 +39,6 @@ namespace Tools.Dialog
         int Speed { get; }
 
         /// <summary>
-        ///     If active, show the dialog in the screen in the same position it was before.
-        /// </summary>
-        void Show();
-
-        /// <summary>
-        ///     Hide the dialog screen.
-        /// </summary>
-        void Hide();
-
-        /// <summary>
         ///     Activate the gameobject.
         /// </summary>
         void Activate();
@@ -64,8 +54,24 @@ namespace Tools.Dialog
         void Clear();
 
         /// <summary>
-        ///     Calls next text sequence.
+        ///     Calls next text.
         /// </summary>
-        void WriteNext();
+        void Next();
+
+        /// <summary>
+        ///     Writes a determined text sequence.
+        /// </summary>
+        /// <param name="textSequence"></param>
+        void Write(TextSequence textSequence);
+
+        /// <summary>
+        ///     Shows the window in its last state.
+        /// </summary>
+        void Show();
+        
+        /// <summary>
+        ///     Hides the window.
+        /// </summary>
+        void Hide();
     }
 }

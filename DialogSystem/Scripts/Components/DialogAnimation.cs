@@ -4,6 +4,9 @@ namespace Tools.Dialog
 {
     public partial class DialogSystem
     {
+        /// <summary>
+        ///     Controls the animations of the Dialog System.
+        /// </summary>
         private class DialogAnimation : DialogSubComponent
         {
             public DialogAnimation(IDialogSystem system) : base(system)

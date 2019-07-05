@@ -3,6 +3,9 @@ using UnityEngine.Events;
 
 namespace Tools.Dialog
 {
+    /// <summary>
+    ///     A text piece inside the Dialog System.
+    /// </summary>
     [CreateAssetMenu(menuName = "DialogSystem/TextPiece")]
     public class TextPiece : ScriptableObject
     {
@@ -12,12 +15,12 @@ namespace Tools.Dialog
         public string Author;
         
         /// <summary>
-        ///     The text inside the box.
+        ///     The sentence inside the box.
         /// </summary>
         [Multiline] public string Text;
         
         /// <summary>
-        ///     The buttons that interact with the text.
+        ///     The buttons that interact with the Dialog System.
         /// </summary>
         public TextButton[] Buttons;
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-namespace Tools
+namespace Tools.Dialog
 {
     public class ButtonDialog : MonoBehaviour
     {

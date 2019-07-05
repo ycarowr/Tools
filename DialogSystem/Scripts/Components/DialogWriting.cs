@@ -7,6 +7,9 @@ namespace Tools.Dialog
 {
     public partial class DialogSystem
     {
+        /// <summary>
+        ///     Manages the writing of the Dialog System.
+        /// </summary>
         private class DialogWriting : DialogSubComponent
         {
             public DialogWriting(IDialogSystem system,
@@ -24,7 +27,6 @@ namespace Tools.Dialog
             private TextMeshProUGUI SentenceText { get; }
             private TextMeshProUGUI AuthorText { get; }
 
-
             public void Write(string text, string author)
             {
                 CharLength = 0;
@@ -36,6 +38,8 @@ namespace Tools.Dialog
                 else
                     StartWriting();
             }
+            
+            //-----------------------------------------------------------------------------------------
 
             public void Clear()
             {
@@ -43,7 +47,10 @@ namespace Tools.Dialog
                 SentenceText.text = string.Empty;
                 AuthorText.text = string.Empty;
             }
-
+            
+            /// <summary>
+            ///     Dispatches the loop to write the sentence.
+            /// </summary>
             public void StartWriting()
             {
                 if (WriteRoutine != null)
@@ -58,8 +65,11 @@ namespace Tools.Dialog
                 StartCoroutine();
             }
 
-            //-----------------------------------------------------------------------------------------
-
+            /// <summary>
+            ///     Loop to write the sentence.
+            /// </summary>
+            /// <param name="delay"></param>
+            /// <returns></returns>
             private IEnumerator KeepWriting(float delay)
             {
                 yield return new WaitForSeconds(delay);
@@ -68,8 +78,8 @@ namespace Tools.Dialog
                 var subSentence = CharLength <= aSentence.Length
                     ? aSentence.Substring(0, CharLength)
                     : string.Empty;
+                
                 SentenceText.text = subSentence;
-
                 ++CharLength;
 
                 var hasEnded = CharLength > Builder.Length;
@@ -90,7 +100,6 @@ namespace Tools.Dialog
             private float CalculateTime()
             {
                 // v = d / t
-                // wordsPerSecond = totalWords/totalSeconds
                 return Builder.Length / DialogSystem.Speed;
             }
         }

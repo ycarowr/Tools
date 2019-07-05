@@ -10,14 +10,24 @@ namespace Tools.Dialog
     public partial class DialogSystem : MonoBehaviour, IDialogSystem
     {
         [Header("Set by Editor")] 
-        [SerializeField] private TextButton buttonNext;
+        [Tooltip("All the window content.")]
         [SerializeField] private GameObject content;
+        
+        [Tooltip("Parameters to configure the writing.")]
         [SerializeField] private Parameters parameters;
+        
+        [Tooltip("The text which contains the author content.")]
         [SerializeField] private TextMeshProUGUI authorText;
+        
+        [Tooltip("The text which contains the written sentence.")]
         [SerializeField] private TextMeshProUGUI sentenceText;
+        
+        [Tooltip("Parent transform to hold all dialog buttons.")]
         [SerializeField] private Transform buttonsAnchor;
 
-        private List<GameObject> CurrentButtons = new List<GameObject>();
+        // -----------------------------------------------------------------------------------------
+
+        private List<GameObject> CurrentButtons { get; } = new List<GameObject>();
         private IKeyboardInput Keyboard { get; set; }
         private DialogAnimation Animation { get; set; }
         private DialogWriting Writing { get; set; }
@@ -29,24 +39,43 @@ namespace Tools.Dialog
         public Action OnFinishSequence { get; set; } = () => { };
         public MonoBehaviour Monobehavior => this;
         
-
         protected void Awake()
         {
-            buttonNext.OnPress.AddListener(PressNext);
             Animation = new DialogAnimation(this);
             Writing = new DialogWriting(this, sentenceText, authorText);
             Sequence = new DialogSequence(this);
             Keyboard = GetComponent<IKeyboardInput>();
-            Keyboard.OnKeyDown += PressNext;
+            Keyboard.OnKeyDown += Next;
             OnShow += Writing.StartWriting;
             OnShow += () => CreateButtons(Sequence.GetCurrent());
             Hide();
         }
 
-
         //-----------------------------------------------------------------------------------------
 
-        private void PressNext()
+        #region Write and Clear
+        
+        public void Write(TextSequence textSequence)
+        {
+            Sequence.SetSequence(textSequence);
+            var current = Sequence.GetCurrent();
+            if (current == null)
+                return;
+        
+            var author = current.Author;
+            var text = current.Text;
+            Write(text, author);
+        }
+        
+        private void Write(string text, string author)
+        {
+            Writing.Write(text, author);
+        }
+        
+        
+        #region Next
+        
+        public void Next()
         {
             if (!IsOpened)
                 return;
@@ -61,30 +90,15 @@ namespace Tools.Dialog
                 return;
             }
 
-            var current = Sequence.GetCurrent();
+            var current = Sequence?.GetCurrent();
             if (current == null)
                 return;
 
             Clear();
             WriteNext();
         }
-
-        #region Write and Clear
-
-        public void Write(TextSequence textSequence)
-        {
-            Sequence.SetSequence(textSequence);
-            var current = Sequence.GetCurrent();
-            if (current == null)
-                return;
         
-            var author = current.Author;
-            var text = current.Text;
-            Write(text, author);
-        }
-        
-        [Button]
-        public void WriteNext()
+        private void WriteNext()
         {
             var next = Sequence.GetNext();
             if (next == null)
@@ -96,10 +110,7 @@ namespace Tools.Dialog
             Write(text, author);
         }
 
-        private void Write(string text, string author)
-        {
-            Writing.Write(text, author);
-        }
+        #endregion
         
         private void CreateButtons(TextPiece next)
         {
@@ -141,7 +152,7 @@ namespace Tools.Dialog
         public void Hide()
         {
             Animation.Hide();
-            Sequence.Hide();
+            Sequence.Reset();
             IsOpened = false;
             Clear();
         }
@@ -166,7 +177,6 @@ namespace Tools.Dialog
         }
 
         #endregion
-
 
         //-----------------------------------------------------------------------------------------
     }
