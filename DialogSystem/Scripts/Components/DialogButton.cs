@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Tools.Dialog
 {
-    public class ButtonDialog : MonoBehaviour
+    public class DialogButton : MonoBehaviour
     {
         [SerializeField] private Button button;
         [SerializeField] private TMP_Text tmpText;

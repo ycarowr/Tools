@@ -39,7 +39,7 @@ namespace Tools.Dialog
         public GameObject CreateButton(Transform parent)
         {
             var goButton = Instantiate(PrefabButton, parent);
-            var btn = goButton.GetComponent<ButtonDialog>();
+            var btn = goButton.GetComponent<DialogButton>();
             btn.AddListener(OnPress.Invoke);
             btn.SetText(Text);
             return btn.gameObject;
