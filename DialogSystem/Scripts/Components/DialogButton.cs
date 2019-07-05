@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 namespace Tools.Dialog
 {
@@ -20,7 +17,7 @@ namespace Tools.Dialog
 
         public void AddListener(Action action)
         {
-            if(action != null)
+            if (action != null)
                 button.onClick.AddListener(action.Invoke);
         }
     }

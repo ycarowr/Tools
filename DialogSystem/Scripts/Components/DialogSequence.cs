@@ -1,28 +1,26 @@
-﻿using UnityEngine;
-
-namespace Tools.Dialog
+﻿namespace Tools.Dialog
 {
     public partial class DialogSystem
     {
         /// <summary>
-        ///     Manages the <see cref="TextSequence"/> to show the current <see cref="TextPiece"/>.
+        ///     Manages the <see cref="TextSequence" /> to show the current <see cref="TextPiece" />.
         /// </summary>
         private class DialogSequence : DialogSubComponent
-        {            
+        {
             public DialogSequence(IDialogSystem system) : base(system)
             {
             }
-            
+
             /// <summary>
-            ///     Current displayed <see cref="TextSequence"/>.
+            ///     Current displayed <see cref="TextSequence" />.
             /// </summary>
             public TextSequence Sequence { get; private set; }
-            
+
             /// <summary>
-            ///     Current index of the <see cref="TextPiece"/>
+            ///     Current index of the <see cref="TextPiece" />
             /// </summary>
             public int IndexPieces { get; private set; }
-            
+
             public bool IsLast => Sequence.Sequence.Length - 1 == IndexPieces;
 
             public void SetSequence(TextSequence sequence)
@@ -30,8 +28,8 @@ namespace Tools.Dialog
                 IndexPieces = 0;
                 Sequence = sequence;
                 foreach (var piece in sequence.Sequence)
-                    foreach (var btn in piece.Buttons)
-                        btn.SetDialog(DialogSystem);
+                foreach (var btn in piece.Buttons)
+                    btn.SetDialog(DialogSystem);
             }
 
             /// <summary>
@@ -44,7 +42,7 @@ namespace Tools.Dialog
             }
 
             /// <summary>
-            ///     Gets the <see cref="TextPiece"/> in the <paramref name="index"/> position.
+            ///     Gets the <see cref="TextPiece" /> in the <paramref name="index" /> position.
             /// </summary>
             /// <param name="index"></param>
             /// <returns></returns>
@@ -57,9 +55,9 @@ namespace Tools.Dialog
                     ? Sequence.Sequence[index]
                     : null;
             }
-            
+
             /// <summary>
-            ///     Gets the current displayed <see cref="TextPiece"/>.
+            ///     Gets the current displayed <see cref="TextPiece" />.
             /// </summary>
             /// <returns></returns>
             public TextPiece GetCurrent()
@@ -68,7 +66,7 @@ namespace Tools.Dialog
             }
 
             /// <summary>
-            ///     Gets the next displayed <see cref="TextPiece"/>.
+            ///     Gets the next displayed <see cref="TextPiece" />.
             /// </summary>
             /// <returns></returns>
             public TextPiece GetNext()

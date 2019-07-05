@@ -1,29 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Tools.Dialog
 {
     public partial class DialogSystem : MonoBehaviour, IDialogSystem
     {
-        [Header("Set by Editor")] 
-        [Tooltip("All the window content.")]
-        [SerializeField] private GameObject content;
-        
-        [Tooltip("Parameters to configure the writing.")]
-        [SerializeField] private Parameters parameters;
-        
-        [Tooltip("The text which contains the author content.")]
-        [SerializeField] private TextMeshProUGUI authorText;
-        
-        [Tooltip("The text which contains the written sentence.")]
-        [SerializeField] private TextMeshProUGUI sentenceText;
-        
-        [Tooltip("Parent transform to hold all dialog buttons.")]
-        [SerializeField] private Transform buttonsAnchor;
+        [Tooltip("The text which contains the author content.")] [SerializeField]
+        private TextMeshProUGUI authorText;
+
+        [Tooltip("Parent transform to hold all dialog buttons.")] [SerializeField]
+        private Transform buttonsAnchor;
+
+        [Header("Set by Editor")] [Tooltip("All the window content.")] [SerializeField]
+        private GameObject content;
+
+        [Tooltip("Parameters to configure the writing.")] [SerializeField]
+        private Parameters parameters;
+
+        [Tooltip("The text which contains the written sentence.")] [SerializeField]
+        private TextMeshProUGUI sentenceText;
 
         // -----------------------------------------------------------------------------------------
 
@@ -38,7 +35,7 @@ namespace Tools.Dialog
         public Action OnHide { get; set; } = () => { };
         public Action OnFinishSequence { get; set; } = () => { };
         public MonoBehaviour Monobehavior => this;
-        
+
         protected void Awake()
         {
             Animation = new DialogAnimation(this);
@@ -54,27 +51,27 @@ namespace Tools.Dialog
         //-----------------------------------------------------------------------------------------
 
         #region Write and Clear
-        
+
         public void Write(TextSequence textSequence)
         {
             Sequence.SetSequence(textSequence);
             var current = Sequence.GetCurrent();
             if (current == null)
                 return;
-        
+
             var author = current.Author;
             var text = current.Text;
             Write(text, author);
         }
-        
+
         private void Write(string text, string author)
         {
             Writing.Write(text, author);
         }
-        
-        
+
+
         #region Next
-        
+
         public void Next()
         {
             if (!IsOpened)
@@ -97,7 +94,7 @@ namespace Tools.Dialog
             Clear();
             WriteNext();
         }
-        
+
         private void WriteNext()
         {
             var next = Sequence.GetNext();
@@ -111,7 +108,7 @@ namespace Tools.Dialog
         }
 
         #endregion
-        
+
         private void CreateButtons(TextPiece next)
         {
             foreach (var piece in next.Buttons)
@@ -127,16 +124,16 @@ namespace Tools.Dialog
             ClearButtons();
             Writing.Clear();
         }
-        
+
         private void ClearButtons()
         {
             for (var i = 0; i < CurrentButtons.Count; i++)
                 Destroy(CurrentButtons[i]);
             CurrentButtons.Clear();
         }
-        
+
         #endregion
-        
+
         //-----------------------------------------------------------------------------------------
 
         #region Show and Hide

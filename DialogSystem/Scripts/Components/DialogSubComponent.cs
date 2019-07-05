@@ -3,7 +3,7 @@
     public partial class DialogSystem
     {
         /// <summary>
-        ///  Base dialog component.
+        ///     Base dialog component.
         /// </summary>
         private abstract class DialogSubComponent
         {
@@ -11,7 +11,7 @@
             {
                 DialogSystem = system;
             }
-            
+
             /// <summary>
             ///     The parent Dialog.
             /// </summary>

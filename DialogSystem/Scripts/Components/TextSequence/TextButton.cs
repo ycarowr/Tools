@@ -1,7 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 namespace Tools.Dialog
 {
@@ -12,24 +10,24 @@ namespace Tools.Dialog
     public class TextButton : ScriptableObject
     {
         /// <summary>
-        ///     The parent dialog.
+        ///     Callback to assign the event.
         /// </summary>
-        private IDialogSystem Dialog { get; set; }
-        
+        public UnityEvent OnPress = new UnityEvent();
+
+        /// <summary>
+        ///     Prefab of the button.
+        /// </summary>
+        public GameObject PrefabButton;
+
         /// <summary>
         ///     The text inside the button.
         /// </summary>
         public string Text;
 
         /// <summary>
-        ///     Prefab of the button.
+        ///     The parent dialog.
         /// </summary>
-        public GameObject PrefabButton;
-        
-        /// <summary>
-        ///     Callback to assign the event.
-        /// </summary>
-        public UnityEvent OnPress = new UnityEvent();
+        private IDialogSystem Dialog { get; set; }
 
         /// <summary>
         ///     Creates the button, assigns the necessary callbacks and texts.
@@ -44,7 +42,7 @@ namespace Tools.Dialog
             btn.SetText(Text);
             return btn.gameObject;
         }
-        
+
         /// <summary>
         ///     Sets the parent dialog;
         /// </summary>
@@ -63,7 +61,7 @@ namespace Tools.Dialog
         }
 
         /// <summary>
-        ///     Provides access to its own dialog property Next method.    
+        ///     Provides access to its own dialog property Next method.
         /// </summary>
         public void Next()
         {

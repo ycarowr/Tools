@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Tools.Dialog
- {
+{
     /// <summary>
     ///     A dialog system interface.
     /// </summary>
@@ -68,7 +68,7 @@ namespace Tools.Dialog
         ///     Shows the window in its last state.
         /// </summary>
         void Show();
-        
+
         /// <summary>
         ///     Hides the window.
         /// </summary>

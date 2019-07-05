@@ -38,7 +38,7 @@ namespace Tools.Dialog
                 else
                     StartWriting();
             }
-            
+
             //-----------------------------------------------------------------------------------------
 
             public void Clear()
@@ -47,7 +47,7 @@ namespace Tools.Dialog
                 SentenceText.text = string.Empty;
                 AuthorText.text = string.Empty;
             }
-            
+
             /// <summary>
             ///     Dispatches the loop to write the sentence.
             /// </summary>
@@ -73,12 +73,12 @@ namespace Tools.Dialog
             private IEnumerator KeepWriting(float delay)
             {
                 yield return new WaitForSeconds(delay);
-                
+
                 var aSentence = Builder.ToString();
                 var subSentence = CharLength <= aSentence.Length
                     ? aSentence.Substring(0, CharLength)
                     : string.Empty;
-                
+
                 SentenceText.text = subSentence;
                 ++CharLength;
 
