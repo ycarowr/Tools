@@ -5,13 +5,14 @@ This is a small and straight forward dialog system.
 ![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/dialogpokemon.gif)
 
 It works reading data stored in scriptable objects:
-1. Text Sequence: its basically an array of texts; 
-2. Text Piece: its a text, plus a custom event fired when the next button is pressed.
+1. Text Piece: its a text, plus a customizable buttons with available callbacks.
+2. Text Sequence: its basically an array of text pieces; 
 
-Text Piece sample:
-![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/dialogtext.JPG)
+A button sample:
+![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/yesbtn.JPG)
 
-Todo: 
-1. events are atta.
-2. Make a localization system to load the texts from jsons instead reading the raw string.
-3. ...
+A text piece sample: 
+![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/quesion3.JPG)
+
+Questions sample:
+![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/folder organization.JPG)
