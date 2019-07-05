@@ -8,6 +8,9 @@ It works reading data stored in scriptable objects:
 1. Text Piece: its a text, plus a customizable buttons with available callbacks.
 2. Text Sequence: its basically an array of text pieces; 
 
+[Data](https://github.com/ycarowr/Tools/tree/master/DialogSystem/Scripts/Components/TextSequence)
+[System](https://github.com/ycarowr/Tools/tree/master/DialogSystem/Scripts)
+
 A button sample:
 ![alt text](https://github.com/ycarowr/Tools/blob/master/DialogSystem/Images/yesbtn.JPG)
 
