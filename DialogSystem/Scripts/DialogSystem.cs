@@ -44,6 +44,7 @@ namespace Tools.Dialog
             Keyboard = GetComponent<IKeyboardInput>();
             Keyboard.OnKeyDown += Next;
             OnShow += Writing.StartWriting;
+            OnShow += Keyboard.StartTracking;
             OnShow += () => CreateButtons(Sequence.GetCurrent());
             Hide();
         }
@@ -148,6 +149,7 @@ namespace Tools.Dialog
         [Button]
         public void Hide()
         {
+            Keyboard.StopTracking();
             Animation.Hide();
             Sequence.Reset();
             IsOpened = false;

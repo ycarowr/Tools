@@ -9,5 +9,7 @@ namespace Tools
         Action OnKey { get; set; }
         Action OnKeyDown { get; set; }
         Action OnKeyUp { get; set; }
+        void StartTracking();
+        void StopTracking();
     }
 }
