@@ -26,7 +26,12 @@ namespace Tools.UI
         /// <summary>
         ///     Limit magnitude until the reaches the target completely.
         /// </summary>
-        protected virtual float Threshold => 0.01f;
+        protected virtual float Threshold { get; private set; } = 0.01f;
+
+        public void SetThreshold(float threshold)
+        {
+            Threshold = threshold;
+        }
 
         /// <summary>
         ///     Target of the motion.
