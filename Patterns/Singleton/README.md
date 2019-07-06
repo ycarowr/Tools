@@ -9,6 +9,6 @@ The second version creates the instance at the last minute, when the property is
 You have to analise which implementation fits better you game.
 
 Inside the Editor folder you will find some Unit Tests made in both Versions using the Unity3d Test Runner:
-![alt text](https://github.com/ycarowr/Tools/blob/master/Assets/Scripts/Patterns/Singleton/Images/singleton%20test.GIF)
+![alt text](https://github.com/ycarowr/Tools/blob/master/Patterns/Singleton/Images/singleton%20test.GIF)
 
 TODO: Comments about Singletom Monobehavior
