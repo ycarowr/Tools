@@ -1,10 +1,7 @@
 # Generic Prefab/GameObject Pooler
 
 This is a generic pooler that allows you to manipulate a group of prefabs or gameobjects as keys of dictionaries.
-The main purpose of this class is to manage how many instances of an prefab you have already instantiated while the game runs, also preallocate objects in memory to avoid glinches because an Instantiate call.
-
-Inside the scene named TestPrefabPool you can find a simple sample:
-https://github.com/ycarowr/Tools/tree/master/Assets/Scenes
+The main purpose of this class is to manage how many instances of a prefab you have already instantiated while the game runs, also preallocate objects in memory to avoid glinches because an Instantiate call.
 
 This is how looks like the Pooler Component inside the scene:
 
