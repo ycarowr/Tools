@@ -12,7 +12,6 @@ namespace Patterns
     ///     5. http://wiki.unity3d.com/index.php/Singleton
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    [ExecuteInEditMode]
     public class SingletonMB<T> : MonoBehaviour where T : class
     {
         //--------------------------------------------------------------------------------------------------------------
