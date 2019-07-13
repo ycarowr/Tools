@@ -4,7 +4,7 @@ namespace Patterns.GameEvents
 {
     public class UiGameEventListener : MonoBehaviour, IListener
     {
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             //subscribe
             if (GameEvents.Instance)
