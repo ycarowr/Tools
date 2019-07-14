@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 6866795107134464494}
   - component: {fileID: 1901221901599828956}
   - component: {fileID: 1831645468}
+  - component: {fileID: -707545816908927889}
   m_Layer: 5
   m_Name: ButtonDialog
   m_TagString: Untagged
@@ -293,3 +294,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   button: {fileID: 1901221901599828956}
   tmpText: {fileID: 1069045526830041313}
+  keyBoard: {fileID: -707545816908927889}
+--- !u!114 &-707545816908927889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9043141691063230625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2a8af808d11a64d832a3e5f34657ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 0

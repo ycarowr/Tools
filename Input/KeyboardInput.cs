@@ -40,5 +40,10 @@ namespace Tools
         {
             IsTracking = false;
         }
+
+        public void SetKey(KeyCode keyCode)
+        {
+            key = keyCode;
+        }
     }
 }

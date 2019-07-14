@@ -16,12 +16,12 @@ namespace Tools.Dialog
         /// <summary>
         ///     OnShow Event.
         /// </summary>
-        Action OnShow { get; }
+        Action OnShow { get; set; }
 
         /// <summary>
         ///     OnHide Event.
         /// </summary>
-        Action OnHide { get; }
+        Action OnHide { get; set; }
 
         /// <summary>
         ///     OnHide Finish Sequence Event.

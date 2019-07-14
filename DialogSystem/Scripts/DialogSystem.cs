@@ -24,8 +24,7 @@ namespace Tools.Dialog
 
         // -----------------------------------------------------------------------------------------
 
-        private List<GameObject> CurrentButtons { get; } = new List<GameObject>();
-        private IKeyboardInput Keyboard { get; set; }
+        private List<DialogButton> CurrentButtons { get; } = new List<DialogButton>();
         private DialogAnimation Animation { get; set; }
         private DialogWriting Writing { get; set; }
         private DialogSequence Sequence { get; set; }
@@ -41,10 +40,7 @@ namespace Tools.Dialog
             Animation = new DialogAnimation(this);
             Writing = new DialogWriting(this, sentenceText, authorText);
             Sequence = new DialogSequence(this);
-            Keyboard = GetComponent<IKeyboardInput>();
-            Keyboard.OnKeyDown += Next;
             OnShow += Writing.StartWriting;
-            OnShow += Keyboard.StartTracking;
             OnShow += () => CreateButtons(Sequence.GetCurrent());
             Hide();
         }
@@ -129,7 +125,8 @@ namespace Tools.Dialog
         private void ClearButtons()
         {
             for (var i = 0; i < CurrentButtons.Count; i++)
-                Destroy(CurrentButtons[i]);
+                Destroy(CurrentButtons[i].gameObject);
+            
             CurrentButtons.Clear();
         }
 
@@ -149,7 +146,6 @@ namespace Tools.Dialog
         [Button]
         public void Hide()
         {
-            Keyboard.StopTracking();
             Animation.Hide();
             Sequence.Reset();
             IsOpened = false;

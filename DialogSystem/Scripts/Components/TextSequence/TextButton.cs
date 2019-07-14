@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Tools.Dialog
@@ -9,6 +10,13 @@ namespace Tools.Dialog
     [CreateAssetMenu(menuName = "DialogSystem/TextButton")]
     public class TextButton : ScriptableObject
     {
+        private string KeyText { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Key attached to this button.
+        /// </summary>
+        public KeyCode BondedKey = KeyCode.None;
+        
         /// <summary>
         ///     Callback to assign the event.
         /// </summary>
@@ -34,13 +42,15 @@ namespace Tools.Dialog
         /// </summary>
         /// <param name="parent"></param>
         /// <returns></returns>
-        public GameObject CreateButton(Transform parent)
+        public DialogButton CreateButton(Transform parent)
         {
+            KeyText = " [" + BondedKey + "]";
             var goButton = Instantiate(PrefabButton, parent);
             var btn = goButton.GetComponent<DialogButton>();
+            btn.SetText(Text + KeyText);
+            btn.SetKeyCode(BondedKey);
             btn.AddListener(OnPress.Invoke);
-            btn.SetText(Text);
-            return btn.gameObject;
+            return btn;
         }
 
         /// <summary>
