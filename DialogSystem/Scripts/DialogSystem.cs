@@ -110,7 +110,7 @@ namespace Tools.Dialog
         {
             foreach (var piece in next.Buttons)
             {
-                var btn = piece.CreateButton(buttonsAnchor);
+                var btn = piece.CreateButton(buttonsAnchor, this);
                 CurrentButtons.Add(btn);
             }
         }

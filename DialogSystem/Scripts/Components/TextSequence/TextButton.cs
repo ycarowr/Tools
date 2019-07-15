@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,7 +21,7 @@ namespace Tools.Dialog
         /// <summary>
         ///     Callback to assign the event.
         /// </summary>
-        public UnityEvent OnPress = new UnityEvent();
+        public Dictionary<IDialogSystem, Action> OnClick = new Dictionary<IDialogSystem, Action>();
 
         /// <summary>
         ///     Prefab of the button.
@@ -42,14 +43,14 @@ namespace Tools.Dialog
         /// </summary>
         /// <param name="parent"></param>
         /// <returns></returns>
-        public DialogButton CreateButton(Transform parent)
+        public DialogButton CreateButton(Transform parent, IDialogSystem dialog)
         {
             KeyText = " [" + BondedKey + "]";
             var goButton = Instantiate(PrefabButton, parent);
             var btn = goButton.GetComponent<DialogButton>();
             btn.SetText(Text + KeyText);
             btn.SetKeyCode(BondedKey);
-            btn.AddListener(OnPress.Invoke);
+            btn.AddListener(OnClick[dialog].Invoke);
             return btn;
         }
 
