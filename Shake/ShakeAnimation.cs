@@ -68,7 +68,7 @@ namespace Tools
         public void Stop()
         {
             isShaking = false;
-            cachedTransform.localPosition = initialPosition;
+            cachedTransform.position = initialPosition;
             ResetCounters();
         }
 
