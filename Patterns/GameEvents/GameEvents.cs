@@ -2,7 +2,7 @@
 {
     //----------------------------------------------------------------------------------------------------------
     
-    public partial class GameEvents : Observer<GameEvents>
+    public class GameEvents : Observer<GameEvents>
     {
     }
 
