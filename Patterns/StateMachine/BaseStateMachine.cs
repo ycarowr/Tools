@@ -66,7 +66,6 @@ namespace Patterns.StateMachine
 
             var type = state.GetType();
             register.Add(type, state);
-            Logger.Log<BaseStateMachine>("Registered: ", "black", type);
         }
 
         /// <summary>
@@ -84,8 +83,6 @@ namespace Patterns.StateMachine
             IsInitialized = true;
 
             OnInitialize();
-
-            Logger.Log<BaseStateMachine>("Initialized!", "yellow");
         }
 
         /// <summary>
@@ -160,7 +157,6 @@ namespace Patterns.StateMachine
             if (!register.ContainsKey(type))
                 throw new ArgumentException("State " + state + " not registered yet.");
 
-            Logger.Log<BaseStateMachine>("Push state: ", "green", type);
             if (stack.Count > 0 && !isSilent)
                 Current?.OnExitState();
 
@@ -188,7 +184,6 @@ namespace Patterns.StateMachine
                 return;
 
             var state = stack.Pop();
-            Logger.Log<BaseStateMachine>("Pop state: ", "purple", state.GetType());
             state.OnExitState();
 
             if (!isSilent)
