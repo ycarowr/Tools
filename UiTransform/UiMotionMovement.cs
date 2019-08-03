@@ -4,11 +4,11 @@ namespace Tools.UI
 {
     public class UiMotionMovement : UiMotionBase
     {
-        private float Z { get; set; }
-        
         public UiMotionMovement(IUiMotionHandler handler) : base(handler)
         {
         }
+
+        float Z { get; set; }
 
         public void Execute(Vector2 position, float speed, float delay, float z)
         {
@@ -21,7 +21,7 @@ namespace Tools.UI
             Handler.transform.position = position;
         }
 
-        private void TeleportZ(float z)
+        void TeleportZ(float z)
         {
             Z = z;
             var pos = Handler.transform.position;
@@ -45,7 +45,7 @@ namespace Tools.UI
             var delta = !IsConstant
                 ? Vector2.Lerp(current, Target, amount)
                 : Vector2.MoveTowards(current, Target, amount);
-                        
+
             Handler.transform.position = delta;
             TeleportZ(Z);
         }

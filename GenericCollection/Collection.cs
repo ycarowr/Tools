@@ -28,7 +28,7 @@ namespace Tools
         }
 
         //units of the collection
-        private List<T> Units { get; }
+        List<T> Units { get; }
 
         public int Size => Units.Count;
 

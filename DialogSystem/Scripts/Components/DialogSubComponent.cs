@@ -5,7 +5,7 @@
         /// <summary>
         ///     Base dialog component.
         /// </summary>
-        private abstract class DialogSubComponent
+        abstract class DialogSubComponent
         {
             protected DialogSubComponent(IDialogSystem system)
             {

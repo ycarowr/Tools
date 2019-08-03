@@ -6,11 +6,11 @@ namespace Tools.UI.Fade
 {
     public class Fade : SingletonMB<Fade>, IFade
     {
-        private const float Threshold = 0.01f;
+        const float Threshold = 0.01f;
         public SpriteRenderer Renderer;
         [Range(1, 100f)] public float Speed;
-        private Color Target;
-        private Color Current => Renderer.color;
+        Color Target;
+        Color Current => Renderer.color;
         public bool IsFading { get; set; }
 
         public Action OnFinishFade { get; set; } = () => { };
@@ -43,7 +43,7 @@ namespace Tools.UI.Fade
             Disable();
         }
 
-        private void Update()
+        void Update()
         {
             if (!IsFading)
                 return;

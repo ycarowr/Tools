@@ -56,7 +56,7 @@ namespace Extensions
             SetChildLayersHelper(transform, layer, recursive);
         }
 
-        private static void SetChildLayersHelper(Transform transform, int layer, bool recursive)
+        static void SetChildLayersHelper(Transform transform, int layer, bool recursive)
         {
             foreach (Transform child in transform)
             {

@@ -61,7 +61,7 @@ namespace Patterns.StateMachineMB
         }
 
 
-        private void Log(string log, string colorName = "black")
+        void Log(string log, string colorName = "black")
         {
             log = string.Format("[" + GetType() + "]: <color={0}><b>" + log + "</b></color>", colorName);
             Debug.Log(log);

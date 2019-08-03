@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Patterns
@@ -21,10 +20,10 @@ namespace Patterns
         where T : class
     {
         [Tooltip("All pooled models have to be inside this array before the initialization")] [SerializeField]
-        private GameObject[] models;
+        GameObject[] models;
 
         [Tooltip("How many objects will be created as soon as the game loads")] [SerializeField]
-        private int startSize = 10;
+        int startSize = 10;
         //--------------------------------------------------------------------------------------------------------------
 
         public Dictionary<GameObject, List<GameObject>> Busy { get; set; } =
@@ -43,7 +42,7 @@ namespace Patterns
         /// <summary>
         ///     I am initializing it as soon as possible. You can move it to Awake or Start calls. It's up to you.
         /// </summary>
-        private void OnEnable()
+        void OnEnable()
         {
             //avoiding execution when the game isn't playing
             if (!Application.isPlaying)
@@ -57,7 +56,7 @@ namespace Patterns
         ///     Here is the initialization of the pooler. All the models/prefabs which you need to pool have to be inside
         ///     the modelPooled array. They will be keys for the Lists inside the pool system.
         /// </summary>
-        private void Initialize()
+        void Initialize()
         {
             if (models.Length == 0)
                 Debug.LogError("Can't pool empty objects.");
@@ -150,7 +149,7 @@ namespace Patterns
             var obj = Get(prefabModel);
             return obj.GetComponent<T1>();
         }
-        
+
         /// <summary>
         ///     Here you pool back objects that you no longer use. They are deactivated and
         ///     stored back for future usage using the prefab model as key to get it back later on.

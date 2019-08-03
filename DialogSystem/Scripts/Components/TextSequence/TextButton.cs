@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Tools.Dialog
 {
@@ -11,13 +10,11 @@ namespace Tools.Dialog
     [CreateAssetMenu(menuName = "DialogSystem/TextButton")]
     public class TextButton : ScriptableObject
     {
-        private string KeyText { get; set; } = string.Empty;
-
         /// <summary>
-        /// Key attached to this button.
+        ///     Key attached to this button.
         /// </summary>
         public KeyCode BondedKey = KeyCode.None;
-        
+
         /// <summary>
         ///     Callback to assign the event.
         /// </summary>
@@ -33,10 +30,12 @@ namespace Tools.Dialog
         /// </summary>
         public string Text;
 
+        string KeyText { get; set; } = string.Empty;
+
         /// <summary>
         ///     The parent dialog.
         /// </summary>
-        private IDialogSystem Dialog { get; set; }
+        IDialogSystem Dialog { get; set; }
 
         /// <summary>
         ///     Creates the button, assigns the necessary callbacks and texts.

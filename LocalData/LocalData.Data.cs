@@ -10,7 +10,7 @@ public static partial class LocalData
 
         public void Add(string id, string file)
         {
-            if(!DataRegister.ContainsKey(id))
+            if (!DataRegister.ContainsKey(id))
                 DataRegister.Add(id, file);
         }
 

@@ -14,7 +14,7 @@ namespace Tools.UI
 
         #region Unity Callbacks
 
-        private void Awake()
+        void Awake()
         {
             // Currently using PhysicsRaycaster, but can be also considered PhysicsRaycaster2D.
             if (Camera.main.GetComponent<PhysicsRaycaster>() == null)
@@ -31,7 +31,7 @@ namespace Tools.UI
         ///     While dragging returns the direction of the movement.
         /// </summary>
         /// <returns></returns>
-        private DragDirection GetDragDirection()
+        DragDirection GetDragDirection()
         {
             var currentPosition = Input.mousePosition;
             var normalized = (currentPosition - oldDragPosition).normalized;
@@ -72,7 +72,7 @@ namespace Tools.UI
 
         #region Properties and Fields
 
-        private Vector3 oldDragPosition;
+        Vector3 oldDragPosition;
         DragDirection IMouseInput.DragDirection => GetDragDirection();
         Vector2 IMouseInput.MousePosition => Input.mousePosition;
 

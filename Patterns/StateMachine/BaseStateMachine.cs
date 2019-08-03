@@ -32,12 +32,12 @@ namespace Patterns.StateMachine
         /// <summary>
         ///     Stack of States.
         /// </summary>
-        private readonly Stack<IState> stack = new Stack<IState>();
+        readonly Stack<IState> stack = new Stack<IState>();
 
         /// <summary>
         ///     This register doesn't allow the FSM to have two states with the same Type.
         /// </summary>
-        private readonly Dictionary<Type, IState> register = new Dictionary<Type, IState>();
+        readonly Dictionary<Type, IState> register = new Dictionary<Type, IState>();
 
         /// <summary>
         ///     Handler for the FSM. Usually the Monobehavior which holds this FSM.

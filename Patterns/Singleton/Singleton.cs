@@ -16,7 +16,7 @@
         //public getter
         public static T Instance { get; private set; } = CreateInstance();
 
-        private static T CreateInstance()
+        static T CreateInstance()
         {
             return Instance ?? (Instance = new T());
         }

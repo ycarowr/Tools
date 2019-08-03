@@ -10,7 +10,7 @@ namespace Tools.Dialog
         /// <summary>
         ///     Manages the writing of the Dialog System.
         /// </summary>
-        private class DialogWriting : DialogSubComponent
+        class DialogWriting : DialogSubComponent
         {
             public DialogWriting(IDialogSystem system,
                 TextMeshProUGUI sentence,
@@ -21,11 +21,11 @@ namespace Tools.Dialog
                 SentenceText = sentence;
             }
 
-            private StringBuilder Builder { get; }
-            private int CharLength { get; set; }
-            private Coroutine WriteRoutine { get; set; }
-            private TextMeshProUGUI SentenceText { get; }
-            private TextMeshProUGUI AuthorText { get; }
+            StringBuilder Builder { get; }
+            int CharLength { get; set; }
+            Coroutine WriteRoutine { get; set; }
+            TextMeshProUGUI SentenceText { get; }
+            TextMeshProUGUI AuthorText { get; }
 
             public void Write(string text, string author)
             {
@@ -70,7 +70,7 @@ namespace Tools.Dialog
             /// </summary>
             /// <param name="delay"></param>
             /// <returns></returns>
-            private IEnumerator KeepWriting(float delay)
+            IEnumerator KeepWriting(float delay)
             {
                 yield return new WaitForSeconds(delay);
 
@@ -87,7 +87,7 @@ namespace Tools.Dialog
                     StartCoroutine();
             }
 
-            private void StartCoroutine()
+            void StartCoroutine()
             {
                 var delay = CalculateTime();
                 WriteRoutine = DialogSystem.Monobehavior.StartCoroutine(KeepWriting(delay));
@@ -97,7 +97,7 @@ namespace Tools.Dialog
             ///     Return the time necessary to wait according to the sentence length.
             /// </summary>
             /// <returns></returns>
-            private float CalculateTime()
+            float CalculateTime()
             {
                 // v = d / t
                 return Builder.Length / DialogSystem.Speed;

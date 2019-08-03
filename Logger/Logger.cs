@@ -5,10 +5,10 @@ public static class Logger
 {
     //----------------------------------------------------------------------------------------------------------
 
-    private const char Period = '.';
-    private const string OpenColor = "]: <color={0}><b>";
+    const char Period = '.';
+    const string OpenColor = "]: <color={0}><b>";
 
-    private const string CloseColor = "</b></color>";
+    const string CloseColor = "</b></color>";
 
     //----------------------------------------------------------------------------------------------------------
     /// <summary>
@@ -27,7 +27,7 @@ public static class Logger
 
     //----------------------------------------------------------------------------------------------------------
 
-    private static string GetTypeName(Type type)
+    static string GetTypeName(Type type)
     {
         if (type == null)
             return string.Empty;

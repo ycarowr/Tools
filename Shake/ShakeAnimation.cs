@@ -10,13 +10,14 @@ namespace Tools
     {
         //---------------------------------------------------------------------------------------------------------------
 
-        [Tooltip("How big are the width and height of the shake."), SerializeField]
+        [Tooltip("How big are the width and height of the shake.")] [SerializeField]
         float amplitude;
 
-        [Tooltip("Duration of the shake in seconds"), SerializeField]
+        [Tooltip("Duration of the shake in seconds")] [SerializeField]
         float duration;
 
-        [Tooltip("How often the shake happens during its own duration. Value has to be smaller than the duration."), SerializeField]
+        [Tooltip("How often the shake happens during its own duration. Value has to be smaller than the duration.")]
+        [SerializeField]
         float frequency;
 
         //--------------------------------------------------------------------------------------------------------------
@@ -33,15 +34,15 @@ namespace Tools
         {
             CachedTransform = transform;
         }
-        
+
         void Update()
         {
-            if (!IsShaking) 
+            if (!IsShaking)
                 return;
-            
+
             UpdateShake();
         }
-        
+
         //--------------------------------------------------------------------------------------------------------------
 
         /// <summary>
@@ -56,7 +57,7 @@ namespace Tools
             InitialPosition = CachedTransform.position;
             IsShaking = true;
         }
-        
+
         /// <summary>
         ///     Clear the shake instantly.
         /// </summary>
@@ -76,7 +77,7 @@ namespace Tools
             CounterDuration = 0;
             CounterFrequency = 0;
         }
-        
+
         void UpdateShake()
         {
             var deltaTime = Time.deltaTime;
@@ -84,12 +85,16 @@ namespace Tools
             //increment duration
             CounterDuration += deltaTime;
             if (CounterDuration >= duration)
+            {
                 Stop();
+            }
             else
             {
                 //increment frequency
                 if (CounterFrequency < frequency)
+                {
                     CounterFrequency += deltaTime;
+                }
                 else
                 {
                     //move the object somewhere inside the amplitude

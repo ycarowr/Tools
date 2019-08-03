@@ -8,26 +8,26 @@ namespace Tools.Dialog
     public partial class DialogSystem : MonoBehaviour, IDialogSystem
     {
         [Tooltip("The text which contains the author content.")] [SerializeField]
-        private TextMeshProUGUI authorText;
+        TextMeshProUGUI authorText;
 
         [Tooltip("Parent transform to hold all dialog buttons.")] [SerializeField]
-        private Transform buttonsAnchor;
+        Transform buttonsAnchor;
 
         [Header("Set by Editor")] [Tooltip("All the window content.")] [SerializeField]
-        private GameObject content;
+        GameObject content;
 
         [Tooltip("Parameters to configure the writing.")] [SerializeField]
-        private Parameters parameters;
+        Parameters parameters;
 
         [Tooltip("The text which contains the written sentence.")] [SerializeField]
-        private TextMeshProUGUI sentenceText;
+        TextMeshProUGUI sentenceText;
 
         // -----------------------------------------------------------------------------------------
 
-        private List<DialogButton> CurrentButtons { get; } = new List<DialogButton>();
-        private DialogAnimation Animation { get; set; }
-        private DialogWriting Writing { get; set; }
-        private DialogSequence Sequence { get; set; }
+        List<DialogButton> CurrentButtons { get; } = new List<DialogButton>();
+        DialogAnimation Animation { get; set; }
+        DialogWriting Writing { get; set; }
+        DialogSequence Sequence { get; set; }
         public int Speed => parameters.Speed;
         public bool IsOpened { get; private set; }
         public Action OnShow { get; set; } = () => { };
@@ -61,7 +61,7 @@ namespace Tools.Dialog
             Write(text, author);
         }
 
-        private void Write(string text, string author)
+        void Write(string text, string author)
         {
             Writing.Write(text, author);
         }
@@ -92,7 +92,7 @@ namespace Tools.Dialog
             WriteNext();
         }
 
-        private void WriteNext()
+        void WriteNext()
         {
             var next = Sequence.GetNext();
             if (next == null)
@@ -106,7 +106,7 @@ namespace Tools.Dialog
 
         #endregion
 
-        private void CreateButtons(TextPiece next)
+        void CreateButtons(TextPiece next)
         {
             foreach (var piece in next.Buttons)
             {
@@ -122,11 +122,11 @@ namespace Tools.Dialog
             Writing.Clear();
         }
 
-        private void ClearButtons()
+        void ClearButtons()
         {
             for (var i = 0; i < CurrentButtons.Count; i++)
                 Destroy(CurrentButtons[i].gameObject);
-            
+
             CurrentButtons.Clear();
         }
 

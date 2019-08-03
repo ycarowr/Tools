@@ -7,7 +7,7 @@ namespace Tools.Dialog
         /// <summary>
         ///     Controls the animations of the Dialog System.
         /// </summary>
-        private class DialogAnimation : DialogSubComponent
+        class DialogAnimation : DialogSubComponent
         {
             public DialogAnimation(IDialogSystem system) : base(system)
             {
@@ -16,9 +16,9 @@ namespace Tools.Dialog
                 Animator = DialogSystem.Monobehavior.GetComponentInChildren<Animator>();
             }
 
-            private int ShowHash { get; }
-            private int HideHash { get; }
-            private Animator Animator { get; }
+            int ShowHash { get; }
+            int HideHash { get; }
+            Animator Animator { get; }
 
             public void Show()
             {

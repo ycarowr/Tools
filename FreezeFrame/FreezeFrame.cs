@@ -5,28 +5,28 @@ namespace Tools
 {
     public class FreezeFrame : MonoBehaviour
     {
-        [SerializeField] private float delay;
+        [SerializeField] float delay;
 
         [SerializeField] [Tooltip("Target of the fixed framerate.")]
-        private uint fixedFrameRate = 60;
+        uint fixedFrameRate = 60;
 
         [SerializeField] [Tooltip("Fix the framerate when the game starts.")]
-        private bool fixFrameRate = true;
+        bool fixFrameRate = true;
 
-        [SerializeField] private int frozenCount;
-        [SerializeField] private float initialTimeScale;
+        [SerializeField] int frozenCount;
+        [SerializeField] float initialTimeScale;
 
         [SerializeField] [Tooltip("Whether the game is frozen or not.")]
-        private bool isFrozen;
+        bool isFrozen;
 
         //------------------------------------------------------------------------------------------------------
 
-        [Header("Test")] [SerializeField] private float time;
+        [Header("Test")] [SerializeField] float time;
 
         [SerializeField] [Tooltip("Duration in frames of the freeze.")]
-        private float totalFramesFrozen;
+        float totalFramesFrozen;
 
-        private void Start()
+        void Start()
         {
             if (fixFrameRate)
                 Application.targetFrameRate = (int) fixedFrameRate;
@@ -65,7 +65,7 @@ namespace Tools
         }
 
 
-        private void Update()
+        void Update()
         {
             if (!isFrozen)
                 return;
@@ -76,13 +76,13 @@ namespace Tools
                 Unfreeze();
         }
 
-        private IEnumerator FreezeRoutine(float delay)
+        IEnumerator FreezeRoutine(float delay)
         {
             yield return new WaitForSeconds(delay);
             Freeze();
         }
 
-        private void Freeze()
+        void Freeze()
         {
             initialTimeScale = Time.timeScale;
             Time.timeScale = 0;
@@ -90,7 +90,7 @@ namespace Tools
         }
 
         [Button]
-        private void TestFreeze()
+        void TestFreeze()
         {
             Freeze(time, delay);
         }

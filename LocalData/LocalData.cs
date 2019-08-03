@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using FullSerializer;
+﻿using System.IO;
 using UnityEngine;
 
 /// <summary>
@@ -16,8 +14,8 @@ public static partial class LocalData
     /// <summary>
     ///     Register for all the local data.
     /// </summary>
-    private static Data localFiles = LoadAllData();
-    
+    static Data localFiles = LoadAllData();
+
     // -----------------------------------------------------------------------------------------------------------------
 
     /// <summary>
@@ -85,9 +83,9 @@ public static partial class LocalData
     {
         //using Unity built in solution
 //        return JsonUtility.FromJson<T>(json);
-        
+
         //-------------------------------------------------------
-        
+
         //using Fullserializer solution
         var type = typeof(T);
         return FullSerializer.Deserialize(type, json) as T;
@@ -103,9 +101,9 @@ public static partial class LocalData
     {
         // using Unity built in solution
         // return JsonUtility.ToJson(data, isPretty);
-        
+
         //-------------------------------------------------------
-        
+
         //using Fullserializer solution
         var type = data.GetType();
         return FullSerializer.Serialize(type, data, isPretty);
@@ -113,7 +111,7 @@ public static partial class LocalData
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    private static Data LoadAllData()
+    static Data LoadAllData()
     {
         var localData = PlayerPrefs.GetString(localDataId);
         return string.IsNullOrEmpty(localData)
@@ -121,7 +119,7 @@ public static partial class LocalData
             : Deserialize<Data>(localData);
     }
 
-    private static void StoreAllData()
+    static void StoreAllData()
     {
         var allData = Serialize(localFiles);
         PlayerPrefs.SetString(localDataId, allData);

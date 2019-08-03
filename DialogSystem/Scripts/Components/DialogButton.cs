@@ -7,16 +7,16 @@ namespace Tools.Dialog
 {
     public class DialogButton : MonoBehaviour
     {
-        [SerializeField] private Button button;
-        [SerializeField] private TMP_Text tmpText;
-        [SerializeField] private KeyboardInput keyBoard;
+        [SerializeField] Button button;
+        [SerializeField] KeyboardInput keyBoard;
+        [SerializeField] TMP_Text tmpText;
 
-        private void Awake()
+        void Awake()
         {
             keyBoard.OnKeyDown += button.onClick.Invoke;
             keyBoard.StartTracking();
         }
-        
+
         public void SetText(string txt)
         {
             tmpText.text = txt;
@@ -29,9 +29,9 @@ namespace Tools.Dialog
 
         public void AddListener(Action action)
         {
-            if (action == null) 
+            if (action == null)
                 return;
-            
+
             button.onClick.AddListener(action.Invoke);
         }
     }

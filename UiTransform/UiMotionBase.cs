@@ -28,11 +28,6 @@ namespace Tools.UI
         /// </summary>
         protected virtual float Threshold { get; private set; } = 0.01f;
 
-        public void SetThreshold(float threshold)
-        {
-            Threshold = threshold;
-        }
-
         /// <summary>
         ///     Target of the motion.
         /// </summary>
@@ -47,11 +42,16 @@ namespace Tools.UI
         ///     Speed which the it moves towards the Target.
         /// </summary>
         protected float Speed { get; set; }
-        
+
         /// <summary>
         ///     Is the movement constant.
         /// </summary>
         public bool IsConstant { get; set; }
+
+        public void SetThreshold(float threshold)
+        {
+            Threshold = threshold;
+        }
 
         //--------------------------------------------------------------------------------------------------------------
 
@@ -106,7 +106,7 @@ namespace Tools.UI
         /// </summary>
         /// <param name="delay"></param>
         /// <returns></returns>
-        private IEnumerator AllowMotion(float delay)
+        IEnumerator AllowMotion(float delay)
         {
             yield return new WaitForSeconds(delay);
             IsOperating = true;

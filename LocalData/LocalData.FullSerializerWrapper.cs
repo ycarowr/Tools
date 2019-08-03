@@ -6,22 +6,21 @@ public static partial class LocalData
     /// <summary>
     ///     Wrapper for FullSerializer. Ref: https://github.com/jacobdufault/fullserializer.
     /// </summary>
-    private static class FullSerializer
+    static class FullSerializer
     {
-        private static readonly fsSerializer _serializer = new fsSerializer();
-        
+        static readonly fsSerializer _serializer = new fsSerializer();
+
         public static string Serialize(Type type, object value, bool isPretty)
         {
-            
             // serialize the data
             fsData data;
             _serializer.TrySerialize(type, value, out data).AssertSuccessWithoutWarnings();
 
             var json = fsJsonPrinter.CompressedJson(data);
-            
+
             if (isPretty)
                 json = fsJsonPrinter.PrettyJson(data);
-            
+
             // emit the data via JSON
             return json;
         }
