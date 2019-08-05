@@ -3,11 +3,6 @@
 The idea for this git submodule is to keep generic pieces of code such as patterns 
 or simple tools used across different projects in order to not reinvent the wheel every time a project starts. 
 
-# Note: Any change made in this repository has to be done with the following thought in mind: 
-
-Once the submodule is updated the changes are automatically available to all dependent projects, which means that the code is shared across these projects.
-
-
 # TODOs: 
 
 - Wrap each tool into a singular namespace.
@@ -30,3 +25,7 @@ Only TDD
 - PrefabPooler
 - Shake
 - Trail
+
+# Note: Any change made in this repository has to be done with the following thought in mind: 
+# once the submodule is updated the changes are automatically available to all dependent projects, 
+# which means that the code is shared across these projects.
