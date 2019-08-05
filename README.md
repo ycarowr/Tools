@@ -26,6 +26,4 @@ Only TDD
 - Shake
 - Trail
 
-# Note: Any change made in this repository has to be done with the following thought in mind: 
-# once the submodule is updated the changes are automatically available to all dependent projects, 
-# which means that the code is shared across these projects.
+# Note: Any change made in this repository has to be done with the following thought in mind: once the submodule is updated the changes are automatically available to all dependent projects, which means that the code is shared across these projects.
