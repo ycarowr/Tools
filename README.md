@@ -1,5 +1,32 @@
 # Tools
 
-The idea here is to keep inside the git submodule core generic pieces of code such as patterns 
-or tools used across different projects in order to not reinvent the wheel every time a project starts. 
-It also can sync with all projects once updated.
+The idea for this git submodule is to keep generic pieces of code such as patterns 
+or simple tools used across different projects in order to not reinvent the wheel every time a project starts. 
+
+# Note: Any change made in this repository has to be done with the following thought in mind: 
+
+Once the submodule is updated the changes are automatically available to all dependent projects, which means that the code is shared across these projects.
+
+
+# TODOs: 
+
+- Wrap each tool into a singular namespace.
+
+GIFs and TDD for the following tools
+- Attributes 
+- Fade
+- Generic Window
+- Input
+- Patterns - Command
+- Patterns - Builder
+- Patterns - Observer (look up at GameEvents)
+- Patterns - StateMachine
+- Motion
+
+Only GIFS
+- GameEvents
+
+Only TDD
+- PrefabPooler
+- Shake
+- Trail
