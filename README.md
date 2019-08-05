@@ -7,7 +7,7 @@ or simple tools used across different projects in order to not reinvent the whee
 
 - Wrap each tool into a singular namespace.
 
-GIFs and TDD for the following tools
+GIFs and TDD
 - Attributes 
 - Fade
 - Generic Window
@@ -18,10 +18,10 @@ GIFs and TDD for the following tools
 - Patterns - StateMachine
 - Motion
 
-Only GIFS
+GIFS
 - GameEvents
 
-Only TDD
+TDD
 - PrefabPooler
 - Shake
 - Trail
