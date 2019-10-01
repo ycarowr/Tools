@@ -5,8 +5,7 @@ using Random = UnityEngine.Random;
 namespace Tools
 {
     /// <summary>
-    ///     Class that wraps some of the List and
-    ///     add some Linq functionality without garbage generation
+    ///     Class that wraps some of the List and add some Linq functionality without garbage generation
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class Collection<T> where T : class
@@ -28,7 +27,7 @@ namespace Tools
         }
 
         //units of the collection
-        List<T> Units { get; }
+        public List<T> Units { get; }
 
         public int Size => Units.Count;
 
@@ -109,7 +108,7 @@ namespace Tools
         /// <summary>
         ///     Shuffles the collection using Fisher Yates algorithm: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle.
         /// </summary>
-        public void Shuffle()
+        public virtual void Shuffle()
         {
             var n = Size;
             for (var i = 0; i <= n - 2; i++)
@@ -141,6 +140,37 @@ namespace Tools
         }
 
         /// <summary>
+        ///     Get an element randomly from the collection.
+        ///     If the collection is empty it returns Null.
+        /// </summary>
+        /// <returns></returns>
+        public T GetRandom()
+        {
+            if (Size <= 0)
+                return null;
+
+            var rdn = Random.Range(0, Units.Count);
+            var unit = Units[rdn];
+            return unit;
+        }
+
+        /// <summary>
+        ///     Get an element from an specific position.
+        ///     Raises an exception if the index is negative or bigger than the
+        ///     size of the collection. 
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public T Get(int index)
+        {
+            if (index >= Size || index < 0)
+                throw new IndexOutOfRangeException();
+
+            var unit = Units[index];
+            return unit;
+        }
+
+        /// <summary>
         ///     Get and Remove an element from an specific position.
         ///     Raises an exception if the index is negative or bigger than the
         ///     size of the collection. Falls back to Remove.
@@ -149,10 +179,7 @@ namespace Tools
         /// <returns></returns>
         public T GetAndRemove(int index)
         {
-            if (index >= Size || index < 0)
-                throw new IndexOutOfRangeException();
-
-            var unit = Units[index];
+            var unit = Get(index);
             Remove(unit);
             return unit;
         }
@@ -165,6 +192,14 @@ namespace Tools
         {
             var lastIndex = Size - 1;
             return GetAndRemove(lastIndex);
+        }
+
+        /// <summary>
+        ///     Clears the list.
+        /// </summary>
+        public void Clear()
+        {
+            Units.Clear();
         }
 
         #endregion
