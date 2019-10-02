@@ -6,7 +6,9 @@ public static class Logger
     //----------------------------------------------------------------------------------------------------------
 
     const char Period = '.';
-    const string OpenColor = "]: <color={0}><b>";
+    const string OpenBrackets = "[";
+    const char CloseBrackets = ']';
+    const string OpenColor = ": <color={0}><b>";
 
     const string CloseColor = "</b></color>";
 
@@ -17,23 +19,17 @@ public static class Logger
     /// <typeparam name="T"></typeparam>
     /// <param name="log"></param>
     /// <param name="colorName"></param>
-    /// <param name="context"></param>
-    public static void Log<T>(object log, string colorName = "black", Type context = null)
+    public static void Log<T>(object log, string colorName = "black")
     {
-        var contextType = GetTypeName(typeof(T));
-        log = string.Format("[" + context + OpenColor + log + CloseColor + contextType, colorName);
+        var coloredText = OpenColor + log + CloseColor;
+        var context = OpenBrackets + GetTypeString(typeof(T)) + CloseBrackets;
+        log = string.Format(context + coloredText, colorName);
         Debug.Log(log);
     }
 
-    //----------------------------------------------------------------------------------------------------------
-
-    static string GetTypeName(Type type)
+    static string GetTypeString(Type t)
     {
-        if (type == null)
-            return string.Empty;
-
-        var split = type.ToString().Split(Period);
-        var last = split.Length - 1;
-        return last > 0 ? split[last] : string.Empty;
+        var split = t.ToString().Split(Period);
+        return split[split.Length - 1];
     }
 }
