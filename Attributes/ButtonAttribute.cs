@@ -1,8 +1,7 @@
 ﻿using System;
 
 /// <summary>
-///     This attribute tells the Editor to draw a for a Method.
-///     Since is using reflection it works for private and protected methods too.
+///     This attribute tells the Editor to draw a Method on the Inspector Window.
 ///     Ref: https://github.com/dbrizov/NaughtyAttributes
 /// </summary>
 [AttributeUsage(AttributeTargets.Method)]

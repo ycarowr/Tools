@@ -2,14 +2,8 @@
 
 namespace Tools
 {
-    /// <summary>
-    ///     Ref:https://gist.github.com/ftvs/5822103
-    ///     Monobehavior used to shake an GameObject through it's Transform.
-    /// </summary>
     public class ShakeAnimation : MonoBehaviour
     {
-        //---------------------------------------------------------------------------------------------------------------
-
         [Tooltip("How big are the width and height of the shake.")] [SerializeField]
         float amplitude;
 
@@ -20,15 +14,11 @@ namespace Tools
         [SerializeField]
         float frequency;
 
-        //--------------------------------------------------------------------------------------------------------------
-
         Vector3 InitialPosition { get; set; }
         Transform CachedTransform { get; set; }
         bool IsShaking { get; set; }
         float CounterFrequency { get; set; }
         float CounterDuration { get; set; }
-
-        //--------------------------------------------------------------------------------------------------------------
 
         void Awake()
         {
@@ -42,8 +32,6 @@ namespace Tools
 
             UpdateShake();
         }
-
-        //--------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         ///     Method which starts the shake movement.
@@ -81,8 +69,6 @@ namespace Tools
         void UpdateShake()
         {
             var deltaTime = Time.deltaTime;
-
-            //increment duration
             CounterDuration += deltaTime;
             if (CounterDuration >= duration)
             {
@@ -90,14 +76,12 @@ namespace Tools
             }
             else
             {
-                //increment frequency
                 if (CounterFrequency < frequency)
                 {
                     CounterFrequency += deltaTime;
                 }
                 else
                 {
-                    //move the object somewhere inside the amplitude
                     CachedTransform.position = InitialPosition + Random.insideUnitSphere * amplitude;
                     CounterFrequency = 0;
                 }

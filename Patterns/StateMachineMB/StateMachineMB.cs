@@ -4,15 +4,13 @@ using UnityEngine;
 
 namespace Patterns.StateMachineMB
 {
-    /// <summary>
-    ///     This class registers and manages all the States of this specific
-    ///     Type of state Machine that are attached to the same GameObject. All the states
-    ///     have to be assign to the gameobject BEFORE the Initialization. So if you are
-    ///     using AddComponent calls, be sure this is called before the state's registration.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public abstract class StateMachineMB<T> : MonoBehaviour where T : MonoBehaviour
     {
+        readonly Stack<StateMB<T>> stack = new Stack<StateMB<T>>();
+        readonly Dictionary<Type, StateMB<T>> statesRegister = new Dictionary<Type, StateMB<T>>();
+        public bool EnableLogs = true;
+
+        public bool IsInitialized { get; private set; }
         //--------------------------------------------------------------------------------------------------------------
 
         void Log(string log, string colorName = "black")
@@ -23,35 +21,13 @@ namespace Patterns.StateMachineMB
                 Debug.Log(log);
             }
         }
-        //--------------------------------------------------------------------------------------------------------------
 
-        #region Fields and Properties
 
-        //Push-Pop stack of States of this Type of Finite state Machine
-        readonly Stack<StateMB<T>> stack = new Stack<StateMB<T>>();
-
-        //This StatesRegister doesn't allowed you to have two states with the same Type
-        readonly Dictionary<Type, StateMB<T>> statesRegister = new Dictionary<Type, StateMB<T>>();
-        public bool EnableLogs = true;
-        public bool IsInitialized { get; private set; }
-
-        #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
-
-        #region Initialization
-
-        /// <summary>
-        ///     Register all the states
-        /// </summary>
+        /// <summary> Register all the states </summary>
         public void Initialize()
         {
             OnBeforeInitialize();
-
-            //grab all states of this BaseStateMachine Type attached to this gameobject
             var allStates = GetComponents<StateMB<T>>();
-
-            //StatesRegister all states
             foreach (var state in allStates)
             {
                 var type = state.GetType();
@@ -60,9 +36,7 @@ namespace Patterns.StateMachineMB
             }
 
             IsInitialized = true;
-
             OnInitialize();
-
             Log("Initialized!", "green");
         }
 
@@ -79,10 +53,6 @@ namespace Patterns.StateMachineMB
         protected virtual void OnInitialize()
         {
         }
-
-        #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
 
         #region Unity Callbacks
 
@@ -225,7 +195,5 @@ namespace Patterns.StateMachineMB
         }
 
         #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
     }
 }

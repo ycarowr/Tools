@@ -4,11 +4,6 @@ using UnityEngine;
 
 namespace Patterns
 {
-    /// <summary>
-    ///     Realization of a command queue.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <typeparam name="T1"></typeparam>
     public class CommandQueue<T, T1> : SingletonMB<T>, ICommandQueue<T1>
         where T : MonoBehaviour
         where T1 : Command
@@ -17,8 +12,6 @@ namespace Patterns
         public bool IsEmpty => Size == 0;
         public int Size => Commands.Count;
         public Action OnEmpty { get; set; } = () => { };
-
-        //--------------------------------------------------------------------------------------------------------------
 
         public virtual void Enqueue(T1 command)
         {
@@ -44,7 +37,6 @@ namespace Patterns
         protected virtual void OnEmptyQueue()
         {
             OnEmpty?.Invoke();
-            // override to do something else.
         }
     }
 }

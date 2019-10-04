@@ -5,60 +5,27 @@ namespace Patterns.StateMachine
 {
     public abstract class BaseStateMachine
     {
-        //----------------------------------------------------------------------------------------------------------
+        readonly Dictionary<Type, IState> register = new Dictionary<Type, IState>();
 
-        #region Constructor
+        readonly Stack<IState> stack = new Stack<IState>();
 
-        /// <summary>
-        ///     Constructor for the state machine. A handler is optional.
-        /// </summary>
-        /// <param name="handler"></param>
+        /// <summary> Constructor for the state machine. A handler is optional. </summary>
         protected BaseStateMachine(IStateMachineHandler handler = null)
         {
             Handler = handler;
         }
 
-        #endregion
-
-        //----------------------------------------------------------------------------------------------------------
-
-        #region Properties
-
-        /// <summary>
-        ///     Boolean that indicates whether the FSM has been initialized or not.
-        /// </summary>
+        /// <summary> Boolean that indicates whether the FSM has been initialized or not. </summary>
         public bool IsInitialized { get; protected set; }
 
-        /// <summary>
-        ///     Stack of States.
-        /// </summary>
-        readonly Stack<IState> stack = new Stack<IState>();
-
-        /// <summary>
-        ///     This register doesn't allow the FSM to have two states with the same Type.
-        /// </summary>
-        readonly Dictionary<Type, IState> register = new Dictionary<Type, IState>();
-
-        /// <summary>
-        ///     Handler for the FSM. Usually the Monobehavior which holds this FSM.
-        /// </summary>
+        /// <summary> Handler for the FSM. Usually the Monobehavior which holds this FSM. </summary>
         public IStateMachineHandler Handler { get; set; }
 
-        /// <summary>
-        ///     Returns the state on the top of the stack. Can be Null.
-        /// </summary>
+        /// <summary> Returns the state on the top of the stack. Can be Null. </summary>
         public IState Current => PeekState();
 
-        #endregion
 
-        //----------------------------------------------------------------------------------------------------------
-
-        #region Initialization
-
-        /// <summary>
-        ///     Register a state into the state machine.
-        /// </summary>
-        /// <param name="state"></param>
+        /// <summary> Register a state into the state machine. </summary>
         public void RegisterState(IState state)
         {
             if (state == null)
@@ -68,63 +35,39 @@ namespace Patterns.StateMachine
             register.Add(type, state);
         }
 
-        /// <summary>
-        ///     Initialize all states. All states have to be registered before the initialization. See OnBeforeInitialize.
-        /// </summary>
+        /// <summary> Initialize all states. All states have to be registered before the initialization. </summary>
         public void Initialize()
         {
-            //create states
             OnBeforeInitialize();
-
-            //register all states
             foreach (var state in register.Values)
                 state.OnInitialize();
-
             IsInitialized = true;
-
             OnInitialize();
         }
 
-        /// <summary>
-        ///     Create and register the states overriding this method. It happens right before the Initialization.
-        /// </summary>
+        /// <summary> Do something before the initialization. </summary>
         protected virtual void OnBeforeInitialize()
         {
         }
 
-        /// <summary>
-        ///     If you need to do something after the initialization, override this method.
-        /// </summary>
+        /// <summary> Do something after the initialization. </summary>
         protected virtual void OnInitialize()
         {
         }
 
-        #endregion
-
-        //----------------------------------------------------------------------------------------------------------
-
-        #region Operations
-
-        /// <summary>
-        ///     Update the FSM, consequently, updating the state on the top of the stack.
-        /// </summary>
+        /// <summary> Update the state on the top of the stack. </summary>
         public void Update()
         {
             Current?.OnUpdate();
         }
 
-        /// <summary>
-        ///     Checks whether a Type is the same as the Type as the current state.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <summary> Checks if a state is the current state. </summary>
         public bool IsCurrent<T>() where T : IState
         {
             return Current?.GetType() == typeof(T);
         }
 
-        /// <summary>
-        ///     Checks if a an StateType is the current state.
-        /// </summary>
+        /// <summary> Checks if a state is the current state. </summary>
         public bool IsCurrent(IState state)
         {
             if (state == null)
@@ -133,11 +76,7 @@ namespace Patterns.StateMachine
             return Current?.GetType() == state.GetType();
         }
 
-        /// <summary>
-        ///     Pushes a state by Type triggering OnEnterState for the pushed
-        ///     state and OnExitState for the previous state in the stack.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <summary> Pushes a state </summary>
         public void PushState<T>(bool isSilent = false) where T : IState
         {
             var stateType = typeof(T);
@@ -145,12 +84,7 @@ namespace Patterns.StateMachine
             PushState(state, isSilent);
         }
 
-        /// <summary>
-        ///     Pushes state by instance of the class triggering OnEnterState for the
-        ///     pushed state and if not silent OnExitState for the previous state in the stack.
-        /// </summary>
-        /// <param name="state"></param>
-        /// <param name="isSilent"></param>
+        /// <summary> Pushes a state </summary>
         public void PushState(IState state, bool isSilent = false)
         {
             var type = state.GetType();
@@ -164,20 +98,13 @@ namespace Patterns.StateMachine
             state.OnEnterState();
         }
 
-        /// <summary>
-        ///     Peeks a state from the stack. A peek returns null if the stack is empty. It doesn't trigger any call.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Peeks a state from the stack. A peek returns null if the stack is empty. It doesn't trigger any call. </summary>
         public IState PeekState()
         {
             return stack.Count > 0 ? stack.Peek() : null;
         }
 
-        /// <summary>
-        ///     Pops a state from the stack. It triggers OnExitState for the
-        ///     popped state and if not silent OnEnterState for the subsequent stacked state.
-        /// </summary>
-        /// <param name="isSilent"></param>
+        /// <summary> Pops a state from the stack. </summary>
         public void PopState(bool isSilent = false)
         {
             if (Current == null)
@@ -190,9 +117,7 @@ namespace Patterns.StateMachine
                 Current?.OnEnterState();
         }
 
-        /// <summary>
-        ///     Clears and restart the states register;
-        /// </summary>
+        /// <summary> Clears and restart the states register. </summary>
         public virtual void Clear()
         {
             foreach (var state in register.Values)
@@ -201,9 +126,5 @@ namespace Patterns.StateMachine
             stack.Clear();
             register.Clear();
         }
-
-        #endregion
-
-        //----------------------------------------------------------------------------------------------------------
     }
 }

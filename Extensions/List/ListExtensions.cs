@@ -6,12 +6,9 @@ using Random = UnityEngine.Random;
 namespace Extensions
 {
     /// <summary>
-    ///     Extension methods for the class List
-    ///     <T>
-    ///         .
-    ///         Some Refs:
-    ///         https://gist.github.com/omgwtfgames/f917ca28581761b8100f
-    ///         https://github.com/mminer/unity-extensions
+    ///     Extension methods for the class List Refs:
+    ///     https://gist.github.com/omgwtfgames/f917ca28581761b8100f
+    ///     https://github.com/mminer/unity-extensions
     /// </summary>
     public static class ListExtensions
     {

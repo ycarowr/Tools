@@ -5,6 +5,7 @@ namespace Tools
 {
     public interface IKeyboardInput
     {
+        bool IsTracking { get; }
         KeyCode Key { get; }
         Action OnKey { get; set; }
         Action OnKeyDown { get; set; }

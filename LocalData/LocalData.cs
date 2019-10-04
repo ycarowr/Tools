@@ -6,24 +6,13 @@ using UnityEngine;
 /// </summary>
 public static partial class LocalData
 {
-    /// <summary>
-    ///     ID of the local serialized data.
-    /// </summary>
+    /// <summary> ID of the local serialized data. </summary>
     const string localDataId = "LocalData";
 
-    /// <summary>
-    ///     Register for all the local data.
-    /// </summary>
+    /// <summary> Register for all the local data. </summary>
     static Data localFiles = LoadAllData();
 
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    ///     Store the data locally. Makes use of PlayerPrefs.
-    /// </summary>
-    /// <param name="data"></param>
-    /// <param name="id"></param>
-    /// <typeparam name="T"></typeparam>
+    /// <summary> Store the data locally. </summary>
     public static void StoreData<T>(T data, string id) where T : class
     {
         var sData = Serialize(data);
@@ -31,72 +20,47 @@ public static partial class LocalData
         StoreAllData();
     }
 
-    /// <summary>
-    ///     Retrieves the data from the id.
-    /// </summary>
-    /// <param name="id"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <summary> Retrieves the data from the id. </summary>
     public static T LoadData<T>(string id) where T : class
     {
         var data = localFiles.TryGet(id);
         return data == null ? null : Deserialize<T>(data);
     }
 
-    /// <summary>
-    ///     Remove the data from the id.
-    /// </summary>
-    /// <param name="id"></param>
+    /// <summary> Remove the data from the id. </summary>
     public static void DeleteData(string id)
     {
         localFiles.Remove(id);
         StoreAllData();
     }
 
-    /// <summary>
-    ///     Check if id is present in the current data.
-    /// </summary>
-    /// <param name="id"></param>
+    /// <summary> Check whether an id is present in the current data. </summary>
     public static bool HasData(string id)
     {
         return localFiles.Has(id);
     }
 
-    /// <summary>
-    ///     Remove all the data from the app.
-    /// </summary>
+    /// <summary> Remove all data. </summary>
     public static void DeleteAll()
     {
         localFiles = new Data();
         PlayerPrefs.DeleteAll();
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    ///     Deserialize the data from json format.
-    /// </summary>
-    /// <param name="json"></param>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
+    /// <summary> Deserialize the data from string json format. </summary>
     public static T Deserialize<T>(string json) where T : class
     {
         //using Unity built in solution
-//        return JsonUtility.FromJson<T>(json);
+        //return JsonUtility.FromJson<T>(json);
 
         //-------------------------------------------------------
 
-        //using Fullserializer solution
+        //using Fullserializer
         var type = typeof(T);
         return FullSerializer.Deserialize(type, json) as T;
     }
 
-    /// <summary>
-    ///     Serialize the data using json format.
-    /// </summary>
-    /// <param name="data"></param>
-    /// <param name="isPretty"></param>
-    /// <returns></returns>
+    /// <summary> Serialize the data using json format. </summary>
     public static string Serialize(object data, bool isPretty = false)
     {
         // using Unity built in solution
@@ -104,12 +68,10 @@ public static partial class LocalData
 
         //-------------------------------------------------------
 
-        //using Fullserializer solution
+        //using Fullserializer 
         var type = data.GetType();
         return FullSerializer.Serialize(type, data, isPretty);
     }
-
-    // -----------------------------------------------------------------------------------------------------------------
 
     static Data LoadAllData()
     {
@@ -125,16 +87,13 @@ public static partial class LocalData
         PlayerPrefs.SetString(localDataId, allData);
     }
 
-    // -----------------------------------------------------------------------------------------------------------------
-
-    /// <summary>
-    ///     Prints with Debug.Log all the local stored data and its IDs.
-    /// </summary>
+    /// <summary> Prints with all the local data and its IDs. </summary>
     public static void PrintLocalData()
     {
         Debug.Log(Serialize(localFiles, true));
     }
 
+    /// <summary> Saves a copy of the data into a file inside the Assets </summary>
     public static void SaveCopyAtAssets()
     {
         var text = Serialize(localFiles, true);

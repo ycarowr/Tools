@@ -4,8 +4,17 @@ using UnityEngine.EventSystems;
 
 namespace Tools.UI
 {
+    public enum DragDirection
+    {
+        None,
+        Down,
+        Left,
+        Top,
+        Right
+    }
+
     /// <summary>
-    ///     Interface for all the Unity Mouse Input System.
+    ///     Interface for all Unity Mouse Input System.
     /// </summary>
     public interface IMouseInput :
         IPointerClickHandler,
@@ -18,6 +27,10 @@ namespace Tools.UI
         IPointerEnterHandler,
         IPointerExitHandler
     {
+        Vector2 MousePosition { get; }
+        DragDirection Direction { get; }
+        bool IsTracking { get; }
+
         //clicks
         new Action<PointerEventData> OnPointerClick { get; set; }
         new Action<PointerEventData> OnPointerDown { get; set; }
@@ -32,8 +45,7 @@ namespace Tools.UI
         //enter
         new Action<PointerEventData> OnPointerEnter { get; set; }
         new Action<PointerEventData> OnPointerExit { get; set; }
-
-        Vector2 MousePosition { get; }
-        DragDirection DragDirection { get; }
+        void StartTracking();
+        void StopTracking();
     }
 }

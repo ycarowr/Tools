@@ -4,29 +4,20 @@ using Random = UnityEngine.Random;
 
 namespace Tools
 {
-    /// <summary>
-    ///     Class that wraps some of the List and add some Linq functionality without garbage generation
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public class Collection<T> where T : class
+    /// <summary> Class that wraps a List and adds some Linq functionality with less garbage generation </summary>
+    public partial class Collection<T> where T : class
     {
-        //public clean constructor
         public Collection()
         {
             Units = new List<T>();
         }
 
-        /// <summary>
-        ///     Consider change it to an Array of Objects
-        /// </summary>
-        /// <param name="units"></param>
         public Collection(List<T> units)
         {
             Units = new List<T>();
             Add(units);
         }
 
-        //units of the collection
         public List<T> Units { get; }
 
         public int Size => Units.Count;
@@ -39,28 +30,15 @@ namespace Tools
             return s;
         }
 
-        public class CollectionArgumentException : ArgumentException
-        {
-            public CollectionArgumentException(string message) : base(message)
-            {
-            }
-        }
-
         #region Operations
 
-        /// <summary>
-        ///     Clear the list completely. You lose all the references, however
-        ///     the elements are still in memory waiting for the Garbage Collector to clean
-        /// </summary>
+        /// <summary> Clear the list completely.</summary>
         public virtual void Restart()
         {
             Units.Clear();
         }
 
-        /// <summary>
-        ///     Add elements to the collection. Null and duplicated elements raises Exceptions.
-        /// </summary>
-        /// <param name="unit"></param>
+        /// <summary>  Add elements to the collection. </summary>
         public void Add(T unit)
         {
             if (unit == null)
@@ -72,10 +50,7 @@ namespace Tools
                 throw new CollectionArgumentException("Unit already inside the collection");
         }
 
-        /// <summary>
-        ///     Add a group of elements to the list. It falls back to Add(T unit) method. Null raises an Exception.
-        /// </summary>
-        /// <param name="units"></param>
+        /// <summary> Add a group of elements to the list. It falls back to Add(T unit) method. Null raises an Exception.</summary>
         public void Add(List<T> units)
         {
             if (units == null)
@@ -85,29 +60,19 @@ namespace Tools
                 Add(units[i]);
         }
 
-        /// <summary>
-        ///     Check if the collection has an unit inside.
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <returns></returns>
+        /// <summary>  Check whether the collection has an unit inside or not.</summary>
         public bool Has(T unit)
         {
             return Units.Contains(unit);
         }
 
-        /// <summary>
-        ///     Remove element from the collection and returns whether the element has been successfully removed or not.
-        /// </summary>
-        /// <param name="unit"></param>
-        /// <returns></returns>
+        /// <summary> Remove element from the collection and returns whether the element has been successfully removed or not. </summary>
         public bool Remove(T unit)
         {
             return Units.Remove(unit);
         }
 
-        /// <summary>
-        ///     Shuffles the collection using Fisher Yates algorithm: https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle.
-        /// </summary>
+        /// <summary> Shuffles the collection using Fisher Yates algorithm </summary>
         public virtual void Shuffle()
         {
             var n = Size;
@@ -123,11 +88,7 @@ namespace Tools
             }
         }
 
-        /// <summary>
-        ///     Get and Remove an element randomly from the collection.
-        ///     If the collection is empty it returns Null. Falls back to Remove.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Get and Remove an element randomly from the collection. </summary>
         public T GetAndRemoveRandom()
         {
             if (Size <= 0)
@@ -139,11 +100,7 @@ namespace Tools
             return unit;
         }
 
-        /// <summary>
-        ///     Get an element randomly from the collection.
-        ///     If the collection is empty it returns Null.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Get an element randomly from the collection.</summary>
         public T GetRandom()
         {
             if (Size <= 0)
@@ -154,13 +111,7 @@ namespace Tools
             return unit;
         }
 
-        /// <summary>
-        ///     Get an element from an specific position.
-        ///     Raises an exception if the index is negative or bigger than the
-        ///     size of the collection. 
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
+        /// <summary> Get an element from an specific position. </summary>
         public T Get(int index)
         {
             if (index >= Size || index < 0)
@@ -170,13 +121,7 @@ namespace Tools
             return unit;
         }
 
-        /// <summary>
-        ///     Get and Remove an element from an specific position.
-        ///     Raises an exception if the index is negative or bigger than the
-        ///     size of the collection. Falls back to Remove.
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
+        /// <summary> Get and Remove an element from an specific position.</summary>
         public T GetAndRemove(int index)
         {
             var unit = Get(index);
@@ -184,19 +129,14 @@ namespace Tools
             return unit;
         }
 
-        /// <summary>
-        ///     Get and Remove the last element from the collection.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Get and Remove the last element from the collection.</summary>
         public T GetLastAndRemove()
         {
             var lastIndex = Size - 1;
             return GetAndRemove(lastIndex);
         }
 
-        /// <summary>
-        ///     Clears the list.
-        /// </summary>
+        /// <summary>  Clears the list. </summary>
         public void Clear()
         {
             Units.Clear();

@@ -10,9 +10,7 @@ namespace Patterns
         [Tooltip("Time until dequeue the next command.")] [SerializeField] [Range(0, 1f)]
         float dequeueTime = 0.5f;
 
-        /// <summary>
-        ///     Whether the component is operating or not.
-        /// </summary>
+        /// <summary> Whether the component is operating or not. </summary>
         public bool IsActive { get; private set; }
 
         public void Reset()
@@ -39,24 +37,14 @@ namespace Patterns
 
         #endregion
 
-        //--------------------------------------------------------------------------------------------------------------
-
         #region Operations
 
-        /// <summary>
-        ///     Enqueue a command after a determined amount of time.
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="timeToEnqueue"></param>
+        /// <summary> Enqueue a command after a determined amount of time. </summary>
         public void EnqueueWithDelay(T1 command, float timeToEnqueue)
         {
             Enqueueing = StartCoroutine(TimeredEnqueue(command, timeToEnqueue));
         }
 
-
-        /// <summary>
-        /// </summary>
-        /// <param name="command"></param>
         public override void Enqueue(T1 command)
         {
             base.Enqueue(command);
@@ -71,8 +59,6 @@ namespace Patterns
         }
 
         #endregion
-
-        //--------------------------------------------------------------------------------------------------------------
 
         #region Corotines
 

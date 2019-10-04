@@ -6,14 +6,22 @@ namespace Patterns.GameEvents
     {
         protected virtual void Awake()
         {
-            //subscribe
-            if (GameEvents.Instance)
-                GameEvents.Instance.AddListener(this);
+            Subscribe();
         }
 
         protected virtual void OnDestroy()
         {
-            //unsubscribe
+            Unsubscribe();
+        }
+
+        void Subscribe()
+        {
+            if (GameEvents.Instance)
+                GameEvents.Instance.AddListener(this);
+        }
+
+        void Unsubscribe()
+        {
             if (GameEvents.Instance)
                 GameEvents.Instance.RemoveListener(this);
         }

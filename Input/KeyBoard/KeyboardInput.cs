@@ -5,12 +5,12 @@ namespace Tools
 {
     public class KeyboardInput : MonoBehaviour, IKeyboardInput
     {
-        [SerializeField] [Tooltip("The Keyboard key")]
-        KeyCode key;
-
         public bool IsTracking { get; private set; }
 
-        public KeyCode Key => key;
+        [field: SerializeField]
+        [field: Tooltip("The Keyboard key")]
+        public KeyCode Key { get; set; }
+
         public Action OnKey { get; set; } = () => { };
         public Action OnKeyDown { get; set; } = () => { };
         public Action OnKeyUp { get; set; } = () => { };
@@ -30,9 +30,9 @@ namespace Tools
             if (!IsTracking)
                 return;
 
-            var isKey = Input.GetKey(key);
-            var isKeyDown = Input.GetKeyDown(key);
-            var isKeyUp = Input.GetKeyUp(key);
+            var isKey = Input.GetKey(Key);
+            var isKeyDown = Input.GetKeyDown(Key);
+            var isKeyUp = Input.GetKeyUp(Key);
 
             if (isKey)
                 OnKey?.Invoke();
@@ -44,7 +44,7 @@ namespace Tools
 
         public void SetKey(KeyCode keyCode)
         {
-            key = keyCode;
+            Key = keyCode;
         }
     }
 }

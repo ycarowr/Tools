@@ -19,8 +19,6 @@ namespace Tools
         [SerializeField] [Tooltip("Whether the game is frozen or not.")]
         bool isFrozen;
 
-        //------------------------------------------------------------------------------------------------------
-
         [Header("Test")] [SerializeField] float time;
 
         [SerializeField] [Tooltip("Duration in frames of the freeze.")]
@@ -34,11 +32,6 @@ namespace Tools
 
         //------------------------------------------------------------------------------------------------------
 
-        /// <summary>
-        ///     Freeze the TimeScale for an amount of seconds.
-        /// </summary>
-        /// <param name="time"></param>
-        /// <param name="delay"></param>
         public void Freeze(float time, float delay)
         {
             if (isFrozen)
@@ -53,9 +46,6 @@ namespace Tools
                 StartCoroutine(FreezeRoutine(delay));
         }
 
-        /// <summary>
-        ///     Unfreeze the time scale.
-        /// </summary>
         [Button]
         public void Unfreeze()
         {

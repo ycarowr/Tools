@@ -28,8 +28,8 @@
                 IndexPieces = 0;
                 Sequence = sequence;
                 foreach (var piece in sequence.Sequence)
-                    foreach (var btn in piece.Buttons)
-                        btn.SetDialog(DialogSystem);
+                foreach (var btn in piece.Buttons)
+                    btn.SetDialog(DialogSystem);
             }
 
             /// <summary>

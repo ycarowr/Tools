@@ -3,22 +3,13 @@ using UnityEngine;
 
 public static class Logger
 {
-    //----------------------------------------------------------------------------------------------------------
-
     const char Period = '.';
     const string OpenBrackets = "[";
     const char CloseBrackets = ']';
     const string OpenColor = ": <color={0}><b>";
-
     const string CloseColor = "</b></color>";
 
-    //----------------------------------------------------------------------------------------------------------
-    /// <summary>
-    ///     Use "black", "red" or any other html code to set the color.
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="log"></param>
-    /// <param name="colorName"></param>
+    /// <summary>  Use "black", "red" or any other html code to set the color. </summary>
     public static void Log<T>(object log, string colorName = "black")
     {
         var coloredText = OpenColor + log + CloseColor;
