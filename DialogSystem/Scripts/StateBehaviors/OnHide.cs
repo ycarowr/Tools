@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Tools.Dialog
+namespace Tools.DialogSystem.StateBehaviors
 {
-    public class OnShow : StateMachineBehaviour
+    public class OnHide : StateMachineBehaviour
     {
         DialogSystem DialogSystem { get; set; }
 
@@ -12,7 +12,7 @@ namespace Tools.Dialog
             if (!DialogSystem)
                 DialogSystem = animator.GetComponentInParent<DialogSystem>();
 
-            DialogSystem?.OnShow?.Invoke();
+            DialogSystem?.OnHide?.Invoke();
         }
 
         // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

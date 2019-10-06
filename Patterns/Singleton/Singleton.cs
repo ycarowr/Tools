@@ -1,4 +1,4 @@
-﻿namespace Patterns
+﻿namespace Tools.Patterns.Singleton
 {
     public class Singleton<T> where T : class, new()
     {

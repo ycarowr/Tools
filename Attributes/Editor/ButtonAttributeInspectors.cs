@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Attributes.Editor
+namespace Tools.Attributes.Editor
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(Object), true)]

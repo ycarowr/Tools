@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Patterns
+namespace Tools.Patterns.Singleton
 {
     public class PersistentSingleton<T> : MonoBehaviour where T : Component
     {

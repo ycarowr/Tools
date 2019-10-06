@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Tools.Attributes;
+using UnityEngine;
 
-namespace Tools
+namespace Tools.Shake
 {
     public class ShakeAnimation : MonoBehaviour
     {

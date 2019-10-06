@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tools.Dialog
+namespace Tools.DialogSystem
 {
     /// <summary>
     ///     A Button inside the Dialog System.

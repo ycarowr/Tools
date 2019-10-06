@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Tools.Patterns.Singleton;
 using UnityEngine;
 
-namespace Patterns
+namespace Tools.Patterns.Command
 {
     public class CommandQueue<T, T1> : SingletonMB<T>, ICommandQueue<T1>
         where T : MonoBehaviour

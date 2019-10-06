@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Tools.Patterns.Singleton;
 using UnityEngine;
 
-namespace Patterns
+namespace Tools.Patterns.GenericPrefabPooler
 {
     public class PrefabPooler<T> : SingletonMB<T>
         where T : class

@@ -1,6 +1,6 @@
 using System;
 
-namespace Tools.UI.Fade
+namespace Tools.Fade
 {
     public interface IFade
     {

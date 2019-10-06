@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Tools
+namespace Tools.Input.KeyBoard
 {
     public class KeyboardInput : MonoBehaviour, IKeyboardInput
     {
@@ -30,9 +30,9 @@ namespace Tools
             if (!IsTracking)
                 return;
 
-            var isKey = Input.GetKey(Key);
-            var isKeyDown = Input.GetKeyDown(Key);
-            var isKeyUp = Input.GetKeyUp(Key);
+            var isKey = UnityEngine.Input.GetKey(Key);
+            var isKeyDown = UnityEngine.Input.GetKeyDown(Key);
+            var isKeyUp = UnityEngine.Input.GetKeyUp(Key);
 
             if (isKey)
                 OnKey?.Invoke();

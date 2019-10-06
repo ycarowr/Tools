@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Extensions
+﻿namespace Tools.Extensions.GameObject
 {
     /// <summary>
     ///     Extension methods for UnityEngine.GameObject.
@@ -14,7 +12,7 @@ namespace Extensions
         /// </summary>
         /// <param name="gameObject">Game object.</param>
         /// <returns>Previously or newly attached component.</returns>
-        public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
+        public static T GetOrAddComponent<T>(this UnityEngine.GameObject gameObject) where T : UnityEngine.Component
         {
             return gameObject.GetComponent<T>() ?? gameObject.AddComponent<T>();
         }
@@ -24,7 +22,7 @@ namespace Extensions
         /// </summary>
         /// <param name="gameObject">Game object.</param>
         /// <returns>True when component is attached.</returns>
-        public static bool HasComponent<T>(this GameObject gameObject) where T : Component
+        public static bool HasComponent<T>(this UnityEngine.GameObject gameObject) where T : UnityEngine.Component
         {
             return gameObject.GetComponent<T>() != null;
         }

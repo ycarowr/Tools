@@ -1,6 +1,6 @@
 using System;
 
-namespace Patterns
+namespace Tools.Patterns.Command
 {
     /// <summary> Interface for a command queue. </summary>
     public interface ICommandQueue<T> where T : Command

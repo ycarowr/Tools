@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tools.UI
+namespace Tools.UiTransform
 {
     public class UiMotionScale : UiMotionBase
     {

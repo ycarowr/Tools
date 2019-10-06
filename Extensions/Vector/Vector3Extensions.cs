@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Extensions
+namespace Tools.Extensions.Vector
 {
     /// <summary>
     ///     Vectors extensions.

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Tools.Dialog
+namespace Tools.DialogSystem
 {
     /// <summary>
     ///     A dialog system interface.

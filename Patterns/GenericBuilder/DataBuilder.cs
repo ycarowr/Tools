@@ -1,4 +1,4 @@
-﻿namespace Patterns
+﻿namespace Tools.Patterns.GenericBuilder
 {
     public abstract class DataBuilder<T>
     {

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
-using Tools;
 
-namespace Test
+namespace Tools.GenericCollection.Editor
 {
     //class used to execute tests
     public class TestUnit

@@ -1,7 +1,8 @@
 ﻿using System;
+using Tools.Attributes;
 using UnityEngine;
 
-namespace Tools
+namespace Tools.GenericWindow
 {
     public class Window : MonoBehaviour
     {

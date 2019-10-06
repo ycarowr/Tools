@@ -1,4 +1,4 @@
-﻿namespace Patterns.StateMachine
+﻿namespace Tools.Patterns.StateMachine
 {
     public interface IState
     {

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Tools.Patterns.Singleton;
 
-namespace Patterns
+namespace Tools.Patterns.Observer
 {
     public interface ISubject
     {

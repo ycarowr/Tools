@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Tools.Patterns.Observer;
+using UnityEngine;
 
-namespace Patterns.GameEvents
+namespace Tools.Patterns.GameEvents
 {
     public class UiGameEventListener : MonoBehaviour, IListener
     {

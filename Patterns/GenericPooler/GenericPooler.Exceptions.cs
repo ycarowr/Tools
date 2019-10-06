@@ -1,6 +1,6 @@
 using System;
 
-namespace Patterns
+namespace Tools.Patterns.GenericPooler
 {
     public partial class GenericPooler<T>
     {

@@ -1,9 +1,10 @@
 ﻿using System;
 using TMPro;
+using Tools.Input.KeyBoard;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Tools.Dialog
+namespace Tools.DialogSystem
 {
     public class DialogButton : MonoBehaviour
     {

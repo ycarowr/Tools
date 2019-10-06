@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Patterns
+namespace Tools.Patterns.GenericPooler
 {
     public partial class GenericPooler<T> where T : class, IPoolableObject, new()
     {

@@ -1,7 +1,8 @@
 using NUnit.Framework;
+using Tools.Patterns.Observer;
 using UnityEngine;
 
-namespace Patterns.GameEvents
+namespace Tools.Patterns.GameEvents.Editor
 {
     public class TestGameEvent : IListener, ISampleEvent1, ISampleEvent2
     {

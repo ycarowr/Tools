@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tools.Dialog
+namespace Tools.DialogSystem
 {
     /// <summary>
     ///     A text piece inside the Dialog System.

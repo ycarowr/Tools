@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tools.UI
+namespace Tools.UiTransform
 {
     /// <summary>
     ///     Interface for simple Transform operations.

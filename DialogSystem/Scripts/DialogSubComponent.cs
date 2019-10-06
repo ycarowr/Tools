@@ -1,4 +1,4 @@
-﻿namespace Tools.Dialog
+﻿namespace Tools.DialogSystem
 {
     public partial class DialogSystem
     {

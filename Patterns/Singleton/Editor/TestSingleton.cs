@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
-using Patterns;
 
-namespace Test
+namespace Tools.Patterns.Singleton.Editor
 {
     public class TestableSingleton : Singleton<TestableSingleton>
     {

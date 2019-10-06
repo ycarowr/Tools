@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Tools
+namespace Tools.Input.KeyBoard
 {
     public interface IKeyboardInput
     {

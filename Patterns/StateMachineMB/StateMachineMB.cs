@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Patterns.StateMachineMB
+namespace Tools.Patterns.StateMachineMB
 {
     public abstract class StateMachineMB<T> : MonoBehaviour where T : MonoBehaviour
     {

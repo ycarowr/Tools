@@ -1,4 +1,4 @@
-﻿namespace Patterns
+﻿namespace Tools.Patterns.Command
 {
     public abstract class Command
     {

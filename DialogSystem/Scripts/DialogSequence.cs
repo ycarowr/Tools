@@ -1,4 +1,6 @@
-﻿namespace Tools.Dialog
+﻿using Tools.DialogSystem;
+
+namespace Tools.DialogSystem
 {
     public partial class DialogSystem
     {
@@ -14,7 +16,7 @@
             /// <summary>
             ///     Current displayed <see cref="TextSequence" />.
             /// </summary>
-            public TextSequence Sequence { get; private set; }
+            public Tools.DialogSystem.TextSequence Sequence { get; private set; }
 
             /// <summary>
             ///     Current index of the <see cref="TextPiece" />
@@ -23,7 +25,7 @@
 
             public bool IsLast => Sequence.Sequence.Length - 1 == IndexPieces;
 
-            public void SetSequence(TextSequence sequence)
+            public void SetSequence(Tools.DialogSystem.TextSequence sequence)
             {
                 IndexPieces = 0;
                 Sequence = sequence;

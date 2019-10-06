@@ -2,14 +2,14 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Tools.UI
+namespace Tools.Input.Mouse
 {
     [RequireComponent(typeof(Collider))]
     public partial class UiMouseInputProvider : MonoBehaviour, IMouseInput
     {
         Vector3 prevPosition;
         public DragDirection Direction => GetDragDirection();
-        public Vector2 MousePosition => Input.mousePosition;
+        public Vector2 MousePosition => UnityEngine.Input.mousePosition;
         public bool IsTracking { get; private set; }
 
         public void StartTracking()
@@ -31,7 +31,7 @@ namespace Tools.UI
 
         DragDirection GetDragDirection()
         {
-            var currentPosition = Input.mousePosition;
+            var currentPosition = UnityEngine.Input.mousePosition;
             var normalized = (currentPosition - prevPosition).normalized;
             prevPosition = currentPosition;
 

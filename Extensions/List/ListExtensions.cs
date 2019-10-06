@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Extensions
+namespace Tools.Extensions.List
 {
     /// <summary>
     ///     Extension methods for the class List Refs:

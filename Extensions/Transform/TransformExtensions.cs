@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Extensions
+namespace Tools.Extensions.Transform
 {
     /// <summary>
     ///     Extension methods for UnityEngine.Transform.
@@ -14,7 +14,7 @@ namespace Extensions
         /// </summary>
         /// <param name="transform">Parent transform.</param>
         /// <param name="children">Game objects to make children.</param>
-        public static void AddChildren(this Transform transform, GameObject[] children)
+        public static void AddChildren(this UnityEngine.Transform transform, UnityEngine.GameObject[] children)
         {
             Array.ForEach(children, child => child.transform.parent = transform);
         }
@@ -24,7 +24,7 @@ namespace Extensions
         /// </summary>
         /// <param name="transform">Parent transform.</param>
         /// <param name="children">Components of game objects to make children.</param>
-        public static void AddChildren(this Transform transform, Component[] children)
+        public static void AddChildren(this UnityEngine.Transform transform, UnityEngine.Component[] children)
         {
             Array.ForEach(children, child => child.transform.parent = transform);
         }
@@ -34,9 +34,9 @@ namespace Extensions
         /// </summary>
         /// <param name="transform">Parent transform.</param>
         /// <param name="recursive">Also reset ancestor positions?</param>
-        public static void ResetChildPositions(this Transform transform, bool recursive = false)
+        public static void ResetChildPositions(this UnityEngine.Transform transform, bool recursive = false)
         {
-            foreach (Transform child in transform)
+            foreach (UnityEngine.Transform child in transform)
             {
                 child.position = Vector3.zero;
 
@@ -50,15 +50,15 @@ namespace Extensions
         /// <param name="transform">Parent transform.</param>
         /// <param name="layerName">Name of layer.</param>
         /// <param name="recursive">Also set ancestor layers?</param>
-        public static void SetChildLayers(this Transform transform, string layerName, bool recursive = false)
+        public static void SetChildLayers(this UnityEngine.Transform transform, string layerName, bool recursive = false)
         {
             var layer = LayerMask.NameToLayer(layerName);
             SetChildLayersHelper(transform, layer, recursive);
         }
 
-        static void SetChildLayersHelper(Transform transform, int layer, bool recursive)
+        static void SetChildLayersHelper(UnityEngine.Transform transform, int layer, bool recursive)
         {
-            foreach (Transform child in transform)
+            foreach (UnityEngine.Transform child in transform)
             {
                 child.gameObject.layer = layer;
 
@@ -70,7 +70,7 @@ namespace Extensions
         ///     Sets the x component of the transform's position.
         /// </summary>
         /// <param name="x">Value of x.</param>
-        public static void SetX(this Transform transform, float x)
+        public static void SetX(this UnityEngine.Transform transform, float x)
         {
             transform.position = new Vector3(x, transform.position.y, transform.position.z);
         }
@@ -79,7 +79,7 @@ namespace Extensions
         ///     Sets the y component of the transform's position.
         /// </summary>
         /// <param name="y">Value of y.</param>
-        public static void SetY(this Transform transform, float y)
+        public static void SetY(this UnityEngine.Transform transform, float y)
         {
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
         }
@@ -88,7 +88,7 @@ namespace Extensions
         ///     Sets the z component of the transform's position.
         /// </summary>
         /// <param name="z">Value of z.</param>
-        public static void SetZ(this Transform transform, float z)
+        public static void SetZ(this UnityEngine.Transform transform, float z)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, z);
         }

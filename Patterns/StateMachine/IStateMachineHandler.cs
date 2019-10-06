@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Patterns.StateMachine
+namespace Tools.Patterns.StateMachine
 {
     /// <summary>
     ///     Handler for the FSM. Usually the class which holds the FSM.

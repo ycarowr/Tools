@@ -1,40 +1,43 @@
 using System;
 using FullSerializer;
 
-public static partial class LocalData
+namespace Tools.LocalData
 {
-    /// <summary>
-    ///     Wrapper for FullSerializer. Ref: https://github.com/jacobdufault/fullserializer.
-    /// </summary>
-    static class FullSerializer
+    public static partial class LocalData
     {
-        static readonly fsSerializer _serializer = new fsSerializer();
-
-        public static string Serialize(Type type, object value, bool isPretty)
+        /// <summary>
+        ///     Wrapper for FullSerializer. Ref: https://github.com/jacobdufault/fullserializer.
+        /// </summary>
+        static class FullSerializer
         {
-            // serialize the data
-            fsData data;
-            _serializer.TrySerialize(type, value, out data).AssertSuccessWithoutWarnings();
+            static readonly fsSerializer _serializer = new fsSerializer();
 
-            var json = fsJsonPrinter.CompressedJson(data);
+            public static string Serialize(Type type, object value, bool isPretty)
+            {
+                // serialize the data
+                fsData data;
+                _serializer.TrySerialize(type, value, out data).AssertSuccessWithoutWarnings();
 
-            if (isPretty)
-                json = fsJsonPrinter.PrettyJson(data);
+                var json = fsJsonPrinter.CompressedJson(data);
 
-            // emit the data via JSON
-            return json;
-        }
+                if (isPretty)
+                    json = fsJsonPrinter.PrettyJson(data);
 
-        public static object Deserialize(Type type, string serializedState)
-        {
-            // step 1: parse the JSON data
-            var data = fsJsonParser.Parse(serializedState);
+                // emit the data via JSON
+                return json;
+            }
 
-            // step 2: deserialize the data
-            object deserialized = null;
-            _serializer.TryDeserialize(data, type, ref deserialized).AssertSuccessWithoutWarnings();
+            public static object Deserialize(Type type, string serializedState)
+            {
+                // step 1: parse the JSON data
+                var data = fsJsonParser.Parse(serializedState);
 
-            return deserialized;
+                // step 2: deserialize the data
+                object deserialized = null;
+                _serializer.TryDeserialize(data, type, ref deserialized).AssertSuccessWithoutWarnings();
+
+                return deserialized;
+            }
         }
     }
 }

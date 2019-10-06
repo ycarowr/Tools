@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Tools.UI
+namespace Tools.UiTransform
 {
     public abstract class UiMotionBase
     {

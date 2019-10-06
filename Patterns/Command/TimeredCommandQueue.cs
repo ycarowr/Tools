@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace Patterns
+namespace Tools.Patterns.Command
 {
     public class TimeredCommandQueue<T, T1> : CommandQueue<T, T1>
         where T : MonoBehaviour

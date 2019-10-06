@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tools.UI
+namespace Tools.UiTransform
 {
     public class UiMotion : IUiMotion
     {

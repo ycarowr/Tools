@@ -1,4 +1,4 @@
-﻿namespace Patterns
+﻿namespace Tools.Patterns.GenericPooler
 {
     public interface IPoolableObject
     {

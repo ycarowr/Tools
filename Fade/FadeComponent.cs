@@ -1,7 +1,8 @@
 ﻿using System;
+using Tools.Attributes;
 using UnityEngine;
 
-namespace Tools.UI.Fade
+namespace Tools.Fade
 {
     public class FadeComponent : MonoBehaviour, IFade
     {

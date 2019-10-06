@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tools.Dialog
+namespace Tools.DialogSystem
 {
     [CreateAssetMenu(menuName = "DialogSystem/Parameters")]
     public class Parameters : ScriptableObject

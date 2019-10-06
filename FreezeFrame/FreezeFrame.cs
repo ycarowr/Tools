@@ -1,7 +1,8 @@
 ﻿using System.Collections;
+using Tools.Attributes;
 using UnityEngine;
 
-namespace Tools
+namespace Tools.FreezeFrame
 {
     public class FreezeFrame : MonoBehaviour
     {

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Tools.Attributes;
+using UnityEngine;
 
-namespace Tools
+namespace Tools.Trail
 {
     [RequireComponent(typeof(ParticleSystem))]
     public class TrailParticles : MonoBehaviour

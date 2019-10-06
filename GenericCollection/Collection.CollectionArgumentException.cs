@@ -1,6 +1,6 @@
 using System;
 
-namespace Tools
+namespace Tools.GenericCollection
 {
     public partial class Collection<T>
     {

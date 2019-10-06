@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using NUnit.Framework;
-using Patterns;
 
-namespace Test
+namespace Tools.Patterns.GenericPooler.Editor
 {
     //poolable empty object used in the tests
     public class PoolableObjectTest : IPoolableObject

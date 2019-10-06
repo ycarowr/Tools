@@ -1,8 +1,9 @@
 ﻿using System;
-using Patterns;
+using Tools.Attributes;
+using Tools.Patterns.Singleton;
 using UnityEngine;
 
-namespace Tools.UI.Fade
+namespace Tools.Fade
 {
     public class Fade : SingletonMB<Fade>, IFade
     {

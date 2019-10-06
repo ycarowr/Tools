@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tools
+namespace Tools.EditorComponent
 {
     [ExecuteInEditMode]
     public class EditorComponent : MonoBehaviour

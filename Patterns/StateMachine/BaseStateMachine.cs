@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Patterns.StateMachine
+namespace Tools.Patterns.StateMachine
 {
     public abstract class BaseStateMachine
     {

@@ -1,4 +1,4 @@
-﻿namespace Tools.UI
+﻿namespace Tools.UiTransform
 {
     public interface IUiMotion
     {

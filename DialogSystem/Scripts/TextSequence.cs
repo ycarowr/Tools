@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tools.Dialog
+namespace Tools.DialogSystem
 {
     /// <summary>
     ///     A ordered sequence of <see cref="TextPiece" />.
