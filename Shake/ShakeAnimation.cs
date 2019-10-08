@@ -1,4 +1,4 @@
-﻿using Tools.Attributes;
+﻿
 using UnityEngine;
 
 namespace Tools.Shake
