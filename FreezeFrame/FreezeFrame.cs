@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Tools.Attributes;
+
 using UnityEngine;
 
 namespace Tools.FreezeFrame

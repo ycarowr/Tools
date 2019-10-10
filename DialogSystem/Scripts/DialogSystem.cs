@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TMPro;
-using Tools.Attributes;
+
 using UnityEngine;
 
 namespace Tools.DialogSystem
