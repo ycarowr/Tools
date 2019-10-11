@@ -1,14 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using Tools.Patterns.Singleton;
 
 namespace Tools.Patterns.Observer
 {
-    public class Observer : ScriptableObject
+    public interface ISubject
+    {
+    }
+
+    public interface IListener
+    {
+    }
+
+    public class ObserverMB<T> : SingletonMB<ObserverMB<T>>
     {
         readonly Dictionary<Type, List<IListener>> register = new Dictionary<Type, List<IListener>>();
 
-        public void AddListener(IListener listener)
+        public virtual void AddListener(IListener listener)
         {
             if (listener == null)
                 throw new ArgumentNullException("Can't register Null as a Listener");
@@ -26,7 +34,7 @@ namespace Tools.Patterns.Observer
             }
         }
 
-        public void RemoveListener(IListener listener)
+        public virtual void RemoveListener(IListener listener)
         {
             foreach (var pair in register)
                 pair.Value.Remove(listener);
@@ -55,7 +63,7 @@ namespace Tools.Patterns.Observer
             }
         }
 
-        void CreateAndAdd(Type subject, IListener listener)
+        protected void CreateAndAdd(Type subject, IListener listener)
         {
             if (register.ContainsKey(subject))
                 register[subject].Add(listener);

@@ -2,7 +2,7 @@
 
 namespace Tools.Patterns.GameEvents
 {
-    public class GameEvents : Observer<GameEvents>
+    public class GameEvents : ObserverMB<GameEvents>
     {
     }
 }

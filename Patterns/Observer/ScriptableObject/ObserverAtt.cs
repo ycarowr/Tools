@@ -1,46 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
-using Tools.Patterns.Singleton;
+using UnityEngine;
 
 namespace Tools.Patterns.Observer
 {
-    public interface ISubject
-    {
-    }
-
-    public interface IListener
-    {
-    }
-
-    public class Observer<T> : SingletonMB<Observer<T>>
+    public class ObserverAtt<T> : ScriptableObject where T : Attribute
     {
         readonly Dictionary<Type, List<IListener>> register = new Dictionary<Type, List<IListener>>();
 
-        public void AddListener(IListener listener)
+        public virtual void AddListener(IListener listener)
         {
             if (listener == null)
                 throw new ArgumentNullException("Can't register Null as a Listener");
 
             var type = listener.GetType();
+            Debug.Log("Type: "+ type);
             var interfaces = type.GetInterfaces();
-            for (var i = 0; i < interfaces.Length; i++)
+            
+            foreach (var i in interfaces)
             {
-                var subject = interfaces[i];
-
-                //TODO: ISubject and mid level interfaces are also added to the register
-                var isAssignableFrom = typeof(ISubject).IsAssignableFrom(subject);
-                if (isAssignableFrom)
-                    CreateAndAdd(subject, listener);
+                var customAttributes = i.GetCustomAttributes(true);    
+                for (var att = 0; att < customAttributes.Length; att++)
+                {
+                    var subject = customAttributes[att];               
+                    Debug.Log(subject);
+                    if(subject is T)
+                        CreateAndAdd(i, listener);
+                }    
             }
         }
 
-        public void RemoveListener(IListener listener)
+        public virtual void RemoveListener(IListener listener)
         {
             foreach (var pair in register)
                 pair.Value.Remove(listener);
         }
 
-        public void RemoveSubject(Type subject)
+        public virtual void RemoveSubject(Type subject)
         {
             if (register.ContainsKey(subject))
                 register.Remove(subject);
@@ -63,8 +59,9 @@ namespace Tools.Patterns.Observer
             }
         }
 
-        void CreateAndAdd(Type subject, IListener listener)
+        protected void CreateAndAdd(Type subject, IListener listener)
         {
+            Debug.Log("Create and add: "+ subject);
             if (register.ContainsKey(subject))
                 register[subject].Add(listener);
             else
