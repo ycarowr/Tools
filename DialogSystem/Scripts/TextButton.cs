@@ -57,25 +57,16 @@ namespace Tools.DialogSystem
         ///     Sets the parent dialog;
         /// </summary>
         /// <param name="dialog"></param>
-        public void SetDialog(IDialogSystem dialog)
-        {
-            Dialog = dialog;
-        }
+        public void SetDialog(IDialogSystem dialog) => Dialog = dialog;
 
         /// <summary>
         ///     Provides access to its own dialog property Hide method.
         /// </summary>
-        public void Hide()
-        {
-            Dialog?.Hide();
-        }
+        public void Hide() => Dialog?.Hide();
 
         /// <summary>
         ///     Provides access to its own dialog property Next method.
         /// </summary>
-        public void Next()
-        {
-            Dialog?.Next();
-        }
+        public void Next() => Dialog?.Next();
     }
 }

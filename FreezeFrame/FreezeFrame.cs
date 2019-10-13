@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-
 using UnityEngine;
 
 namespace Tools.FreezeFrame
@@ -81,9 +80,6 @@ namespace Tools.FreezeFrame
         }
 
         [Button]
-        void TestFreeze()
-        {
-            Freeze(time, delay);
-        }
+        void TestFreeze() => Freeze(time, delay);
     }
 }

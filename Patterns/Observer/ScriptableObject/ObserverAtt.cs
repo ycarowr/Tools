@@ -15,15 +15,13 @@ namespace Tools.Patterns.Observer
 
             var type = listener.GetType();
             var interfaces = type.GetInterfaces();
-            
+
             foreach (var i in interfaces)
             {
                 var customAttributes = i.GetCustomAttributes(true);
                 foreach (var subject in customAttributes)
-                {
-                    if(subject is T)
+                    if (subject is T)
                         CreateAndAdd(i, listener);
-                }
             }
         }
 

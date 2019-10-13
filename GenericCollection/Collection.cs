@@ -7,10 +7,7 @@ namespace Tools.GenericCollection
     /// <summary> Class that wraps a List and adds some Linq functionality with less garbage generation </summary>
     public partial class Collection<T> where T : class
     {
-        public Collection()
-        {
-            Units = new List<T>();
-        }
+        public Collection() => Units = new List<T>();
 
         public Collection(List<T> units)
         {
@@ -33,10 +30,7 @@ namespace Tools.GenericCollection
         #region Operations
 
         /// <summary> Clear the list completely.</summary>
-        public virtual void Restart()
-        {
-            Units.Clear();
-        }
+        public virtual void Restart() => Units.Clear();
 
         /// <summary>  Add elements to the collection. </summary>
         public void Add(T unit)
@@ -61,16 +55,10 @@ namespace Tools.GenericCollection
         }
 
         /// <summary>  Check whether the collection has an unit inside or not.</summary>
-        public bool Has(T unit)
-        {
-            return Units.Contains(unit);
-        }
+        public bool Has(T unit) => Units.Contains(unit);
 
         /// <summary> Remove element from the collection and returns whether the element has been successfully removed or not. </summary>
-        public bool Remove(T unit)
-        {
-            return Units.Remove(unit);
-        }
+        public bool Remove(T unit) => Units.Remove(unit);
 
         /// <summary> Shuffles the collection using Fisher Yates algorithm </summary>
         public virtual void Shuffle()
@@ -137,10 +125,7 @@ namespace Tools.GenericCollection
         }
 
         /// <summary>  Clears the list. </summary>
-        public void Clear()
-        {
-            Units.Clear();
-        }
+        public void Clear() => Units.Clear();
 
         #endregion
     }

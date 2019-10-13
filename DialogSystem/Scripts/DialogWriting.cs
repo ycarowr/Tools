@@ -97,11 +97,7 @@ namespace Tools.DialogSystem
             ///     Return the time necessary to wait according to the sentence length.
             /// </summary>
             /// <returns></returns>
-            float CalculateTime()
-            {
-                // v = d / t
-                return Builder.Length / DialogSystem.Speed;
-            }
+            float CalculateTime() => Builder.Length / DialogSystem.Speed;
         }
     }
 }

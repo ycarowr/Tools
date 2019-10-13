@@ -12,15 +12,9 @@ namespace Tools.Input.Mouse
         public Vector2 MousePosition => UnityEngine.Input.mousePosition;
         public bool IsTracking { get; private set; }
 
-        public void StartTracking()
-        {
-            IsTracking = true;
-        }
+        public void StartTracking() => IsTracking = true;
 
-        public void StopTracking()
-        {
-            IsTracking = false;
-        }
+        public void StopTracking() => IsTracking = false;
 
         void Awake()
         {

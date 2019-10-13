@@ -16,20 +16,11 @@ namespace Tools.LocalData
                     DataRegister.Add(id, file);
             }
 
-            public string TryGet(string id)
-            {
-                return !Has(id) ? null : DataRegister[id];
-            }
+            public string TryGet(string id) => !Has(id) ? null : DataRegister[id];
 
-            public void Remove(string id)
-            {
-                DataRegister.Remove(id);
-            }
+            public void Remove(string id) => DataRegister.Remove(id);
 
-            public bool Has(string id)
-            {
-                return DataRegister.ContainsKey(id);
-            }
+            public bool Has(string id) => DataRegister.ContainsKey(id);
         }
     }
 }

@@ -5,15 +5,9 @@ namespace Tools.Patterns.GameEvents
 {
     public class UiGameEventListener : MonoBehaviour, IListener
     {
-        protected virtual void Awake()
-        {
-            Subscribe();
-        }
+        protected virtual void Awake() => Subscribe();
 
-        protected virtual void OnDestroy()
-        {
-            Unsubscribe();
-        }
+        protected virtual void OnDestroy() => Unsubscribe();
 
         void Subscribe()
         {

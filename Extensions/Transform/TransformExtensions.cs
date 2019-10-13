@@ -14,20 +14,16 @@ namespace Tools.Extensions.Transform
         /// </summary>
         /// <param name="transform">Parent transform.</param>
         /// <param name="children">Game objects to make children.</param>
-        public static void AddChildren(this UnityEngine.Transform transform, UnityEngine.GameObject[] children)
-        {
+        public static void AddChildren(this UnityEngine.Transform transform, UnityEngine.GameObject[] children) =>
             Array.ForEach(children, child => child.transform.parent = transform);
-        }
 
         /// <summary>
         ///     Makes the game objects of given components children of the transform.
         /// </summary>
         /// <param name="transform">Parent transform.</param>
         /// <param name="children">Components of game objects to make children.</param>
-        public static void AddChildren(this UnityEngine.Transform transform, UnityEngine.Component[] children)
-        {
+        public static void AddChildren(this UnityEngine.Transform transform, UnityEngine.Component[] children) =>
             Array.ForEach(children, child => child.transform.parent = transform);
-        }
 
         /// <summary>
         ///     Sets the position of a transform's children to zero.
@@ -50,7 +46,8 @@ namespace Tools.Extensions.Transform
         /// <param name="transform">Parent transform.</param>
         /// <param name="layerName">Name of layer.</param>
         /// <param name="recursive">Also set ancestor layers?</param>
-        public static void SetChildLayers(this UnityEngine.Transform transform, string layerName, bool recursive = false)
+        public static void SetChildLayers(this UnityEngine.Transform transform, string layerName,
+            bool recursive = false)
         {
             var layer = LayerMask.NameToLayer(layerName);
             SetChildLayersHelper(transform, layer, recursive);
@@ -70,27 +67,21 @@ namespace Tools.Extensions.Transform
         ///     Sets the x component of the transform's position.
         /// </summary>
         /// <param name="x">Value of x.</param>
-        public static void SetX(this UnityEngine.Transform transform, float x)
-        {
+        public static void SetX(this UnityEngine.Transform transform, float x) =>
             transform.position = new Vector3(x, transform.position.y, transform.position.z);
-        }
 
         /// <summary>
         ///     Sets the y component of the transform's position.
         /// </summary>
         /// <param name="y">Value of y.</param>
-        public static void SetY(this UnityEngine.Transform transform, float y)
-        {
+        public static void SetY(this UnityEngine.Transform transform, float y) =>
             transform.position = new Vector3(transform.position.x, y, transform.position.z);
-        }
 
         /// <summary>
         ///     Sets the z component of the transform's position.
         /// </summary>
         /// <param name="z">Value of z.</param>
-        public static void SetZ(this UnityEngine.Transform transform, float z)
-        {
+        public static void SetZ(this UnityEngine.Transform transform, float z) =>
             transform.position = new Vector3(transform.position.x, transform.position.y, z);
-        }
     }
 }

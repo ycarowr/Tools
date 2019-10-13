@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using TMPro;
-
 using UnityEngine;
 
 namespace Tools.DialogSystem
@@ -29,7 +28,7 @@ namespace Tools.DialogSystem
         DialogAnimation Animation { get; set; }
         DialogWriting Writing { get; set; }
         DialogSequence Sequence { get; set; }
-        public int Speed => parameters.Speed;
+        public int Speed => parameters.speed;
         public bool IsOpened { get; private set; }
         public Action OnShow { get; set; } = () => { };
         public Action OnHide { get; set; } = () => { };
@@ -62,10 +61,7 @@ namespace Tools.DialogSystem
             Write(text, author);
         }
 
-        void Write(string text, string author)
-        {
-            Writing.Write(text, author);
-        }
+        void Write(string text, string author) => Writing.Write(text, author);
 
 
         #region Next
@@ -160,10 +156,7 @@ namespace Tools.DialogSystem
         #region Activate and Deactivate
 
         [Button]
-        public void Activate()
-        {
-            content.SetActive(true);
-        }
+        public void Activate() => content.SetActive(true);
 
         [Button]
         public void Deactivate()

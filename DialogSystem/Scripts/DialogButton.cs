@@ -18,15 +18,9 @@ namespace Tools.DialogSystem
             keyBoard.StartTracking();
         }
 
-        public void SetText(string txt)
-        {
-            tmpText.text = txt;
-        }
+        public void SetText(string txt) => tmpText.text = txt;
 
-        public void SetKeyCode(KeyCode key)
-        {
-            keyBoard.SetKey(key);
-        }
+        public void SetKeyCode(KeyCode key) => keyBoard.SetKey(key);
 
         public void AddListener(Action action)
         {

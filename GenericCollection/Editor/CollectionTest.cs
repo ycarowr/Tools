@@ -20,15 +20,9 @@ namespace Tools.GenericCollection.Editor
             TestUnit nullObj = null;
             List<TestUnit> nullList = null;
 
-            void AddNull()
-            {
-                collection.Add(nullObj);
-            }
+            void AddNull() => collection.Add(nullObj);
 
-            void AddListNull()
-            {
-                collection.Add(nullList);
-            }
+            void AddListNull() => collection.Add(nullList);
 
             //Assert add exceptions
             Assert.Throws<Collection<TestUnit>.CollectionArgumentException>(AddNull);
@@ -51,10 +45,7 @@ namespace Tools.GenericCollection.Editor
             collection.Add(obj);
 
             //assert duplication exception
-            void AddDuplicated()
-            {
-                collection.Add(duplicatedObj);
-            }
+            void AddDuplicated() => collection.Add(duplicatedObj);
 
             Assert.Throws<Collection<TestUnit>.CollectionArgumentException>(AddDuplicated);
 
@@ -62,10 +53,7 @@ namespace Tools.GenericCollection.Editor
             var listDuplicated = new List<TestUnit> {obj, duplicatedObj};
 
             //assert duplication exception
-            void AddDuplicatedAgain()
-            {
-                collection.Add(listDuplicated);
-            }
+            void AddDuplicatedAgain() => collection.Add(listDuplicated);
 
             Assert.Throws<Collection<TestUnit>.CollectionArgumentException>(AddDuplicatedAgain);
         }

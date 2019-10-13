@@ -5,9 +5,8 @@ namespace Tools.Input.KeyBoard
 {
     public class KeyboardInput : MonoBehaviour, IKeyboardInput
     {
-        public bool IsTracking { get; private set; }
-
         [SerializeField] KeyCode key;
+        public bool IsTracking { get; private set; }
         KeyCode IKeyboardInput.Key => key;
 
         public Action OnKey { get; set; } = () => { };

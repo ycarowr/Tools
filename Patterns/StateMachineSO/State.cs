@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace Tools.Patterns.StateMachineSO
+﻿namespace Tools.Patterns.StateMachineSO
 {
     public interface IState
     {
@@ -27,9 +25,9 @@ namespace Tools.Patterns.StateMachineSO
         protected virtual void OnEnterState()
         {
         }
-        
+
         protected virtual void OnExitState()
-        { 
+        {
         }
 
         protected virtual void OnUpdateState()

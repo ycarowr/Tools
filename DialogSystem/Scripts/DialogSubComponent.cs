@@ -7,10 +7,7 @@
         /// </summary>
         abstract class DialogSubComponent
         {
-            protected DialogSubComponent(IDialogSystem system)
-            {
-                DialogSystem = system;
-            }
+            protected DialogSubComponent(IDialogSystem system) => DialogSystem = system;
 
             /// <summary>
             ///     The parent Dialog.

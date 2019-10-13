@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Tools.Patterns.Singleton;
 using UnityEngine;
 
@@ -39,10 +38,7 @@ namespace Tools.Fade
 
         //------------------------------------------------------------------------------------------------------------------------------
 
-        protected override void OnAwake()
-        {
-            Disable();
-        }
+        protected override void OnAwake() => Disable();
 
         void Update()
         {
@@ -66,10 +62,7 @@ namespace Tools.Fade
         }
 
 
-        public void Disable()
-        {
-            Renderer.enabled = false;
-        }
+        public void Disable() => Renderer.enabled = false;
 
         public void Enable()
         {
@@ -80,15 +73,9 @@ namespace Tools.Fade
         //------------------------------------------------------------------------------------------------------------------------------
 
         [Button]
-        public void FadeTo1()
-        {
-            SetAlpha(0.8f, Speed);
-        }
+        public void FadeTo1() => SetAlpha(0.8f, Speed);
 
         [Button]
-        public void FadeTo0()
-        {
-            SetAlpha(0, Speed);
-        }
+        public void FadeTo0() => SetAlpha(0, Speed);
     }
 }

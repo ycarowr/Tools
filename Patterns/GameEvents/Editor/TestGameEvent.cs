@@ -13,11 +13,7 @@ namespace Tools.Patterns.GameEvents.Editor
 
         //--------------------------------------------------------------------------------------------------------------
 
-        void ISampleEvent1.OnISampleEvent1(int a)
-        {
-            //check if received parameter is the same as sent
-            Assert.True(a == sampleArgument);
-        }
+        void ISampleEvent1.OnISampleEvent1(int a) => Assert.True(a == sampleArgument);
 
         public void OnISampleEvent2(int a, int b)
         {
@@ -40,18 +36,11 @@ namespace Tools.Patterns.GameEvents.Editor
         }
 
         [Test]
-        public void Dispatch1()
-        {
-            //dispatch the parameter
-            GameEvents.Notify<ISampleEvent1>(j => j.OnISampleEvent1(sampleArgument));
-        }
+        public void Dispatch1() => GameEvents.Notify<ISampleEvent1>(j => j.OnISampleEvent1(sampleArgument));
 
         [Test]
-        public void Dispatch2()
-        {
-            //dispatch parameters
+        public void Dispatch2() =>
             GameEvents.Notify<ISampleEvent2>(j => j.OnISampleEvent2(sampleArgument2, sampleArgument3));
-        }
     }
 
     /// <summary>

@@ -16,10 +16,7 @@ namespace Tools.UiTransform
             base.Execute(position, speed, delay);
         }
 
-        public void Teleport(Vector3 position)
-        {
-            Handler.transform.position = position;
-        }
+        public void Teleport(Vector3 position) => Handler.transform.position = position;
 
         void TeleportZ(float z)
         {

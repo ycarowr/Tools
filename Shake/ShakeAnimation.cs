@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Tools.Shake
 {
@@ -21,10 +20,7 @@ namespace Tools.Shake
         float CounterFrequency { get; set; }
         float CounterDuration { get; set; }
 
-        void Awake()
-        {
-            CachedTransform = transform;
-        }
+        void Awake() => CachedTransform = transform;
 
         void Update()
         {

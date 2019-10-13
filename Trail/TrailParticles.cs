@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Tools.Trail
 {
@@ -17,16 +16,10 @@ namespace Tools.Trail
         }
 
         [Button]
-        public void Play()
-        {
-            trail.Play();
-        }
+        public void Play() => trail.Play();
 
         [Button]
-        public void StopTrail()
-        {
-            trail.Stop();
-        }
+        public void StopTrail() => trail.Stop();
 
         public void PlayFromRender(SpriteRenderer render)
         {

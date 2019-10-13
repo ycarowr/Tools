@@ -11,10 +11,7 @@ namespace Tools.UiTransform
 
         //--------------------------------------------------------------------------------------------------------------
 
-        protected UiMotionBase(IUiMotionHandler handler)
-        {
-            Handler = handler.MonoBehaviour;
-        }
+        protected UiMotionBase(IUiMotionHandler handler) => Handler = handler.MonoBehaviour;
 
         /// <summary> Whether the component is still operating or not. </summary>
         public bool IsOperating { get; protected set; }
@@ -34,10 +31,7 @@ namespace Tools.UiTransform
         /// <summary> Is the movement constant. </summary>
         public bool IsConstant { get; set; }
 
-        public void SetThreshold(float threshold)
-        {
-            Threshold = threshold;
-        }
+        public void SetThreshold(float threshold) => Threshold = threshold;
 
         public void Update()
         {
@@ -54,10 +48,7 @@ namespace Tools.UiTransform
         protected abstract bool CheckFinalState();
 
         /// <summary> Ends the motion and dispatch motion ends. </summary>
-        protected virtual void OnMotionEnds()
-        {
-            OnFinishMotion?.Invoke();
-        }
+        protected virtual void OnMotionEnds() => OnFinishMotion?.Invoke();
 
         /// <summary> Keep the motion on update. </summary>
         protected abstract void KeepMotion();
@@ -84,9 +75,6 @@ namespace Tools.UiTransform
 
         /// <summary> Stop the motion. It won't trigger OnFinishMotion.</summary>
         /// TODO: Cancel the Delay Coroutine.
-        public virtual void StopMotion()
-        {
-            IsOperating = false;
-        }
+        public virtual void StopMotion() => IsOperating = false;
     }
 }

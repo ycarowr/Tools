@@ -37,10 +37,7 @@ namespace Tools.LocalData
         }
 
         /// <summary> Check whether an id is present in the current data. </summary>
-        public static bool HasData(string id)
-        {
-            return localFiles.Has(id);
-        }
+        public static bool HasData(string id) => localFiles.Has(id);
 
         /// <summary> Remove all data. </summary>
         public static void DeleteAll()
@@ -90,10 +87,7 @@ namespace Tools.LocalData
         }
 
         /// <summary> Prints with all the local data and its IDs. </summary>
-        public static void PrintLocalData()
-        {
-            Debug.Log(Serialize(localFiles, true));
-        }
+        public static void PrintLocalData() => Debug.Log(Serialize(localFiles, true));
 
         /// <summary> Saves a copy of the data into a file inside the Assets </summary>
         public static void SaveCopyAtAssets()

@@ -6,9 +6,9 @@ namespace Tools.DialogSystem
     public class Parameters : ScriptableObject
     {
         //------------------------------------------------------------------------------------------------------------
-        [field: SerializeField]
-        [field: Tooltip("Characters per second.")]
-        [field: Range(50, 2000)]
-        public int Speed { get; } = 300;
+        [SerializeField]
+        [Tooltip("Characters per second.")]
+        [Range(50, 2000)]
+        public int speed = 300;
     }
 }

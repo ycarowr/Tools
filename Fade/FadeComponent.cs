@@ -1,5 +1,4 @@
 ﻿using System;
-
 using UnityEngine;
 
 namespace Tools.Fade
@@ -65,15 +64,9 @@ namespace Tools.Fade
             }
         }
 
-        public void SetAlpha(float a)
-        {
-            SetAlpha(a, speed);
-        }
+        public void SetAlpha(float a) => SetAlpha(a, speed);
 
-        public void Disable()
-        {
-            Renderer.enabled = false;
-        }
+        public void Disable() => Renderer.enabled = false;
 
         public void Enable()
         {
@@ -84,15 +77,9 @@ namespace Tools.Fade
         //------------------------------------------------------------------------------------------------------------------------------
 
         [Button]
-        public void FadeTo1()
-        {
-            SetAlpha(1f, speed);
-        }
+        public void FadeTo1() => SetAlpha(1f, speed);
 
         [Button]
-        public void FadeTo0()
-        {
-            SetAlpha(0, speed);
-        }
+        public void FadeTo0() => SetAlpha(0, speed);
     }
 }
