@@ -7,32 +7,25 @@ namespace Tools.Input.KeyBoard
     {
         public bool IsTracking { get; private set; }
 
-        [field: SerializeField]
-        [field: Tooltip("The Keyboard key")]
-        public KeyCode Key { get; set; }
+        [SerializeField] KeyCode key;
+        KeyCode IKeyboardInput.Key => key;
 
         public Action OnKey { get; set; } = () => { };
         public Action OnKeyDown { get; set; } = () => { };
         public Action OnKeyUp { get; set; } = () => { };
 
-        public void StartTracking()
-        {
-            IsTracking = true;
-        }
+        public void StartTracking() => IsTracking = true;
 
-        public void StopTracking()
-        {
-            IsTracking = false;
-        }
+        public void StopTracking() => IsTracking = false;
 
         void Update()
         {
             if (!IsTracking)
                 return;
 
-            var isKey = UnityEngine.Input.GetKey(Key);
-            var isKeyDown = UnityEngine.Input.GetKeyDown(Key);
-            var isKeyUp = UnityEngine.Input.GetKeyUp(Key);
+            var isKey = UnityEngine.Input.GetKey(key);
+            var isKeyDown = UnityEngine.Input.GetKeyDown(key);
+            var isKeyUp = UnityEngine.Input.GetKeyUp(key);
 
             if (isKey)
                 OnKey?.Invoke();
@@ -42,9 +35,6 @@ namespace Tools.Input.KeyBoard
                 OnKeyUp?.Invoke();
         }
 
-        public void SetKey(KeyCode keyCode)
-        {
-            Key = keyCode;
-        }
+        public void SetKey(KeyCode keyCode) => key = keyCode;
     }
 }
