@@ -93,16 +93,17 @@ namespace Tools.Patterns.StateMachine
         public IState PeekState() => stack.Count > 0 ? stack.Peek() : null;
 
         /// <summary> Pops a state from the stack. </summary>
-        public void PopState(bool isSilent = false)
+        public IState PopState(bool isSilent = false)
         {
             if (Current == null)
-                return;
+                return null;
 
             var state = stack.Pop();
             state.OnExitState();
 
             if (!isSilent)
                 Current?.OnEnterState();
+            return state;
         }
 
         /// <summary> Clears and restart the states register. </summary>
