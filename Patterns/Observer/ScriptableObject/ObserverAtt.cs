@@ -4,7 +4,15 @@ using UnityEngine;
 
 namespace Tools.Patterns.Observer
 {
-    public class ObserverAtt<T> : ScriptableObject where T : Attribute
+    public interface IDispatcher
+    {
+        void Notify<T1>(Action<T1> subject) where T1 : class;
+        void AddListener(IListener listener);
+        void RemoveListener(IListener listener);
+        void RemoveSubject(Type subject);
+    }
+    
+    public class ObserverAtt<T> : ScriptableObject, IDispatcher where T : Attribute
     {
         readonly Dictionary<Type, List<IListener>> _register = new Dictionary<Type, List<IListener>>();
 

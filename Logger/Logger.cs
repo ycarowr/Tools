@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Tools.Logger
+namespace Tools
 {
     public static class Logger
     {
