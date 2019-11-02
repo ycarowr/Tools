@@ -122,7 +122,7 @@ namespace Tools.GenericCollection
         }
 
         /// <summary>  Clears the list. </summary>
-        public void Clear() => Units.Clear();
+        public virtual void Clear() => Units.Clear();
 
         #endregion
     }
