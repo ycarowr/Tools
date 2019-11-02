@@ -17,7 +17,7 @@ namespace Tools.GenericCollection
 
         public List<T> Units { get; }
 
-        public int Size => Units.Count;
+        public int Count => Units.Count;
 
         public override string ToString()
         {
@@ -28,9 +28,6 @@ namespace Tools.GenericCollection
         }
 
         #region Operations
-
-        /// <summary> Clear the list completely.</summary>
-        public virtual void Restart() => Units.Clear();
 
         /// <summary>  Add elements to the collection. </summary>
         public void Add(T unit)
@@ -63,7 +60,7 @@ namespace Tools.GenericCollection
         /// <summary> Shuffles the collection using Fisher Yates algorithm </summary>
         public virtual void Shuffle()
         {
-            var n = Size;
+            var n = Count;
             for (var i = 0; i <= n - 2; i++)
             {
                 //random index
@@ -79,7 +76,7 @@ namespace Tools.GenericCollection
         /// <summary> Get and Remove an element randomly from the collection. </summary>
         public T GetAndRemoveRandom()
         {
-            if (Size <= 0)
+            if (Count <= 0)
                 return null;
 
             var rdn = Random.Range(0, Units.Count);
@@ -91,7 +88,7 @@ namespace Tools.GenericCollection
         /// <summary> Get an element randomly from the collection.</summary>
         public T GetRandom()
         {
-            if (Size <= 0)
+            if (Count <= 0)
                 return null;
 
             var rdn = Random.Range(0, Units.Count);
@@ -102,7 +99,7 @@ namespace Tools.GenericCollection
         /// <summary> Get an element from an specific position. </summary>
         public T Get(int index)
         {
-            if (index >= Size || index < 0)
+            if (index >= Count || index < 0)
                 throw new IndexOutOfRangeException();
 
             var unit = Units[index];
@@ -120,7 +117,7 @@ namespace Tools.GenericCollection
         /// <summary> Get and Remove the last element from the collection.</summary>
         public T GetLastAndRemove()
         {
-            var lastIndex = Size - 1;
+            var lastIndex = Count - 1;
             return GetAndRemove(lastIndex);
         }
 

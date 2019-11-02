@@ -66,7 +66,7 @@ namespace Tools.GenericCollection.Editor
             var collection = new Collection<TestUnit>();
 
             //cache size
-            var sizeBefore = collection.Size;
+            var sizeBefore = collection.Count;
 
             //create object
             var testObj = new TestUnit();
@@ -76,7 +76,7 @@ namespace Tools.GenericCollection.Editor
 
             //assert if the object is inside the list
             Assert.True(collection.Has(testObj));
-            Assert.True(collection.Size == sizeBefore + 1);
+            Assert.True(collection.Count == sizeBefore + 1);
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace Tools.GenericCollection.Editor
 
             //assert if the object has been removed from the list
             Assert.False(collection.Has(testObj));
-            Assert.True(collection.Size == 0);
+            Assert.True(collection.Count == 0);
         }
 
 
@@ -121,7 +121,7 @@ namespace Tools.GenericCollection.Editor
 
             //assert if the object has been removed from the list
             Assert.False(collection.Has(testObj));
-            Assert.True(collection.Size == 0);
+            Assert.True(collection.Count == 0);
         }
     }
 }
