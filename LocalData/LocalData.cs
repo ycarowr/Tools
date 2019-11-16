@@ -9,40 +9,40 @@ namespace Tools.LocalData
     public static partial class LocalData
     {
         /// <summary> ID of the local serialized data. </summary>
-        const string localDataId = "LocalData";
+        const string LocalDataId = "LocalData";
 
         /// <summary> Register for all the local data. </summary>
-        static Data localFiles = LoadAllData();
+        static Data _localFiles = LoadAllData();
 
         /// <summary> Store the data locally. </summary>
         public static void StoreData<T>(T data, string id) where T : class
         {
             var sData = Serialize(data);
-            localFiles.Add(id, sData);
+            _localFiles.Add(id, sData);
             StoreAllData();
         }
 
         /// <summary> Retrieves the data from the id. </summary>
         public static T LoadData<T>(string id) where T : class
         {
-            var data = localFiles.TryGet(id);
+            var data = _localFiles.TryGet(id);
             return data == null ? null : Deserialize<T>(data);
         }
 
         /// <summary> Remove the data from the id. </summary>
         public static void DeleteData(string id)
         {
-            localFiles.Remove(id);
+            _localFiles.Remove(id);
             StoreAllData();
         }
 
         /// <summary> Check whether an id is present in the current data. </summary>
-        public static bool HasData(string id) => localFiles.Has(id);
+        public static bool HasData(string id) => _localFiles.Has(id);
 
         /// <summary> Remove all data. </summary>
         public static void DeleteAll()
         {
-            localFiles = new Data();
+            _localFiles = new Data();
             PlayerPrefs.DeleteAll();
         }
 
@@ -74,7 +74,7 @@ namespace Tools.LocalData
 
         static Data LoadAllData()
         {
-            var localData = PlayerPrefs.GetString(localDataId);
+            var localData = PlayerPrefs.GetString(LocalDataId);
             return string.IsNullOrEmpty(localData)
                 ? new Data()
                 : Deserialize<Data>(localData);
@@ -82,18 +82,18 @@ namespace Tools.LocalData
 
         static void StoreAllData()
         {
-            var allData = Serialize(localFiles);
-            PlayerPrefs.SetString(localDataId, allData);
+            var allData = Serialize(_localFiles);
+            PlayerPrefs.SetString(LocalDataId, allData);
         }
 
         /// <summary> Prints with all the local data and its IDs. </summary>
-        public static void PrintLocalData() => Debug.Log(Serialize(localFiles, true));
+        public static void PrintLocalData() => Debug.Log(Serialize(_localFiles, true));
 
         /// <summary> Saves a copy of the data into a file inside the Assets </summary>
-        public static void SaveCopyAtAssets()
+        public static void SaveCopyAt(string path)
         {
-            var text = Serialize(localFiles, true);
-            File.WriteAllText("Assets/localFiles.json", text);
+            var text = Serialize(_localFiles, true);
+            File.WriteAllText(path, text);
         }
     }
 }

@@ -1,12 +1,19 @@
 ﻿using System;
+using System.IO;
 using NUnit.Framework;
 using Tools.LocalData;
 using UnityEngine;
 
 public class LocalDataTest : MonoBehaviour
 {
+    const string LocalPath = "Assets/localFiles.json";
     [TearDown]
-    public void TearDown() => LocalData.DeleteAll();
+    public void TearDown()
+    {
+        LocalData.DeleteAll();
+        if(File.Exists(LocalPath))
+            File.Delete(LocalPath);
+    }
 
     //------------------------------------------------------------------------------------------------------------------
 
@@ -46,7 +53,7 @@ public class LocalDataTest : MonoBehaviour
 
         //compare data
         Assert.True(testData.IsEqual(retrievedData));
-        LocalData.SaveCopyAtAssets();
+        LocalData.SaveCopyAt(LocalPath);
     }
 
     [Test]
