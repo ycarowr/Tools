@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Tools.Input.Mouse
 {
-    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(Collider2D))]
     public partial class UiMouseInputProvider : MonoBehaviour, IMouseInput
     {
         Vector3 prevPosition;
@@ -19,8 +19,8 @@ namespace Tools.Input.Mouse
         void Awake()
         {
             // Can be used with PhysicsRaycaster2D and Collider2D too.
-            if (Camera.main.GetComponent<PhysicsRaycaster>() == null)
-                throw new Exception(GetType() + " needs an " + typeof(PhysicsRaycaster) + " on the MainCamera");
+            if (Camera.main.GetComponent<Physics2DRaycaster>() == null)
+                throw new Exception(GetType() + " needs an " + typeof(Physics2DRaycaster) + " on the MainCamera");
         }
 
         DragDirection GetDragDirection()
