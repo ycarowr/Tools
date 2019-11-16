@@ -5,19 +5,34 @@ namespace Tools
 {
     public static class Logger
     {
+        static readonly Color black = Color.black;
         const char Period = '.';
         const string OpenBrackets = "[";
         const char CloseBrackets = ']';
-        const string OpenColor = ": <color={0}><b>";
+        const string OpenColor = ": <color=#{0}><b>";
         const string CloseColor = "</b></color>";
 
-        /// <summary>  Use "black", "red" or any other html code to set the color. </summary>
-        public static void Log<T>(object log, string colorName = "black")
+        public static void Log<T>(object log)
         {
-            var coloredText = OpenColor + log + CloseColor;
-            var context = OpenBrackets + GetTypeString(typeof(T)) + CloseBrackets;
-            log = string.Format(context + coloredText, colorName);
-            Debug.Log(log);
+            var coloredText = BuildColor(log); 
+            var context = BuildContext<T>();
+            PrintLog(context, coloredText, black);
+        }
+
+        public static void Log<T>(object log, Color color)
+        {
+            var coloredText = BuildColor(log); 
+            var context = BuildContext<T>();
+            PrintLog(context, coloredText, color);
+        }
+
+        static object BuildColor(object log) => $"{OpenColor}{log}{CloseColor}";
+
+        static object BuildContext<T>() => $"{OpenBrackets}{GetTypeString(typeof(T))}{CloseBrackets}";
+
+        static void PrintLog(object context, object log, Color color)
+        {
+            Debug.Log(string.Format($"{context}{log}", ColorUtility.ToHtmlStringRGBA(color)));
         }
 
         static string GetTypeString(Type t)
