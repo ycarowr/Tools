@@ -4,7 +4,6 @@ using Random = UnityEngine.Random;
 
 namespace Tools.GenericCollection
 {
-    /// <summary> Class that wraps a List and adds some Linq functionality with less garbage generation </summary>
     public partial class Collection<T> where T : class
     {
         public Collection() => Units = new List<T>();
