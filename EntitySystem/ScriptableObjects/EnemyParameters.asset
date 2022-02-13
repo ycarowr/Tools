@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9674dcbd58a34af68841f68f8c18c3e2, type: 3}
+  m_Name: EnemyParameters
+  m_EditorClassIdentifier: 
+  attackRange: 3
+  speed: 15
+  followThreshold: 30
+  idleRadius: 35.69
+  idlePoints: 2
+  stunTime: 1
+  is2D: 1
+  isDebug: 1
+  attackSpeed: 1
+  damage: 23
+  maxHealth: 200
+  ballDamage: 80
+  spawnTime: 2
