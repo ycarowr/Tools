@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Tools.Extensions.List
+namespace YWR.Tools
 {
     /// <summary>
     ///     Extension methods for the class List Refs:
@@ -23,9 +23,11 @@ namespace Tools.Extensions.List
         public static T RandomItem<T>(this List<T> list)
         {
             if (list.Count == 0)
+            {
                 throw new IndexOutOfRangeException("List is Empty");
+            }
 
-            var randomIndex = Random.Range(0, list.Count);
+            int randomIndex = Random.Range(0, list.Count);
             return list[randomIndex];
         }
 
@@ -39,7 +41,7 @@ namespace Tools.Extensions.List
         /// <returns></returns>
         public static T RandomItemRemove<T>(this List<T> list)
         {
-            var item = list.RandomItem();
+            T item = list.RandomItem();
             list.Remove(item);
             return item;
         }
@@ -49,14 +51,14 @@ namespace Tools.Extensions.List
         /// </summary>
         public static void Shuffle<T>(this List<T> list)
         {
-            var n = list.Count;
-            for (var i = 0; i <= n - 2; i++)
+            int n = list.Count;
+            for (int i = 0; i <= n - 2; i++)
             {
                 //random index
-                var rdn = Random.Range(0, n - i);
+                int rdn = Random.Range(0, n - i);
 
                 //swap positions
-                var curVal = list[i];
+                T curVal = list[i];
                 list[i] = list[i + rdn];
                 list[i + rdn] = curVal;
             }
@@ -68,7 +70,10 @@ namespace Tools.Extensions.List
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
         /// <param name="item"></param>
-        public static void AddToFront<T>(this List<T> list, T item) => list.Insert(0, item);
+        public static void AddToFront<T>(this List<T> list, T item)
+        {
+            list.Insert(0, item);
+        }
 
         /// <summary>
         ///     Add an item in before another item
@@ -79,7 +84,7 @@ namespace Tools.Extensions.List
         /// <param name="newItem"></param>
         public static void AddBeforeOf<T>(this List<T> list, T item, T newItem)
         {
-            var targetPosition = list.IndexOf(item);
+            int targetPosition = list.IndexOf(item);
             list.Insert(targetPosition, newItem);
         }
 
@@ -92,7 +97,7 @@ namespace Tools.Extensions.List
         /// <param name="newItem"></param>
         public static void AddAfterOf<T>(this List<T> list, T item, T newItem)
         {
-            var targetPosition = list.IndexOf(item) + 1;
+            int targetPosition = list.IndexOf(item) + 1;
             list.Insert(targetPosition, newItem);
         }
 
@@ -104,7 +109,7 @@ namespace Tools.Extensions.List
         public static void Print<T>(this List<T> list, string log = "")
         {
             log += "[";
-            for (var i = 0; i < list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 log += list[i].ToString();
                 log += i != list.Count - 1 ? ", " : "]";

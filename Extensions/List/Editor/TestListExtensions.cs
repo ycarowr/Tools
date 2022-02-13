@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace Tools.Extensions.List.Editor
+namespace YWR.Tools.Editor
 {
     public class TestListExtensions
     {

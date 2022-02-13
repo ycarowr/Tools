@@ -1,34 +1,42 @@
 ﻿using UnityEngine;
 
-namespace Tools.Trail
+namespace YWR.Tools
 {
     [RequireComponent(typeof(ParticleSystem))]
     public class TrailParticles : MonoBehaviour
     {
-        [SerializeField] bool autoPlay;
-        [SerializeField] ParticleSystem trail;
-        [SerializeField] Material trailMaterial;
+        [SerializeField] private bool autoPlay;
+        [SerializeField] private ParticleSystem trail;
+        [SerializeField] private Material trailMaterial;
 
-        void Start()
+        private void Start()
         {
             if (autoPlay)
+            {
                 Play();
+            }
         }
 
         [Button]
-        public void Play() => trail.Play();
+        public void Play()
+        {
+            trail.Play();
+        }
 
         [Button]
-        public void StopTrail() => trail.Stop();
+        public void StopTrail()
+        {
+            trail.Stop();
+        }
 
         public void PlayFromRender(SpriteRenderer render)
         {
             trailMaterial.mainTexture = render.sprite.texture;
-            var positionInTexture = trailMaterial.mainTextureOffset;
+            Vector2 positionInTexture = trailMaterial.mainTextureOffset;
             positionInTexture.x = render.sprite.rect.position.x / render.sprite.rect.width;
             positionInTexture.y = render.sprite.rect.position.y / render.sprite.rect.height;
 
-            var offset = new Vector2
+            Vector2 offset = new Vector2
             {
                 x = positionInTexture.x * (render.sprite.rect.width / render.sprite.texture.width),
                 y = positionInTexture.y * (render.sprite.rect.height / render.sprite.texture.height)

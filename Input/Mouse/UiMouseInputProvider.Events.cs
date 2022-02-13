@@ -1,7 +1,7 @@
 using System;
 using UnityEngine.EventSystems;
 
-namespace Tools.Input.Mouse
+namespace YWR.Tools
 {
     public partial class UiMouseInputProvider
     {

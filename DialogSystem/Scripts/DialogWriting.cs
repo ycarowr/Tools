@@ -3,14 +3,14 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 
-namespace Tools.DialogSystem
+namespace YWR.Tools
 {
     public partial class DialogSystem
     {
         /// <summary>
         ///     Manages the writing of the Dialog System.
         /// </summary>
-        class DialogWriting : DialogSubComponent
+        private class DialogWriting : DialogSubComponent
         {
             public DialogWriting(IDialogSystem system,
                 TextMeshProUGUI sentence,
@@ -21,11 +21,11 @@ namespace Tools.DialogSystem
                 SentenceText = sentence;
             }
 
-            StringBuilder Builder { get; }
-            int CharLength { get; set; }
-            Coroutine WriteRoutine { get; set; }
-            TextMeshProUGUI SentenceText { get; }
-            TextMeshProUGUI AuthorText { get; }
+            private StringBuilder Builder { get; }
+            private int CharLength { get; set; }
+            private Coroutine WriteRoutine { get; set; }
+            private TextMeshProUGUI SentenceText { get; }
+            private TextMeshProUGUI AuthorText { get; }
 
             public void Write(string text, string author)
             {
@@ -34,9 +34,13 @@ namespace Tools.DialogSystem
                 Builder.Append(text);
                 AuthorText.text = author;
                 if (!DialogSystem.IsOpened)
+                {
                     DialogSystem.Show();
+                }
                 else
+                {
                     StartWriting();
+                }
             }
 
             //-----------------------------------------------------------------------------------------
@@ -60,7 +64,9 @@ namespace Tools.DialogSystem
                 }
 
                 if (Builder.Length <= 0)
+                {
                     return;
+                }
 
                 StartCoroutine();
             }
@@ -70,26 +76,28 @@ namespace Tools.DialogSystem
             /// </summary>
             /// <param name="delay"></param>
             /// <returns></returns>
-            IEnumerator KeepWriting(float delay)
+            private IEnumerator KeepWriting(float delay)
             {
                 yield return new WaitForSeconds(delay);
 
-                var aSentence = Builder.ToString();
-                var subSentence = CharLength <= aSentence.Length
+                string aSentence = Builder.ToString();
+                string subSentence = CharLength <= aSentence.Length
                     ? aSentence.Substring(0, CharLength)
                     : string.Empty;
 
                 SentenceText.text = subSentence;
                 ++CharLength;
 
-                var hasEnded = CharLength > Builder.Length;
+                bool hasEnded = CharLength > Builder.Length;
                 if (!hasEnded)
+                {
                     StartCoroutine();
+                }
             }
 
-            void StartCoroutine()
+            private void StartCoroutine()
             {
-                var delay = CalculateTime();
+                float delay = CalculateTime();
                 WriteRoutine = DialogSystem.Monobehavior.StartCoroutine(KeepWriting(delay));
             }
 
@@ -97,7 +105,10 @@ namespace Tools.DialogSystem
             ///     Return the time necessary to wait according to the sentence length.
             /// </summary>
             /// <returns></returns>
-            float CalculateTime() => Builder.Length / DialogSystem.Speed;
+            private float CalculateTime()
+            {
+                return Builder.Length / DialogSystem.Speed;
+            }
         }
     }
 }

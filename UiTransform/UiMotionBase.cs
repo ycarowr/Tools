@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Tools.UiTransform
+namespace YWR.Tools
 {
     public abstract class UiMotionBase
     {
@@ -11,7 +11,10 @@ namespace Tools.UiTransform
 
         //--------------------------------------------------------------------------------------------------------------
 
-        protected UiMotionBase(IUiMotionHandler handler) => Handler = handler.MonoBehaviour;
+        protected UiMotionBase(IUiMotionHandler handler)
+        {
+            Handler = handler.MonoBehaviour;
+        }
 
         /// <summary> Whether the component is still operating or not. </summary>
         public bool IsOperating { get; protected set; }
@@ -31,24 +34,36 @@ namespace Tools.UiTransform
         /// <summary> Is the movement constant. </summary>
         public bool IsConstant { get; set; }
 
-        public void SetThreshold(float threshold) => Threshold = threshold;
+        public void SetThreshold(float threshold)
+        {
+            Threshold = threshold;
+        }
 
         public void Update()
         {
             if (!IsOperating)
+            {
                 return;
+            }
 
             if (CheckFinalState())
+            {
                 OnMotionEnds();
+            }
             else
+            {
                 KeepMotion();
+            }
         }
 
         /// <summary> Check if it has reached the threshold. </summary>
         protected abstract bool CheckFinalState();
 
         /// <summary> Ends the motion and dispatch motion ends. </summary>
-        protected virtual void OnMotionEnds() => OnFinishMotion?.Invoke();
+        protected virtual void OnMotionEnds()
+        {
+            OnFinishMotion?.Invoke();
+        }
 
         /// <summary> Keep the motion on update. </summary>
         protected abstract void KeepMotion();
@@ -61,13 +76,17 @@ namespace Tools.UiTransform
 
             //TODO: Bad float compare 
             if (delay == 0)
+            {
                 IsOperating = true;
+            }
             else
+            {
                 Handler.StartCoroutine(AllowMotion(delay));
+            }
         }
 
         /// <summary> Used to delay the Motion. </summary>
-        IEnumerator AllowMotion(float delay)
+        private IEnumerator AllowMotion(float delay)
         {
             yield return new WaitForSeconds(delay);
             IsOperating = true;
@@ -75,6 +94,9 @@ namespace Tools.UiTransform
 
         /// <summary> Stop the motion. It won't trigger OnFinishMotion.</summary>
         /// TODO: Cancel the Delay Coroutine.
-        public virtual void StopMotion() => IsOperating = false;
+        public virtual void StopMotion()
+        {
+            IsOperating = false;
+        }
     }
 }

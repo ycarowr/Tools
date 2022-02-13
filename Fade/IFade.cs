@@ -1,6 +1,6 @@
 using System;
 
-namespace Tools.Fade
+namespace YWR.Tools
 {
     public interface IFade
     {

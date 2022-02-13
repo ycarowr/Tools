@@ -1,4 +1,4 @@
-﻿namespace Tools.UiTransform
+﻿namespace YWR.Tools
 {
     public interface IUiMotion
     {

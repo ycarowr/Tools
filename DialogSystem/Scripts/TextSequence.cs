@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tools.DialogSystem
+namespace YWR.Tools
 {
     /// <summary>
     ///     A ordered sequence of <see cref="TextPiece" />.

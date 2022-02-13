@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 
-namespace Tools.DialogSystem.StateBehaviors
+namespace YWR.Tools.StateBehaviors
 {
     public class OnShow : StateMachineBehaviour
     {
-        DialogSystem DialogSystem { get; set; }
+        private DialogSystem DialogSystem { get; set; }
 
         // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             if (!DialogSystem)
+            {
                 DialogSystem = animator.GetComponentInParent<DialogSystem>();
+            }
 
             DialogSystem?.OnShow?.Invoke();
         }

@@ -1,11 +1,11 @@
-﻿namespace Tools.DialogSystem
+﻿namespace YWR.Tools
 {
     public partial class DialogSystem
     {
         /// <summary>
         ///     Manages the <see cref="TextSequence" /> to show the current <see cref="TextPiece" />.
         /// </summary>
-        class DialogSequence : DialogSubComponent
+        private class DialogSequence : DialogSubComponent
         {
             public DialogSequence(IDialogSystem system) : base(system)
             {
@@ -27,9 +27,13 @@
             {
                 IndexPieces = 0;
                 Sequence = sequence;
-                foreach (var piece in sequence.Sequence)
-                foreach (var btn in piece.Buttons)
-                    btn.SetDialog(DialogSystem);
+                foreach (TextPiece piece in sequence.Sequence)
+                {
+                    foreach (TextButton btn in piece.Buttons)
+                    {
+                        btn.SetDialog(DialogSystem);
+                    }
+                }
             }
 
             /// <summary>
@@ -49,7 +53,9 @@
             public TextPiece Get(int index)
             {
                 if (Sequence == null)
+                {
                     return null;
+                }
 
                 return index < Sequence.Sequence.Length
                     ? Sequence.Sequence[index]
@@ -60,7 +66,10 @@
             ///     Gets the current displayed <see cref="TextPiece" />.
             /// </summary>
             /// <returns></returns>
-            public TextPiece GetCurrent() => Get(IndexPieces);
+            public TextPiece GetCurrent()
+            {
+                return Get(IndexPieces);
+            }
 
             /// <summary>
             ///     Gets the next displayed <see cref="TextPiece" />.
@@ -69,7 +78,9 @@
             public TextPiece GetNext()
             {
                 if (Sequence == null)
+                {
                     return null;
+                }
 
                 ++IndexPieces;
                 return GetCurrent();

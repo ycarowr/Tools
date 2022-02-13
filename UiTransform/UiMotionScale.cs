@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tools.UiTransform
+namespace YWR.Tools
 {
     public class UiMotionScale : UiMotionBase
     {
@@ -14,7 +14,7 @@ namespace Tools.UiTransform
 
         protected override bool CheckFinalState()
         {
-            var delta = Target - Handler.transform.localScale;
+            Vector3 delta = Target - Handler.transform.localScale;
             return delta.magnitude <= Threshold;
         }
 
@@ -26,8 +26,8 @@ namespace Tools.UiTransform
 
         protected override void KeepMotion()
         {
-            var current = Handler.transform.localScale;
-            var amount = Time.deltaTime * Speed;
+            Vector3 current = Handler.transform.localScale;
+            float amount = Time.deltaTime * Speed;
             Handler.transform.localScale = Vector3.Lerp(current, Target, amount);
         }
     }

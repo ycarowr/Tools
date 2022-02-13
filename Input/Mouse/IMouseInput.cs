@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Tools.Input.Mouse
+namespace YWR.Tools
 {
     public enum DragDirection
     {

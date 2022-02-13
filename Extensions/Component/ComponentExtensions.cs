@@ -1,4 +1,6 @@
-﻿namespace Tools.Extensions.Component
+﻿using UnityEngine;
+
+namespace YWR.Tools
 {
     /// <summary>
     ///     Extension methods for UnityEngine.Component.
@@ -11,8 +13,10 @@
         /// </summary>
         /// <param name="component">Component.</param>
         /// <returns>Newly attached component.</returns>
-        public static T AddComponent<T>(this UnityEngine.Component component) where T : UnityEngine.Component =>
-            component.gameObject.AddComponent<T>();
+        public static T AddComponent<T>(this Component component) where T : Component
+        {
+            return component.gameObject.AddComponent<T>();
+        }
 
         /// <summary>
         ///     Gets a component attached to the given component's game object.
@@ -20,15 +24,19 @@
         /// </summary>
         /// <param name="component">Component.</param>
         /// <returns>Previously or newly attached component.</returns>
-        public static T GetOrAddComponent<T>(this UnityEngine.Component component) where T : UnityEngine.Component =>
-            component.GetComponent<T>() ?? component.AddComponent<T>();
+        public static T GetOrAddComponent<T>(this Component component) where T : Component
+        {
+            return component.GetComponent<T>() ?? component.AddComponent<T>();
+        }
 
         /// <summary>
         ///     Checks whether a component's game object has a component of type T attached.
         /// </summary>
         /// <param name="component">Component.</param>
         /// <returns>True when component is attached.</returns>
-        public static bool HasComponent<T>(this UnityEngine.Component component) where T : UnityEngine.Component =>
-            component.GetComponent<T>() != null;
+        public static bool HasComponent<T>(this Component component) where T : Component
+        {
+            return component.GetComponent<T>() != null;
+        }
     }
 }

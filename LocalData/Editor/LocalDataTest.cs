@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using NUnit.Framework;
-using Tools.LocalData;
+using YWR.Tools;
 using UnityEngine;
 
 public class LocalDataTest : MonoBehaviour

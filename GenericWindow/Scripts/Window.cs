@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Tools.GenericWindow
+namespace YWR.Tools
 {
     public class Window : MonoBehaviour
     {
-        readonly int HideId = Animator.StringToHash("Hide");
-        readonly int ShowId = Animator.StringToHash("Show");
-        [SerializeField] Animator animator;
+        [SerializeField] private Animator animator;
+        private readonly int HideId = Animator.StringToHash("Hide");
+        private readonly int ShowId = Animator.StringToHash("Show");
         public Action OnShown { get; set; } = () => { };
         public Action OnHidden { get; set; } = () => { };
         public bool IsShowing { get; private set; }
@@ -18,7 +18,9 @@ namespace Tools.GenericWindow
         public void Show()
         {
             if (IsShowing)
+            {
                 return;
+            }
 
             IsShowing = true;
             animator?.Play(ShowId);
@@ -29,7 +31,9 @@ namespace Tools.GenericWindow
         public void Hide()
         {
             if (!IsShowing)
+            {
                 return;
+            }
 
             IsShowing = false;
             animator?.Play(HideId);

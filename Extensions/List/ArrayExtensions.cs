@@ -2,7 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Tools.Extensions.Arrays
+namespace YWR.Tools
 {
     /// </summary>
     public static class ArrayExtensions
@@ -13,9 +13,11 @@ namespace Tools.Extensions.Arrays
         public static T RandomItem<T>(this T[] array)
         {
             if (array.Length == 0)
+            {
                 throw new IndexOutOfRangeException("Array is Empty");
+            }
 
-            var randomIndex = Random.Range(0, array.Length);
+            int randomIndex = Random.Range(0, array.Length);
             return array[randomIndex];
         }
 
@@ -24,14 +26,14 @@ namespace Tools.Extensions.Arrays
         /// </summary>
         public static void Shuffle<T>(this T[] array)
         {
-            var n = array.Length;
-            for (var i = 0; i <= n - 2; i++)
+            int n = array.Length;
+            for (int i = 0; i <= n - 2; i++)
             {
                 //random index
-                var rdn = Random.Range(0, n - i);
+                int rdn = Random.Range(0, n - i);
 
                 //swap positions
-                var curVal = array[i];
+                T curVal = array[i];
                 array[i] = array[i + rdn];
                 array[i + rdn] = curVal;
             }
@@ -43,7 +45,7 @@ namespace Tools.Extensions.Arrays
         public static void Print<T>(this T[] array, string log = "")
         {
             log += "[";
-            for (var i = 0; i < array.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 log += array[i].ToString();
                 log += i != array.Length - 1 ? ", " : "]";
@@ -52,23 +54,26 @@ namespace Tools.Extensions.Arrays
             Debug.Log(log);
         }
 
-        public static T[] Append<T>(this T[] array, T[] other) => ArrayHelper.Append(ref array, other);
+        public static T[] Append<T>(this T[] array, T[] other)
+        {
+            return ArrayHelper.Append(ref array, other);
+        }
     }
 
     public static class ArrayHelper
     {
         public static T[] Append<T>(ref T[] array, T[] other)
         {
-            var size = array.Length + other.Length;
-            var merge = new T[size];
-            var count = 0;
-            for (var i = 0; i < array.Length; i++)
+            int size = array.Length + other.Length;
+            T[] merge = new T[size];
+            int count = 0;
+            for (int i = 0; i < array.Length; i++)
             {
                 merge[count] = array[i];
                 count++;
             }
 
-            for (var i = 0; i < other.Length; i++)
+            for (int i = 0; i < other.Length; i++)
             {
                 merge[count] = other[i];
                 count++;

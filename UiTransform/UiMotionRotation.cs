@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tools.UiTransform
+namespace YWR.Tools
 {
     public class UiMotionRotation : UiMotionBase
     {
@@ -23,19 +23,19 @@ namespace Tools.UiTransform
 
         protected override void KeepMotion()
         {
-            var current = Handler.transform.rotation;
-            var amount = Speed * Time.deltaTime;
-            var rotation = Quaternion.Euler(Target);
-            var newRotation = Quaternion.RotateTowards(current, rotation, amount);
+            Quaternion current = Handler.transform.rotation;
+            float amount = Speed * Time.deltaTime;
+            Quaternion rotation = Quaternion.Euler(Target);
+            Quaternion newRotation = Quaternion.RotateTowards(current, rotation, amount);
             Handler.transform.rotation = newRotation;
         }
 
         protected override bool CheckFinalState()
         {
-            var distance = Target - Handler.transform.eulerAngles;
-            var smallerThanLimit = distance.magnitude <= Threshold;
-            var equals360 = (int) distance.magnitude == 360;
-            var isFinal = smallerThanLimit || equals360;
+            Vector3 distance = Target - Handler.transform.eulerAngles;
+            bool smallerThanLimit = distance.magnitude <= Threshold;
+            bool equals360 = (int) distance.magnitude == 360;
+            bool isFinal = smallerThanLimit || equals360;
             return isFinal;
         }
 

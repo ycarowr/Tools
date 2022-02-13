@@ -1,13 +1,16 @@
-﻿namespace Tools.DialogSystem
+﻿namespace YWR.Tools
 {
     public partial class DialogSystem
     {
         /// <summary>
         ///     Base dialog component.
         /// </summary>
-        abstract class DialogSubComponent
+        private abstract class DialogSubComponent
         {
-            protected DialogSubComponent(IDialogSystem system) => DialogSystem = system;
+            protected DialogSubComponent(IDialogSystem system)
+            {
+                DialogSystem = system;
+            }
 
             /// <summary>
             ///     The parent Dialog.

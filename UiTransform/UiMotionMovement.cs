@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Tools.UiTransform
+namespace YWR.Tools
 {
     public class UiMotionMovement : UiMotionBase
     {
@@ -8,7 +8,7 @@ namespace Tools.UiTransform
         {
         }
 
-        float Z { get; set; }
+        private float Z { get; set; }
 
         public void Execute(Vector2 position, float speed, float delay, float z)
         {
@@ -16,12 +16,15 @@ namespace Tools.UiTransform
             base.Execute(position, speed, delay);
         }
 
-        public void Teleport(Vector3 position) => Handler.transform.position = position;
+        public void Teleport(Vector3 position)
+        {
+            Handler.transform.position = position;
+        }
 
-        void TeleportZ(float z)
+        private void TeleportZ(float z)
         {
             Z = z;
-            var pos = Handler.transform.position;
+            Vector3 pos = Handler.transform.position;
             pos.z = z;
             Handler.transform.position = pos;
         }
@@ -29,7 +32,7 @@ namespace Tools.UiTransform
         protected override void OnMotionEnds()
         {
             IsOperating = false;
-            var target = Target;
+            Vector3 target = Target;
             target.z = Handler.transform.position.z;
             Handler.transform.position = target;
             base.OnMotionEnds();
@@ -37,9 +40,9 @@ namespace Tools.UiTransform
 
         protected override void KeepMotion()
         {
-            var current = (Vector2) Handler.transform.position;
-            var amount = Speed * Time.deltaTime;
-            var delta = !IsConstant
+            Vector2 current = (Vector2) Handler.transform.position;
+            float amount = Speed * Time.deltaTime;
+            Vector2 delta = !IsConstant
                 ? Vector2.Lerp(current, Target, amount)
                 : Vector2.MoveTowards(current, Target, amount);
 
@@ -49,7 +52,7 @@ namespace Tools.UiTransform
 
         protected override bool CheckFinalState()
         {
-            var distance = (Vector2) Target - (Vector2) Handler.transform.position;
+            Vector2 distance = (Vector2) Target - (Vector2) Handler.transform.position;
             return distance.magnitude <= Threshold;
         }
     }

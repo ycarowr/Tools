@@ -1,0 +1,12 @@
+﻿namespace YWR.Tools
+{
+    public abstract class DataBuilder<T>
+    {
+        public abstract T Build();
+
+        public static implicit operator T(DataBuilder<T> builder)
+        {
+            return builder.Build();
+        }
+    }
+}

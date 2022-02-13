@@ -1,11 +1,39 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Tools.Input.KeyBoard
+namespace YWR.Tools
 {
     public class KeyboardInput : MonoBehaviour, IKeyboardInput
     {
-        [SerializeField] KeyCode key;
+        [SerializeField] private KeyCode key;
+
+        private void Update()
+        {
+            if (!IsTracking)
+            {
+                return;
+            }
+
+            bool isKey = Input.GetKey(key);
+            bool isKeyDown = Input.GetKeyDown(key);
+            bool isKeyUp = Input.GetKeyUp(key);
+
+            if (isKey)
+            {
+                OnKey?.Invoke();
+            }
+
+            if (isKeyDown)
+            {
+                OnKeyDown?.Invoke();
+            }
+
+            if (isKeyUp)
+            {
+                OnKeyUp?.Invoke();
+            }
+        }
+
         public bool IsTracking { get; private set; }
         KeyCode IKeyboardInput.Key => key;
 
@@ -13,27 +41,19 @@ namespace Tools.Input.KeyBoard
         public Action OnKeyDown { get; set; } = () => { };
         public Action OnKeyUp { get; set; } = () => { };
 
-        public void StartTracking() => IsTracking = true;
-
-        public void StopTracking() => IsTracking = false;
-
-        void Update()
+        public void StartTracking()
         {
-            if (!IsTracking)
-                return;
-
-            var isKey = UnityEngine.Input.GetKey(key);
-            var isKeyDown = UnityEngine.Input.GetKeyDown(key);
-            var isKeyUp = UnityEngine.Input.GetKeyUp(key);
-
-            if (isKey)
-                OnKey?.Invoke();
-            if (isKeyDown)
-                OnKeyDown?.Invoke();
-            if (isKeyUp)
-                OnKeyUp?.Invoke();
+            IsTracking = true;
         }
 
-        public void SetKey(KeyCode keyCode) => key = keyCode;
+        public void StopTracking()
+        {
+            IsTracking = false;
+        }
+
+        public void SetKey(KeyCode keyCode)
+        {
+            key = keyCode;
+        }
     }
 }

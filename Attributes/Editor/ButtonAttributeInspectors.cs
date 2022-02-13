@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Tools.Attributes.Editor
+namespace YWR.Tools
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(Object), true)]
@@ -25,9 +25,9 @@ namespace Tools.Attributes.Editor
             if (Methods.Length < 1)
                 return;
 
-            foreach (var method in Methods)
+            foreach (MethodInfo method in Methods)
             {
-                var buttonAttribute = (ButtonAttribute) method
+                ButtonAttribute buttonAttribute = (ButtonAttribute) method
                     .GetCustomAttribute(typeof(ButtonAttribute));
 
                 if (buttonAttribute != null)
@@ -37,7 +37,7 @@ namespace Tools.Attributes.Editor
 
         public void DrawButton(ButtonAttribute buttonAttribute, MethodInfo method)
         {
-            var label = buttonAttribute.Label ?? method.Name;
+            string label = buttonAttribute.Label ?? method.Name;
 
             if (GUILayout.Button(label))
                 method.Invoke(target, null);
