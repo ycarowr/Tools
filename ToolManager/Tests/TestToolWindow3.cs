@@ -2,6 +2,7 @@
 
 namespace ToolManagerTest
 {
+    [ToolWindowAtt(false)]
     public class TestToolWindow3 : BaseToolWindow
     {
         private const string NAME = "TestToolWindow3";
