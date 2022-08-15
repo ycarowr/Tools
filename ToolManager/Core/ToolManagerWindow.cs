@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -23,6 +22,16 @@ namespace ToolManager
 
         private void OnGUI()
         {
+            RenderTools();
+        }
+
+        private void OnEnable()
+        {
+            Initialize();
+        }
+
+        private void RenderTools()
+        {
             for (int i = 0, count = REGISTRY.Count; i < count; ++i)
             {
                 BaseToolWindow tool = REGISTRY[i];
@@ -31,11 +40,6 @@ namespace ToolManager
                     tool.Open();
                 }
             }
-        }
-
-        private void OnEnable()
-        {
-            Initialize();
         }
 
         private void Initialize()
