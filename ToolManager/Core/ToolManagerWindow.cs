@@ -63,7 +63,7 @@ namespace ToolManager
                 Type type = allTypes[i];
                 if (type.IsSubclassOf(typeof(BaseToolWindow)))
                 {
-                    ToolWindowAtt toolWindowAtt = CollectAttibute(type);
+                    ToolWindowAtt toolWindowAtt = type.GetCustomAttribute<ToolWindowAtt>();
                     if (toolWindowAtt == null || !toolWindowAtt.IsDisabled)
                     {
                         enabledWindowTypes.Add(type);
@@ -76,20 +76,6 @@ namespace ToolManager
         private static Type[] CollectTypesFromAssembly()
         {
             return Assembly.GetAssembly(typeof(BaseToolWindow)).GetTypes();
-        }
-
-        private static ToolWindowAtt CollectAttibute(Type type)
-        {
-            IEnumerable<Attribute> customAttributes = type.GetCustomAttributes();
-            foreach (Attribute att in customAttributes)
-            {
-                if (att.GetType() == typeof(ToolWindowAtt))
-                {
-                    return (ToolWindowAtt)att;
-                }
-            }
-
-            return null;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ToolManager;
 using UnityEngine;
+using UnityEditor;
 
 namespace ToolManagerTest
 {
@@ -23,10 +24,10 @@ namespace ToolManagerTest
             AddButton("button 1", () => { });
             AddLabel("label 1");
             AddButton("button 2", () => { });
-            AddHelpBox("help 1", UnityEditor.MessageType.None);
-            AddHelpBox("help 2", UnityEditor.MessageType.Info);
-            AddHelpBox("help 3", UnityEditor.MessageType.Warning);
-            AddHelpBox("help 4", UnityEditor.MessageType.Error);
+            AddHelpBox("help 1", MessageType.None);
+            AddHelpBox("help 2", MessageType.Info);
+            AddHelpBox("help 3", MessageType.Warning);
+            AddHelpBox("help 4", MessageType.Error);
 
             IdentRight();
             m_Toogle = AddToggle("toggle 1", m_Toogle);
