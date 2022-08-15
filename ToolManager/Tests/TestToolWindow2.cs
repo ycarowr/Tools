@@ -11,8 +11,15 @@ namespace ToolManagerTest
         {
             AddButton("button 1", () => { });
             AddLabel("label 1");
-            AddButton("button 2", () => { });
-            AddButton("button 3", () => { });
+
+            AddFile("Configs", "config", "json", () => { });
+            AddFile("Configs/InnerConfigs", "config_0", "json", () => { });
+            AddFile("Configs/InnerConfigs", "config_1", "json", () => { });
+            AddFile("Configs/InnerConfigs/InnerInnerConfigs", "config", "json", () => { });
+            
+            AddFile("Textures", "image_0", "png", () => { });
+            AddFile("Textures", "image_1", "png", () => { });
+            AddFile("Textures", "image_2", "png", () => { });
         }
     }
 }

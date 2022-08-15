@@ -1,6 +1,6 @@
 ﻿using ToolManager;
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
 namespace ToolManagerTest
 {
@@ -42,7 +42,6 @@ namespace ToolManagerTest
             m_Object = AddObjectField("", m_Object, typeof(Object));
             IdentLeft();
             m_Gradient = AddGradientField("gradient 1", m_Gradient);
-
         }
     }
 }
