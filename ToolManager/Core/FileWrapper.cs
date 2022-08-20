@@ -8,55 +8,63 @@ namespace ToolManager
         private const string ASSETS = "Assets";
         private const string SELECT = "Select";
         private const string DELETE = "Delete";
-        private const string CLEAN = "Clean";
+        private const string REMOVE_FOLDER = "Remove Folder";
         private const string FILE = "File: ";
         private const string NO_FILE = "Empty";
         private const string EMPTY = "";
         private const char SLASH = '/';
 
-        public string ParentFolderName { get; }
-        public string Name { get; }
-        public string Extension { get; }
-        public Action OnLoad { get; }
-        private BaseToolWindow ParentWindow { get; }
-        private string FullAssetPath => $"{ASSETS}/{ParentFolderName}/{Name}.{Extension}";
-        private string FolderPath => $"{ASSETS}/{ParentFolderName}";
-        private bool IsValid => LoadFile() != null;
+        private readonly string ParentFolderName;
+        private readonly string Extension;
+        private readonly Action OnLoad;
+        private readonly string FullAssetPath;
+        private readonly string FolderPath;
 
         public FileWrapper(BaseToolWindow window, string parentFolderName, string fileName, string extension, Action onLoad)
         {
-            ParentWindow = window;
             ParentFolderName = parentFolderName;
             OnLoad = onLoad;
-            Name = fileName;
             Extension = extension;
+            FullAssetPath = $"{ASSETS}/{ParentFolderName}/{fileName}.{Extension}";
+            FolderPath = $"{ASSETS}/{ParentFolderName}";
 
-            if (IsValid)
+            bool isValid = LoadFile() != null;
+            if (isValid)
             {
-                ParentWindow.AddLabel(FILE + FullAssetPath);
+                window.AddLabel(FILE + FullAssetPath);
             }
             else
             {
-                ParentWindow.AddLabel(FILE + NO_FILE);
+                window.AddLabel(FILE + NO_FILE);
             }
 
-            ParentWindow.AddButton(SELECT, Select);
-            ParentWindow.AddButton(DELETE, Delete);
-            ParentWindow.AddButton(CLEAN, Clean);
+            window.AddButton(SELECT, SelectFile);
+            window.AddButton(DELETE, DeleteFile);
+            window.AddButton(REMOVE_FOLDER, RemoveFolder);
         }
 
-        private object LoadFile()
-        {
-            return AssetDatabase.LoadAssetAtPath(FullAssetPath, typeof(object));
-        }
-
-        public void Select()
+        public void SelectFile()
         {
             CreateFolders();
             string selectedPath = EditorUtility.OpenFilePanel(EMPTY, EMPTY, Extension);
             FileUtil.CopyFileOrDirectory(selectedPath, FullAssetPath);
             AssetDatabase.Refresh();
             OnLoad.Invoke();
+        }
+
+        public void DeleteFile()
+        {
+            AssetDatabase.DeleteAsset(FullAssetPath);
+        }
+
+        public void RemoveFolder()
+        {
+            AssetDatabase.DeleteAsset(FolderPath);
+        }
+
+        private object LoadFile()
+        {
+            return AssetDatabase.LoadAssetAtPath(FullAssetPath, typeof(object));
         }
 
         private void CreateFolders()
@@ -70,21 +78,11 @@ namespace ToolManager
                     string folder = split[i];
                     if (!AssetDatabase.IsValidFolder(fullPath + SLASH + folder))
                     {
-                        AssetDatabase.CreateFolder(fullPath, folder); 
+                        AssetDatabase.CreateFolder(fullPath, folder);
                     }
                     fullPath += SLASH + folder;
                 }
             }
-        }
-
-        public void Delete()
-        {
-            AssetDatabase.DeleteAsset(FullAssetPath);
-        }
-
-        public void Clean()
-        {
-            AssetDatabase.DeleteAsset(FolderPath);
         }
     }
 }

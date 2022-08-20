@@ -13,7 +13,6 @@ namespace ToolManager
         private static readonly GUIContent WINDOW_TITLE_CONTENT = new GUIContent(WINDOW_TITLE);
         private static readonly List<BaseToolWindow> REGISTRY = new List<BaseToolWindow>();
 
-
         [MenuItem(MENU_PATH_WINDOW)]
         public static void Open()
         {
